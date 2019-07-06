@@ -11,8 +11,9 @@ LazyData: true
 Imports: 
     R6,
     scales,
-    rlang (>= 0.1.2)
+    rlang (>= 0.1.2),
+    tibble
 RoxygenNote: 6.1.1
 Suggests: 
-    testthat,
+    testthat (>= 2.1.0),
     roxygen2
