@@ -2,7 +2,40 @@
 Scale <- R6Class(
   "Scale",
   public = list(
+    aesthetics = NULL,
 
+    initialize = function(aesthetics = character(0)) {
+      self$aesthetics <- aesthetics
+    },
+
+    transform = function(x) {
+      abort("Not implemented")
+    },
+
+    train = function(x) {
+      abort("Not implemented")
+    },
+
+    map = function(x) {
+      abort("Not implemented")
+    }
+  )
+)
+
+ScaleIdentity <- R6Class(
+  "ScaleIdentity", inherit = Scale,
+  public = list(
+    transform = function(x) {
+      x
+    },
+
+    train = function(x) {
+      x
+    },
+
+    map = function(x) {
+      x
+    }
   )
 )
 

@@ -2,13 +2,13 @@
 Layer <- R6Class(
   "Layer",
   public = list(
-    plot = NULL,
     data = NULL,
     geom = NULL,
     stat = NULL,
     position = NULL,
 
-    initialize = function(data = NULL, geom, stat = StatIdentity$new(), position = PositionIdentity$new()) {
+    initialize = function(data = NULL, geom = GeomBlank$new(), stat = StatIdentity$new(),
+                          position = PositionIdentity$new()) {
       self$data <- data
       self$geom <- geom
       self$stat <- stat
