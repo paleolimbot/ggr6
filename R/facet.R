@@ -27,7 +27,7 @@ FacetNull <- R6Class(
       invisible(self)
     },
 
-    setup_panels = function(coord, scales) {
+    init_panels = function(coord, scales) {
       self$panels <- list(coord$setup_panel(scales))
       invisible(self)
     },

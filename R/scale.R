@@ -9,15 +9,15 @@ Scale <- R6Class(
     },
 
     transform = function(x) {
-      abort("Not implemented")
+      abort("Not implemented") # nocov
     },
 
     train = function(x) {
-      abort("Not implemented")
+      abort("Not implemented") # nocov
     },
 
     map = function(x) {
-      abort("Not implemented")
+      abort("Not implemented") # nocov
     }
   )
 )
