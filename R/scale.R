@@ -31,6 +31,7 @@ ScaleIdentity <- R6Class(
 
     train = function(x) {
       x
+      invisible(self)
     },
 
     map = function(x) {
