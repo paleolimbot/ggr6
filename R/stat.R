@@ -3,7 +3,7 @@ Stat <- R6Class(
   "Stat",
   public = list(
     compute_layer = function(mapped_data) {
-      abort("Not implemented")
+      not_implemented() # nocov
     }
   )
 )

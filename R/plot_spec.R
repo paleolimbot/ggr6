@@ -10,6 +10,8 @@ PlotSpec <- R6Class(
     initialize = function() {
       self$layers <- LayerList$new()
       self$scales <- ScaleList$new()
+      self$coord <- CoordIdentity$new()
+      self$facet <- FacetNull$new()
     }
   )
 )

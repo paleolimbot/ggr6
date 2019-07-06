@@ -12,7 +12,8 @@ Imports:
     R6,
     scales,
     rlang (>= 0.1.2),
-    tibble
+    tibble,
+    dplyr
 RoxygenNote: 6.1.1
 Suggests: 
     testthat (>= 2.1.0),

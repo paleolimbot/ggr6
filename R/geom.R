@@ -3,7 +3,7 @@ Geom <- R6Class(
   "Geom",
   public = list(
     compute_layer = function(data, panel) {
-      abort("Not implemented")
+      not_implemented() # nocov
     }
   )
 )

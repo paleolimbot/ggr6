@@ -3,31 +3,31 @@ PlotRenderer <- R6Class(
   "PlotRenderer",
   public = list(
     render = function(plot_built) {
-      abort("Not implemented")
+      not_implemented() # nocov
     },
 
     render_points = function(coords, ...) {
-      abort("Not implemented")
+      not_implemented() # nocov
     },
 
     render_path = function(coords, group, ...) {
-      abort("Not implemented")
+      not_implemented() # nocov
     },
 
     render_polygon = function(coords, group, subgroup, ...) {
-      abort("Not implemented")
+      not_implemented() # nocov
     },
 
     render_text = function(coords, label, ...) {
-      abort("Not implemented")
+      not_implemented() # nocov
     },
 
     render_null = function() {
-      abort("Not implemented")
+      not_implemented() # nocov
     },
 
     render_stack = function(items) {
-      abort("Not implemented")
+      not_implemented() # nocov
     }
   )
 )
@@ -36,7 +36,7 @@ PlotRendererIdentity <- R6Class(
   "PlotRendererIdentity",
   public = list(
     render = function(plot_built) {
-      abort("Not implemented")
+      not_implemented() # nocov
     },
 
     render_points = function(coords, ...) {

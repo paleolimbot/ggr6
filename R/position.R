@@ -3,7 +3,7 @@ Position <- R6Class(
   "Position",
   public = list(
     compute_layer = function(transformed_data) {
-      abort("Not implemented.")
+      not_implemented() # nocov
     }
   )
 )

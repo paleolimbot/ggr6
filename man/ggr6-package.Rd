@@ -8,6 +8,14 @@
 \description{
 Implements the Grammar of Graphics using R6 reference objects.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/paleolimbot/ggr6}
+  \item Report bugs at \url{https://github.com/paleolimbot/ggr6/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Dewey Dunnington \email{dewey@fishandwhistle.net} (0000-0002-9415-4582)
 
