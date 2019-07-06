@@ -9,21 +9,37 @@ Scale <- R6Class(
     },
 
     transform_tbl = function(data) {
-      abort("Not implemented") # nocov
+      not_implemented() # nocov
     },
 
     train_tbl = function(data_trans) {
-      abort("Not implemented") # nocov
+      not_implemented() # nocov
     },
 
     map_tbl = function(data_trans) {
-      abort("Not implemented") # nocov
+      not_implemented() # nocov
+    },
+
+    breaks = function() {
+      not_implemented() # nocov
+    },
+
+    breaks_minor = function() {
+      not_implemented() # nocov
+    },
+
+    labels = function() {
+      not_implemented() # nocov
+    },
+
+    limits = function() {
+      not_implemented() # nocov
     }
   )
 )
 
-ScaleIdentity <- R6Class(
-  "ScaleIdentity", inherit = Scale,
+ScaleNull <- R6Class(
+  "ScaleNull", inherit = Scale,
   public = list(
     transform_tbl = function(data) {
       data
@@ -35,6 +51,22 @@ ScaleIdentity <- R6Class(
 
     map_tbl = function(data_trans) {
       data_trans
+    },
+
+    breaks = function() {
+      NULL
+    },
+
+    breaks_minor = function() {
+      NULL
+    },
+
+    labels = function() {
+      NULL
+    },
+
+    limits = function() {
+      c(-Inf, Inf)
     }
   )
 )
