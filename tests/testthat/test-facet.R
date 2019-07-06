@@ -14,5 +14,5 @@ test_that("FacetNull creates one panel with all the data", {
 test_that("FacetNull cannot create panel data before panels are initiated", {
   facet <- FacetNull$new()
   df <- tibble(x = 1, y = 2)
-  expect_error(facet$panel_data(df), "Attempting to call")
+  expect_error(facet$panel_data(df), class = "invalid_state")
 })

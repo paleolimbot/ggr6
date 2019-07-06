@@ -13,7 +13,7 @@ Coord <- R6Class(
     },
 
     coords = function(data, scales) {
-      coords <- data[self$aesthetics]
+      coords <- dplyr::select(data, !!self$aesthetics)
       self$transform_coords(coords, scales)
     },
 
