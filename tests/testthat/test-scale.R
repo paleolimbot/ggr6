@@ -7,7 +7,8 @@ test_that("scale list only accepts scales", {
 
 test_that("ScaleIdentity does not change input", {
   scale <- ScaleIdentity$new()
-  expect_identical(scale$transform(1:5), 1:5)
-  expect_identical(scale$map(1:5), 1:5)
-  expect_identical(scale$train(1:5), scale)
+  df <- tibble(x = 1:5)
+  expect_identical(scale$transform_tbl(df), df)
+  expect_identical(scale$map_tbl(df), df)
+  expect_identical(scale$train_tbl(df), scale)
 })

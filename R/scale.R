@@ -8,15 +8,15 @@ Scale <- R6Class(
       self$aesthetics <- aesthetics
     },
 
-    transform = function(x) {
+    transform_tbl = function(data) {
       abort("Not implemented") # nocov
     },
 
-    train = function(x) {
+    train_tbl = function(data_trans) {
       abort("Not implemented") # nocov
     },
 
-    map = function(x) {
+    map_tbl = function(data_trans) {
       abort("Not implemented") # nocov
     }
   )
@@ -25,17 +25,16 @@ Scale <- R6Class(
 ScaleIdentity <- R6Class(
   "ScaleIdentity", inherit = Scale,
   public = list(
-    transform = function(x) {
-      x
+    transform_tbl = function(data) {
+      data
     },
 
-    train = function(x) {
-      x
+    train_tbl = function(data_trans) {
       invisible(self)
     },
 
-    map = function(x) {
-      x
+    map_tbl = function(data_trans) {
+      data_trans
     }
   )
 )
