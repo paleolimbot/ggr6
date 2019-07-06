@@ -1,0 +1,16 @@
+Package: ggr6
+Title: An Implementaation of the Grammar of Graphics in R6
+Version: 0.0.0.9000
+Authors@R: person("Dewey", "Dunnington", email = "dewey@fishandwhistle.net", role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0002-9415-4582"))
+Description: Implements the Grammar of Graphics using R6 reference objects.
+Depends: R (>= 3.5.0)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    R6,
+    scales
+RoxygenNote: 6.1.1
+Suggests: 
+    testthat
