@@ -8,7 +8,27 @@ Scale <- R6Class(
       self$aesthetics <- aesthetics
     },
 
+    transform = function(x) {
+      not_implemented() # nocov
+    },
+
+    untransform = function(x) {
+      not_implemented() # nocov
+    },
+
+    train = function(x) {
+      not_implemented() # nocov
+    },
+
+    map = function(x) {
+      not_implemented() # nocov
+    },
+
     transform_tbl = function(data) {
+      not_implemented() # nocov
+    },
+
+    untransform_tbl = function(data_trans) {
       not_implemented() # nocov
     },
 
@@ -41,8 +61,29 @@ Scale <- R6Class(
 ScaleNull <- R6Class(
   "ScaleNull", inherit = Scale,
   public = list(
+
+    transform = function(x) {
+      x
+    },
+
+    untransform = function(x) {
+      x
+    },
+
+    train = function(x) {
+      invisible(self)
+    },
+
+    map = function(x) {
+      x
+    },
+
     transform_tbl = function(data) {
       data
+    },
+
+    untransform_tbl = function(data_trans) {
+      data_trans
     },
 
     train_tbl = function(data_trans) {
