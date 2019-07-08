@@ -14,3 +14,30 @@ function_or_value <- function(fun_or_value, ...) {
     fun_or_value
   }
 }
+
+waiver <- function() structure(list(), class = "waiver")
+
+is_waive <- function(x) inherits(x, "waiver")
+
+`%|W|%` <- function(a, b) {
+  if (!is_waive(a)) a else b
+}
+
+discrete_identity_trans <- function() {
+  scales::trans_new(
+    "discrete_identity",
+    transform = force,
+    inverse = force,
+    breaks = identity,
+    minor_breaks = function(limits) NULL,
+    domain = c(-Inf, Inf)
+  )
+}
+
+rescale_none <- function(x, ...) {
+  x
+}
+
+oob_keep <- function(x, ...) {
+  x
+}

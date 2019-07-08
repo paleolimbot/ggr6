@@ -5,10 +5,30 @@ ScaleSimple <- R6Class(
     breaks_in = NULL,
     breaks_minor_in = NULL,
     labels_in = NULL,
-    limits_in = identity,
+    limits_in = NULL,
+    trans = NULL,
+    na_value = NULL,
+    limits_empty = NULL,
 
     initialize = function(aesthetics = character(0)) {
       super$initialize(aesthetics)
+
+      self$breaks_in <- waiver()
+      self$breaks_minor_in <- waiver()
+      self$labels_in <- waiver()
+      self$limits_in <- waiver()
+    },
+
+    is_empty = function() {
+      is_waive(self$limits_in) && (length(self$trained_range()) == 0)
+    },
+
+    transform = function(x) {
+      self$trans$transform(x)
+    },
+
+    untransform = function(x) {
+      self$trans$inverse(x)
     },
 
     transform_tbl = function(data) {
@@ -25,21 +45,38 @@ ScaleSimple <- R6Class(
     },
 
     breaks = function() {
-      values <- function_or_value(self$breaks_in, self$untransform(self$limits()))
+      values <- function_or_value(
+        self$breaks_in %|W|% self$trans$breaks,
+        self$untransform(self$limits())
+      )
       self$transform(values)
     },
 
     breaks_minor = function() {
-      values <- function_or_value(self$breaks_minor_in, self$untransform(self$limits()))
+      values <- function_or_value(
+        self$breaks_minor_in %|W|% self$trans$minor_breaks,
+        self$untransform(self$breaks()),
+        self$untransform(self$limits())
+      )
       self$transform(values)
     },
 
     labels = function() {
-      function_or_value(self$labels_in, self$untransform(self$breaks()))
+      function_or_value(
+        self$labels_in %|W|% self$trans$labels,
+        self$untransform(self$breaks())
+      )
     },
 
     limits = function() {
-      values <- function_or_value(self$limits_in, self$untransform(self$trained_range()))
+      if (self$is_empty()) {
+        return(self$transform(self$limits_empty))
+      }
+
+      values <- function_or_value(
+        self$limits_in %|W|% identity,
+        self$untransform(self$trained_range())
+      )
       self$transform(values)
     },
 
@@ -65,6 +102,21 @@ ScaleSimple <- R6Class(
     set_limits = function(limits) {
       self$limits_in <- limits
       invisible(self)
+    },
+
+    set_trans = function(trans) {
+      self$trans <- trans
+      invisible(self)
+    },
+
+    set_na_value = function(na_value) {
+      self$na_value <- na_value
+      invisible(self)
+    },
+
+    set_limits_empty = function(limits_empty) {
+      self$limits_empty <- limits_empty
+      invisible(self)
     }
   ),
 
@@ -85,29 +137,19 @@ ScaleSimpleContinuous <- R6Class(
 
   public = list(
     range = NULL,
-    trans = NULL,
     palette = NULL,
     oob = NULL,
     rescaler = NULL,
-    na_value = NULL,
 
-    initialize = function(aesthetics = character(0), na_value = NA) {
+    initialize = function(aesthetics = character(0)) {
       super$initialize(aesthetics)
       self$range <- scales::ContinuousRange$new()
       self$palette <- scales::identity_pal()
-      self$oob <- function(x, limits) x
-      self$rescaler <- scales::rescale
-      self$na_value <- na_value
-
+      self$oob <- oob_keep
+      self$rescaler <- rescale_none
+      self$na_value <- NA
+      self$set_limits_empty(c(1, 1))
       self$set_trans(scales::identity_trans())
-    },
-
-    transform = function(x) {
-      self$trans$transform(x)
-    },
-
-    untransform = function(x) {
-      self$trans$inverse(x)
     },
 
     train = function(x) {
@@ -117,24 +159,40 @@ ScaleSimpleContinuous <- R6Class(
 
     map = function(x) {
       limits <- self$limits()
-
-      x <- self$rescale(self$oob(x, range = limits), limits)
-
-      uniq <- unique(x)
-      pal <- self$palette(uniq)
-      scaled <- pal[match(x, uniq)]
-
-      ifelse(!is.na(scaled), scaled, self$na_value)
+      censored <- self$oob(x, range = limits)
+      rescaled <- self$rescaler(censored, from = limits)
+      mapped <- self$palette(rescaled)
+      na_mapped <- vctrs::vec_cast(self$na_value, mapped)
+      ifelse(!is.na(mapped), mapped, na_mapped)
     },
 
     trained_range = function() {
       self$range$range
     },
 
+    set_range = function(range) {
+      self$range <- range
+      invisible(self)
+    },
+
+    set_oob = function(oob) {
+      self$oob <- oob
+      invisible(self)
+    },
+
+    set_palette = function(palette) {
+      self$pallete <- palette
+      invisible(self)
+    },
+
+    set_rescaler = function(rescaler) {
+      self$rescaler <- rescaler
+      invisible(self)
+    },
+
     set_trans = function(trans) {
-      self$trans <- trans
-      self$breaks_in <- self$breaks_in %||% self$trans$breaks
-      self$labels_in <- self$labels_in %||% self$trans$labels
+      super$set_trans(trans)
+      self$set_limits_empty(scales::squish(self$limits_empty, self$trans$domain))
       invisible(self)
     }
   )

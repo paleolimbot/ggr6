@@ -13,7 +13,8 @@ Imports:
     scales,
     rlang (>= 0.1.2),
     tibble,
-    dplyr
+    dplyr,
+    vctrs
 RoxygenNote: 6.1.1
 Suggests: 
     testthat (>= 2.1.0),
