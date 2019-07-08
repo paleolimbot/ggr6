@@ -36,12 +36,12 @@ ScaleSimple <- R6Class(
     },
 
     train_tbl = function(data_trans) {
-      private$tbl_modify(data, self$transform)
+      private$tbl_modify(data_trans, self$train)
       invisible(self)
     },
 
     map_tbl = function(data_trans) {
-      private$tbl_modify(data, self$map)
+      private$tbl_modify(data_trans, self$map)
     },
 
     breaks = function() {
@@ -55,8 +55,11 @@ ScaleSimple <- R6Class(
     breaks_minor = function() {
       values <- function_or_value(
         self$breaks_minor_in %|W|% self$trans$minor_breaks,
+        # minor breaks function in scales::trans objects are
+        # parameterized as breaks, limits, n
         self$untransform(self$breaks()),
-        self$untransform(self$limits())
+        self$untransform(self$limits()),
+        2
       )
       self$transform(values)
     },
@@ -81,7 +84,7 @@ ScaleSimple <- R6Class(
     },
 
     trained_range = function() {
-      not_implemented()
+      not_implemented() # nocov
     },
 
     set_breaks = function(breaks) {
@@ -122,9 +125,10 @@ ScaleSimple <- R6Class(
 
   private = list(
     tbl_modify = function(tbl, fun) {
-      cols <- intersect(colnames(data), self$aesthetics)
+      cols <- intersect(colnames(tbl), self$aesthetics)
+      browser()
       dplyr::mutate_at(
-        dplyr::collect(data),
+        dplyr::collect(tbl),
         dplyr::vars(!!cols),
         fun
       )
@@ -181,7 +185,7 @@ ScaleSimpleContinuous <- R6Class(
     },
 
     set_palette = function(palette) {
-      self$pallete <- palette
+      self$palette <- palette
       invisible(self)
     },
 

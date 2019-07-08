@@ -29,7 +29,7 @@ discrete_identity_trans <- function() {
     transform = force,
     inverse = force,
     breaks = identity,
-    minor_breaks = function(limits) NULL,
+    minor_breaks = function(breaks, limits, n) NULL,
     domain = c(-Inf, Inf)
   )
 }
