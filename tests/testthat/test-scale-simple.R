@@ -130,18 +130,21 @@ test_that("ScaleSimpleContinuous can have a custom range set", {
 })
 
 test_that("ScaleSimpleContinuous can transform, train, and map tbls", {
+  colour_pal <- scales::gradient_n_pal(c("#000000", "#FFFFFF"))
   scale <- ScaleSimpleContinuous$new(aesthetics = "x")$
     set_trans(scales::log10_trans())$
-    set_rescaler(scales::rescale())$
-    set_palette(scales::rescale_pal(range = c(10, 100)))
-
-  expect_identical(scale$trained_range(), NULL)
+    set_rescaler(scales::rescale)$
+    set_palette(colour_pal)
 
   tbl <- tibble(x = c(1, 5), y = c(10, 20))
-  scale$train_tbl(tbl)
-  expect_identical(scale$trained_range(), c(1, 5))
+  tbl_trans <- tibble(x = log10(c(1, 5)), y = c(10, 20))
+  tbl_map <- tibble(x = c("#000000", "#FFFFFF"), y = c(10, 20))
 
+  expect_identical(scale$transform_tbl(tbl), tbl_trans)
 
+  expect_identical(scale$trained_range(), NULL)
+  scale$train_tbl(tbl_trans)
+  expect_identical(scale$trained_range(), log10(c(1, 5)))
 
-  scale$transform_tb
+  expect_identical(scale$map_tbl(tbl_trans), tbl_map)
 })
