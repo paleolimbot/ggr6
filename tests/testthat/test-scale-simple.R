@@ -60,9 +60,14 @@ test_that("ScaleSimpleContinuous labels are the trans labels by default", {
 })
 
 test_that("ScaleSimpleContinuous breaks and labels can be set manually", {
-  scale <- ScaleSimpleContinuous$new()$set_breaks(c(1, 2))$set_labels(c("a", "b"))
+  scale <- ScaleSimpleContinuous$new()$
+    set_breaks(c(1, 2))$
+    set_labels(c("a", "b"))$
+    set_breaks_minor(1.5)
+
   expect_identical(scale$breaks(), c(1, 2))
   expect_identical(scale$labels(), c("a", "b"))
+  expect_identical(scale$breaks_minor(), 1.5)
 })
 
 test_that("ScaleSimpleContinuous doesn't change values by default", {
