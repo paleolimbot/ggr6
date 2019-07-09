@@ -40,7 +40,7 @@ test_that("ScaleSimpleContinuous breaks are the trans breaks by default", {
   expect_identical(
     scale$breaks_minor(),
     log10(
-        scales::regular_minor_breaks()(
+      scales::regular_minor_breaks()(
         10^scale$breaks(),
         10^scale$limits(),
         2
