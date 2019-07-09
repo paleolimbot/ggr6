@@ -10,6 +10,10 @@ ScaleSimple <- R6Class(
     na_value = NULL,
     limits_empty = NULL,
 
+    range = NULL,
+    palette = NULL,
+    oob = NULL,
+
     initialize = function(aesthetics = character(0)) {
       super$initialize(aesthetics)
 
@@ -109,6 +113,26 @@ ScaleSimple <- R6Class(
 
     set_limits = function(limits) {
       self$limits_in <- limits
+      invisible(self)
+    },
+
+    set_oob = function(oob) {
+      self$oob <- oob
+      invisible(self)
+    },
+
+    set_range = function(range) {
+      self$range <- range
+      invisible(self)
+    },
+
+    set_palette = function(palette) {
+      self$palette <- palette
+      invisible(self)
+    },
+
+    set_rescaler = function(rescaler) {
+      self$rescaler <- rescaler
       invisible(self)
     },
 

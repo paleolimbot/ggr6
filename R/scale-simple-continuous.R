@@ -1,20 +1,17 @@
 
 ScaleSimpleContinuous <- R6Class(
-  "ScaleSimple", inherit = ScaleSimple,
+  "ScaleSimpleContinuous", inherit = ScaleSimple,
 
   public = list(
-    range = NULL,
-    palette = NULL,
-    oob = NULL,
     rescaler = NULL,
 
     initialize = function(aesthetics = character(0)) {
       super$initialize(aesthetics)
-      self$range <- scales::ContinuousRange$new()
-      self$palette <- scales::identity_pal()
-      self$oob <- oob_keep
-      self$rescaler <- rescale_none
-      self$na_value <- NA
+      self$set_range(scales::ContinuousRange$new())
+      self$set_palette(scales::identity_pal())
+      self$set_oob(oob_keep)
+      self$set_rescaler(rescale_none)
+      self$set_na_value(NA)
       self$set_limits_empty(c(1, 1))
       self$set_trans(scales::identity_trans())
     },
@@ -35,26 +32,6 @@ ScaleSimpleContinuous <- R6Class(
 
     trained_range = function() {
       self$range$range
-    },
-
-    set_range = function(range) {
-      self$range <- range
-      invisible(self)
-    },
-
-    set_oob = function(oob) {
-      self$oob <- oob
-      invisible(self)
-    },
-
-    set_palette = function(palette) {
-      self$palette <- palette
-      invisible(self)
-    },
-
-    set_rescaler = function(rescaler) {
-      self$rescaler <- rescaler
-      invisible(self)
     },
 
     set_trans = function(trans) {
