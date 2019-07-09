@@ -21,6 +21,11 @@ ScaleSimple <- R6Class(
       self$breaks_minor_in <- waiver()
       self$labels_in <- waiver()
       self$limits_in <- waiver()
+
+      self$set_palette(scales::identity_pal())
+      self$set_oob(oob_keep)
+      self$set_na_value(NA)
+      self$set_limits_empty(c(1, 1))
     },
 
     is_empty = function() {

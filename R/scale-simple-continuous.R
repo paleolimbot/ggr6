@@ -8,11 +8,8 @@ ScaleSimpleContinuous <- R6Class(
     initialize = function(aesthetics = character(0)) {
       super$initialize(aesthetics)
       self$set_range(scales::ContinuousRange$new())
-      self$set_palette(scales::identity_pal())
-      self$set_oob(oob_keep)
+
       self$set_rescaler(rescale_none)
-      self$set_na_value(NA)
-      self$set_limits_empty(c(1, 1))
       self$set_trans(scales::identity_trans())
     },
 
