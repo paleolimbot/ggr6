@@ -44,6 +44,11 @@ ScaleSimple <- R6Class(
       private$tbl_modify(data, self$transform)
     },
 
+    train = function(x) {
+      self$range$train(x)
+      invisible(self)
+    },
+
     train_tbl = function(data_trans) {
       cols <- intersect(colnames(data_trans), self$aesthetics)
       tbl <- dplyr::collect(
@@ -80,7 +85,7 @@ ScaleSimple <- R6Class(
 
     labels = function() {
       function_or_value(
-        self$labels_in %|W|% self$trans$labels,
+        self$labels_in %|W|% self$trans$format,
         self$untransform(self$breaks())
       )
     },
@@ -98,7 +103,7 @@ ScaleSimple <- R6Class(
     },
 
     trained_range = function() {
-      not_implemented() # nocov
+      self$range$range
     },
 
     set_breaks = function(breaks) {

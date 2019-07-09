@@ -23,14 +23,30 @@ is_waive <- function(x) inherits(x, "waiver")
   if (!is_waive(a)) a else b
 }
 
-discrete_identity_trans <- function() {
+trans_discrete_new <- function(..., breaks = identity,
+                               minor_breaks = function(breaks, limits, n) NULL,
+                               domain = c(-Inf, Inf)) {
   scales::trans_new(
+    ...,
+    breaks = breaks,
+    minor_breaks = minor_breaks,
+    domain = domain
+  )
+}
+
+discrete_identity_trans <- function() {
+  trans_discrete_new(
     "discrete_identity",
     transform = force,
-    inverse = force,
-    breaks = identity,
-    minor_breaks = function(breaks, limits, n) NULL,
-    domain = c(-Inf, Inf)
+    inverse = force
+  )
+}
+
+discrete_rev_trans <- function() {
+  trans_discrete_new(
+    "discrete_rev",
+    transform = rev,
+    inverse = rev
   )
 }
 

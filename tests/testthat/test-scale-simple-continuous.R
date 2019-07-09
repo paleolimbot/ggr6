@@ -2,9 +2,11 @@
 test_that("ScaleSimpleContinuous can be trained", {
   scale <- ScaleSimpleContinuous$new()
   expect_equal(scale$trained_range(), NULL)
+  expect_true(scale$is_empty())
   scale$train(1:10)
   expect_equal(scale$trained_range(), c(1, 10))
   expect_equal(scale$limits(), c(1, 10))
+  expect_false(scale$is_empty())
 })
 
 test_that("ScaleSimpleContinuous transforms values", {
@@ -15,6 +17,7 @@ test_that("ScaleSimpleContinuous transforms values", {
 test_that("ScaleSimpleContinuous limits can be set", {
   scale <- ScaleSimpleContinuous$new()$set_limits(c(1, 10))
   expect_equal(scale$limits(), c(1, 10))
+  expect_false(scale$is_empty())
 })
 
 test_that("ScaleSimpleContinuous limits are returned in transformed space", {
@@ -51,7 +54,7 @@ test_that("ScaleSimpleContinuous breaks are the trans breaks by default", {
 
 test_that("ScaleSimpleContinuous labels are the trans labels by default", {
   trans_identity2 <- scales::identity_trans()
-  trans_identity2$labels <- function(breaks) paste("label is", breaks)
+  trans_identity2$format <- function(breaks) paste("label is", breaks)
   scale <- ScaleSimpleContinuous$new()$
     set_trans(trans_identity2)$
     set_breaks(c(1, 2, 3))

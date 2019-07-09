@@ -13,11 +13,6 @@ ScaleSimpleContinuous <- R6Class(
       self$set_trans(scales::identity_trans())
     },
 
-    train = function(x) {
-      self$range$train(x)
-      invisible(self)
-    },
-
     map = function(x) {
       limits <- self$limits()
       censored <- self$oob(x, range = limits)
@@ -25,10 +20,6 @@ ScaleSimpleContinuous <- R6Class(
       mapped <- self$palette(rescaled)
       na_mapped <- vctrs::vec_cast(self$na_value, mapped)
       ifelse(!is.na(mapped), mapped, na_mapped)
-    },
-
-    trained_range = function() {
-      self$range$range
     },
 
     set_trans = function(trans) {
