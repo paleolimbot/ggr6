@@ -6,19 +6,23 @@ PlotRenderer <- R6Class(
       not_implemented() # nocov
     },
 
-    render_points = function(coords, ...) {
+    render_points = function(x, y, ...) {
       not_implemented() # nocov
     },
 
-    render_path = function(coords, group, ...) {
+    render_path = function(x, y, group, ...) {
       not_implemented() # nocov
     },
 
-    render_polygon = function(coords, group, subgroup, ...) {
+    render_polygon = function(x, y, group, subgroup, ...) {
       not_implemented() # nocov
     },
 
-    render_text = function(coords, label, ...) {
+    render_sf = function(geometry, ...) {
+      not_implemented() # nocov
+    },
+
+    render_text = function(x, y, label, ...) {
       not_implemented() # nocov
     },
 
@@ -26,7 +30,7 @@ PlotRenderer <- R6Class(
       not_implemented() # nocov
     },
 
-    render_stack = function(items) {
+    render_stack = function(...) {
       not_implemented() # nocov
     }
   )
@@ -35,34 +39,38 @@ PlotRenderer <- R6Class(
 PlotRendererIdentity <- R6Class(
   "PlotRendererIdentity",
   public = list(
-    render = function(plot_built) {
-      not_implemented() # nocov
-    },
 
-    render_points = function(coords, ...) {
+    render_points = function(x, y, ...) {
       structure(
-        list(coords = coords, ...),
+        list(x = x, y = y, ...),
         class = "rendered_points"
       )
     },
 
-    render_path = function(coords, group, ...) {
+    render_path = function(x, y, group, ...) {
       structure(
-        list(coords = coords, group = group, ...),
+        list(x = x, y = y, group = group, ...),
         class = "rendered_path"
       )
     },
 
-    render_polygon = function(coords, group, subgroup, ...) {
+    render_polygon = function(x, y, group, subgroup, ...) {
       structure(
-        list(coords = coords, group = group, subgroup = subgroup, ...),
+        list(x = x, y = y, group = group, subgroup = subgroup, ...),
         class = "rendered_polygon"
       )
     },
 
-    render_text = function(coords, label, ...) {
+    render_sf = function(geometry, ...) {
       structure(
-        list(coords = coords, label = label, ...),
+        list(geometry = geometry, ...),
+        class = "rendered_sf"
+      )
+    },
+
+    render_text = function(x, y, label, ...) {
+      structure(
+        list(x = x, y = y, label = label, ...),
         class = "rendered_text"
       )
     },
@@ -71,9 +79,9 @@ PlotRendererIdentity <- R6Class(
       structure(list(), class = "rendered_null")
     },
 
-    render_stack = function(items) {
+    render_stack = function(...) {
       structure(
-        items,
+        list(...),
         class = "rendered_stack"
       )
     }
