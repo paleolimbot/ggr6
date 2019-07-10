@@ -9,6 +9,16 @@ test_that("ScaleSimpleDiscrete can be trained", {
   expect_false(scale$is_empty())
 })
 
+test_that("ScaleSimpleDiscrete can be trained with drop = FALSE", {
+  scale <- ScaleSimpleDiscrete$new()$set_drop(FALSE)
+  expect_equal(scale$trained_range(), NULL)
+  expect_true(scale$is_empty())
+  scale$train(factor(character(0), levels = c("a", "b", "c")))
+  expect_equal(scale$trained_range(), c("a", "b", "c"))
+  expect_equal(scale$limits(), c("a", "b", "c"))
+  expect_false(scale$is_empty())
+})
+
 test_that("ScaleSimpleDiscrete transforms values", {
   scale <- ScaleSimpleDiscrete$new()$set_trans(s3_trans("new_class"))
   expect_equal(unclass(scale$transform(c("a", "b", "c"))), c("a", "b", "c"))
@@ -94,7 +104,7 @@ test_that("ScaleSimpleDiscrete can have a custom range set", {
   NullRange <- R6Class(
     "NullRange", inherit = scales::DiscreteRange,
     public = list(
-      train = function(x) {
+      train = function(x, drop = TRUE) {
         # do nothing
       }
     )

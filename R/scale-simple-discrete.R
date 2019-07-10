@@ -4,11 +4,18 @@ ScaleSimpleDiscrete <- R6Class(
 
   public = list(
     palette_factory = NULL,
+    drop = NULL,
 
     initialize = function(aesthetics = character(0)) {
       super$initialize(aesthetics)
       self$set_range(scales::DiscreteRange$new())
       self$set_trans(discrete_identity_trans())
+      self$set_drop(TRUE)
+    },
+
+    train = function(x) {
+      self$range$train(x, drop = self$drop)
+      invisible(self)
     },
 
     palette = function(x) {
@@ -34,6 +41,11 @@ ScaleSimpleDiscrete <- R6Class(
 
     set_palette_factory = function(palette_factory) {
       self$palette_factory <- palette_factory
+      invisible(self)
+    },
+
+    set_drop = function(drop) {
+      self$drop <- drop
       invisible(self)
     }
   )
