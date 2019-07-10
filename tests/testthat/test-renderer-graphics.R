@@ -1,4 +1,6 @@
 
+context("renderer-graphics")
+
 test_that("graphics renderer can render all geometry types", {
 
   f <- function() {
