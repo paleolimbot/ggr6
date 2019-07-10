@@ -81,7 +81,7 @@ PlotRendererIdentity <- R6Class(
 
     render_stack = function(...) {
       structure(
-        list(...),
+        rlang::list2(...),
         class = "rendered_stack"
       )
     }
