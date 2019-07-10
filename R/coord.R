@@ -4,7 +4,7 @@ Coord <- R6Class(
   public = list(
     aesthetics = NULL,
 
-    initialize = function(aesthetics = c("x", "y")) {
+    initialize = function(aesthetics = c("x", "y", "geometry")) {
       self$aesthetics <- aesthetics
     },
 
@@ -12,12 +12,7 @@ Coord <- R6Class(
       Panel$new(self, scales)
     },
 
-    coords = function(data, scales) {
-      coords <- dplyr::select(data, !!self$aesthetics)
-      self$transform_coords(coords, scales)
-    },
-
-    transform_coords = function(coords, scales) {
+    transform = function(coords, scales) {
       not_implemented() # nocov
     }
   )
@@ -26,7 +21,7 @@ Coord <- R6Class(
 CoordIdentity <- R6Class(
   "CoordIdentity", inherit = Coord,
   public = list(
-    transform_coords = function(coords, scales) {
+    transform = function(coords, scales) {
       coords
     }
   )
@@ -38,13 +33,13 @@ Panel <- R6Class(
     coord = NULL,
     scales = NULL,
 
-    initialize = function(coord, scales) {
+    initialize = function(coord = CoordIdentity$new(), scales = ScaleList$new()) {
       self$coord <- coord
       self$scales <- scales
     },
 
-    coords = function(data) {
-      self$coord$coords(data, self$scales)
+    transform = function(data) {
+      self$coord$transform(data, self$scales)
     }
   )
 )
