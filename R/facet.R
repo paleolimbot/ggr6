@@ -12,8 +12,19 @@ Facet <- R6Class(
       not_implemented() # nocov
     },
 
-    panel_data = function(data) {
+    panel_data = function(data, index) {
       not_implemented() # nocov
+    },
+
+    panel_data_all = function(data) {
+      if (is.null(self$panels)) {
+        invalid_state("Attempting to call FacetNull$panel_data() before FacetNull$init_panels()")
+      }
+
+      purrr::map(
+        seq_along(self$panels),
+        function(i) self$panel_data(data, i)
+      )
     }
   )
 )
@@ -32,12 +43,8 @@ FacetNull <- R6Class(
       invisible(self)
     },
 
-    panel_data = function(data) {
-      if (is.null(self$panels)) {
-        invalid_state("Attempting to call FacetNull$panel_data() before FacetNull$init_panels()")
-      }
-
-      list(data)
+    panel_data = function(data, index) {
+      data
     }
   )
 )

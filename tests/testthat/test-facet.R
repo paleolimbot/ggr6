@@ -7,12 +7,12 @@ test_that("FacetNull creates one panel with all the data", {
 
   facet$train(df)
   facet$init_panels(coord, scales)
-  expect_length(facet$panel_data(df), 1)
-  expect_identical(facet$panel_data(df)[[1]], df)
+  expect_length(facet$panel_data_all(df), 1)
+  expect_identical(facet$panel_data_all(df)[[1]], df)
 })
 
 test_that("FacetNull cannot create panel data before panels are initiated", {
   facet <- FacetNull$new()
   df <- tibble(x = 1, y = 2)
-  expect_error(facet$panel_data(df), class = "invalid_state")
+  expect_error(facet$panel_data_all(df), class = "invalid_state")
 })
