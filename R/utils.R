@@ -42,11 +42,20 @@ discrete_identity_trans <- function() {
   )
 }
 
-discrete_rev_trans <- function() {
+s3_trans <- function(class_out, class_in = NULL) {
+  force(class_out)
+  force(class_in)
+
   trans_discrete_new(
-    "discrete_rev",
-    transform = rev,
-    inverse = rev
+    "s3_trans",
+    transform = function(x) {
+      class(x) <- class_out
+      x
+    },
+    inverse = function(x) {
+      class(x) <- class_in
+      x
+    }
   )
 }
 
@@ -56,4 +65,9 @@ rescale_none <- function(x, ...) {
 
 oob_keep <- function(x, ...) {
   x
+}
+
+censor_discrete <- function(x, range) {
+  na_value <- vctrs::vec_cast(NA, x)
+  ifelse(x %in% range, x, na_value)
 }

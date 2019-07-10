@@ -3,6 +3,7 @@ ScaleSimpleDiscrete <- R6Class(
   "ScaleSimpleDiscrete", inherit = ScaleSimple,
 
   public = list(
+    palette_factory = NULL,
 
     initialize = function(aesthetics = character(0)) {
       super$initialize(aesthetics)
@@ -10,8 +11,30 @@ ScaleSimpleDiscrete <- R6Class(
       self$set_trans(discrete_identity_trans())
     },
 
+    palette = function(x) {
+      # as implemented in the scales package, there really is
+      # no identity palette for discrete scales
+      if (is.null(self$palette_factory)) {
+        return(x)
+      }
+
+      limits <- self$limits()
+      discrete_palette <- self$palette_factory(length(limits))
+      matched <- match(x, limits)
+      discrete_palette[matched]
+    },
+
     map = function(x) {
-      not_implemented()
+      limits <- self$limits()
+      censored <- self$oob(x, range = limits)
+      mapped <- self$palette(censored)
+      na_mapped <- vctrs::vec_cast(self$na_value, mapped)
+      ifelse(!is.na(mapped), mapped, na_mapped)
+    },
+
+    set_palette_factory = function(palette_factory) {
+      self$palette_factory <- palette_factory
+      invisible(self)
     }
   )
 )

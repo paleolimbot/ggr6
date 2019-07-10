@@ -4,11 +4,13 @@ ScaleSimpleContinuous <- R6Class(
 
   public = list(
     rescaler = NULL,
+    palette = NULL,
 
     initialize = function(aesthetics = character(0)) {
       super$initialize(aesthetics)
       self$set_range(scales::ContinuousRange$new())
 
+      self$set_palette(scales::identity_pal())
       self$set_rescaler(rescale_none)
       self$set_trans(scales::identity_trans())
     },
@@ -26,7 +28,11 @@ ScaleSimpleContinuous <- R6Class(
       super$set_trans(trans)
       self$set_limits_empty(scales::squish(self$limits_empty, self$trans$domain))
       invisible(self)
+    },
+
+    set_palette = function(palette) {
+      self$palette <- palette
+      invisible(self)
     }
   )
 )
-

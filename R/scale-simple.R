@@ -11,7 +11,6 @@ ScaleSimple <- R6Class(
     limits_empty = NULL,
 
     range = NULL,
-    palette = NULL,
     oob = NULL,
 
     initialize = function(aesthetics = character(0)) {
@@ -22,7 +21,6 @@ ScaleSimple <- R6Class(
       self$labels_in <- waiver()
       self$limits_in <- waiver()
 
-      self$set_palette(scales::identity_pal())
       self$set_oob(oob_keep)
       self$set_na_value(NA)
       self$set_limits_empty(c(1, 1))
@@ -133,11 +131,6 @@ ScaleSimple <- R6Class(
 
     set_range = function(range) {
       self$range <- range
-      invisible(self)
-    },
-
-    set_palette = function(palette) {
-      self$palette <- palette
       invisible(self)
     },
 
