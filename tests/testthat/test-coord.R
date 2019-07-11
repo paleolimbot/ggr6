@@ -1,8 +1,8 @@
 
 test_that("CoordIdentity does not change position values", {
-  df <- tibble(x = 1, y = 2)
-  coord <- CoordIdentity$new(aesthetics = c("x", "y"))
+  df <- tibble(x = 1, y = 2, z = 3)
+  coord <- CoordIdentity$new()
   scales <- ScaleList$new()
-  panel <- coord$setup_panel(scales)
-  expect_identical(panel$transform(df), df)
+
+  expect_identical(coord$transform(df, scales), df)
 })
