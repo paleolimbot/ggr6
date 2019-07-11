@@ -23,7 +23,7 @@ Facet <- R6Class(
       )
     },
 
-    panel_scales = function(scales) {
+    panel_scales = function(scales, index) {
       not_implemented() # nocov
     },
 
@@ -50,7 +50,7 @@ FacetNull <- R6Class(
       data
     },
 
-    panel_scales = function(scales) {
+    panel_scales = function(scales, index) {
       scales
     },
 

@@ -121,6 +121,41 @@ ScaleList <- R6Class(
       }
 
       super$set(index, item)
+    },
+
+    aesthetics = function() {
+      unlist(purrr::map(self$lst, function(scale) scale$aesthetics))
+    },
+
+    transform_tbl = function(data) {
+      for (i in seq_len(self$size())) {
+        data <- self$get(i)$transform_tbl(data)
+      }
+
+      tbl
+    },
+
+    train_tbl = function(data_trans) {
+      for (i in seq_len(self$size())) {
+        self$get(i)$train_tbl(data_trans)
+      }
+
+      invisible(self)
+    },
+
+    map_tbl = function(data_trans) {
+      for (i in seq_len(self$size())) {
+        data_trans <- self$get(i)$map_tbl(data_trans)
+      }
+
+      data_trans
+    },
+
+    add_missing = function(data, renderer) {
+      new_aesthetics <- setdiff(names(data), self$aesthetics())
+      for (aesthetic in new_aesthetics) {
+        self$add(renderer$default_scale(data[[aesthetic]], aesthetic))
+      }
     }
   )
 )

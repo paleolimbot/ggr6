@@ -2,17 +2,28 @@
 Layer <- R6Class(
   "Layer",
   public = list(
-    data = NULL,
+    data_src = NULL,
+    mapping = NULL,
     geom = NULL,
     stat = NULL,
     position = NULL,
 
-    initialize = function(data = NULL, geom = GeomBlank$new(), stat = StatIdentity$new(),
+    initialize = function(data_src = NULL, mapping = ColumnMapping$new(),
+                          geom = GeomBlank$new(), stat = StatIdentity$new(),
                           position = PositionIdentity$new()) {
-      self$data <- data
+      self$data_src <- data_src
+      self$mapping <- mapping
       self$geom <- geom
       self$stat <- stat
       self$position <- position
+    },
+
+    data = function(data_src) {
+      self$mapping$map_data(data_src)
+    },
+
+    data_stat = function(data_stat) {
+      self$mapping$map_data_stat(data_stat)
     }
   )
 )
