@@ -1,11 +1,16 @@
 
 Graphic <- R6Class(
   "Graphic",
+
   public = list(
+
     layers = NULL,
     scales = NULL,
     coord = NULL,
     facet = NULL,
+
+    plot_data = NULL,
+    panels = NULL,
 
     initialize = function() {
       self$layers <- LayerList$new()
@@ -14,36 +19,71 @@ Graphic <- R6Class(
       self$facet <- FacetNull$new()
     },
 
-    build = function(renderer = PlotRendererIdentity$new()) {
-
+    train_facet = function() {
       for (layer in self$layers) {
         self$facet$train(layer$data_src)
       }
+      invisible(self)
+    },
 
-      panel_indices <- self$facet$panel_indices()
+    create_panels = function() {
+      self$facet$panels(self$coord, self$scales)
+    },
+
+    create_plot_data = function() {
+      panel_indices <- seq_along(self$panels)
       layer_indices <- seq_along(self$layers)
 
-      panel_scales <- vector(mode = "list", length = length(panel_indices))
-      data <- vector(mode = "list", length = length(panel_indices) * length(layer_indices))
-      dim(data_trans) <- c(length(panel_indices), length(layer_indices))
+      panel_data <- vector(
+        mode = "list",
+        length = length(panel_indices) * length(layer_indices)
+      )
 
-      for (panel_index in panel_indices) {
-        scales <- self$facet$panel_scales(self$scales, panel_index)
-        panel_scales[[panel_index]] <- scales
+      dim(panel_data) <- c(length(panel_indices), length(layer_indices))
 
-        for (layer_index in layer_indices) {
-          layer <- self$layers$get(i)
+      panel_data
+    },
 
+    split_layer_data = function(plot_data) {
+      private$modify_plot_data(plot_data, function(panel, layer, data) {
+        self$facet$panel_data(layer$data_src, panel_index)
+      })
+    },
 
-          data_src <- self$facet$panel_data(layer$data_src, panel_index)
-          data <- layer$data(data_src)
-          scales$add_missing(data)
+    map_data_columns = function(plot_data) {
+      private$modify_plot_data(plot_data, function(panel, layer, data) {
+        layer$data(data)
+      })
+    },
 
-          data_trans <- scales$transform_tbl(data)
-          scales$train_tbl(data_trans)
-          data[panel_index, layer_index] <- list(data_trans)
-        }
-      }
+    add_missing_scales = function(plot_data) {
+      private$modify_plot_data(plot_data, function(panel, layer, data) {
+        self$panel$scales$add_missing(data)
+      })
+    },
+
+    scale_transform = function(plot_data) {
+      private$modify_plot_data(plot_data, function(panel, layer, data) {
+        panel$scales$transform_tbl(data)
+      })
+    },
+
+    scale_train = function(plot_data) {
+      private$modify_plot_data(plot_data, function(panel, layer, data) {
+        panel$scales$train_tbl(data)
+      })
+    },
+
+    build = function(renderer = PlotRendererIdentity$new()) {
+
+      self$train_facet()
+      self$panels <- self$create_panels()
+      plot_data <- self$create_plot_data()
+      plot_data <- self$split_layer_data(plot_data)
+      plot_data <- self$map_data_columns(plot_data)
+      plot_data <- self$add_missing_scales(plot_data)
+      plot_data <- self$scale_transform(plot_data)
+      plot_data <- self$scale_train(plot_data)
 
       # there's a bit of reseting and retraining that happen here that
       # isn't captured in the current code
@@ -77,5 +117,22 @@ Graphic <- R6Class(
         })
       )
     }
+  ),
+
+  private = list(
+    modify_plot_data = function(plot_data, fun) {
+      plot_data_copy <- plot_data
+      purrr::iwalk(self$panels, function(panel, panel_index) {
+        purrr::iwalk(self$layers, function(layer, layer_index) {
+          data <- plot_data_copy[panel_index, layer_index][[1]]
+          result <- fun(panel, layer, data)
+          plot_data_copy[panel_index, layer_index] <- list(result)
+        })
+      })
+
+      plot_data_copy
+    }
   )
 )
+
+

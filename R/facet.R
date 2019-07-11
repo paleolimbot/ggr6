@@ -11,7 +11,7 @@ Facet <- R6Class(
       not_implemented() # nocov
     },
 
-    panel_data = function(data, index) {
+    panel_data = function(data, panel) {
       not_implemented() # nocov
     }
   )
@@ -29,7 +29,7 @@ FacetNull <- R6Class(
       list(Panel$new(coord, scales))
     },
 
-    panel_data = function(data, index) {
+    panel_data = function(data, panel) {
       data
     }
   )
