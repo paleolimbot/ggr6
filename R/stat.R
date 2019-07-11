@@ -2,7 +2,7 @@
 Stat <- R6Class(
   "Stat",
   public = list(
-    compute_layer = function(mapped_data) {
+    compute_panel = function(data_trans, panel, renderer) {
       not_implemented() # nocov
     }
   )
@@ -11,8 +11,8 @@ Stat <- R6Class(
 StatIdentity <- R6Class(
   "StatIdentity", inherit = Stat,
   public = list(
-    compute_layer = function(mapped_data) {
-      mapped_data
+    compute_panel = function(data_trans, panel, renderer) {
+      data_trans
     }
   )
 )
