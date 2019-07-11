@@ -42,3 +42,10 @@ test_that("identity renderer can render all geometries", {
     list(1, 2, 3)
   )
 })
+
+test_that("identity renderer contains a default scale that has an identity mapping", {
+  renderer <- PlotRendererIdentity$new()
+  scale <- renderer$default_scale(NULL, "aesthetic")
+  expect_identical(scale$map(c(1, 2, 3)), c(1, 2, 3))
+  expect_identical(scale$aesthetics, "aesthetic")
+})

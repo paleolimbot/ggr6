@@ -49,9 +49,7 @@ ScaleSimple <- R6Class(
 
     train_tbl = function(data_trans) {
       cols <- intersect(colnames(data_trans), self$aesthetics)
-      tbl <- dplyr::collect(
-        dplyr::select(data_trans, !!cols)
-      )
+      tbl <- dplyr::select(data_trans, !!cols)
       purrr::walk(tbl, self$train)
 
       invisible(self)
@@ -158,11 +156,7 @@ ScaleSimple <- R6Class(
   private = list(
     tbl_modify = function(tbl, fun) {
       cols <- intersect(colnames(tbl), self$aesthetics)
-      dplyr::mutate_at(
-        dplyr::collect(tbl),
-        dplyr::vars(!!cols),
-        fun
-      )
+      dplyr::mutate_at(tbl, dplyr::vars(!!cols), fun)
     }
   )
 )

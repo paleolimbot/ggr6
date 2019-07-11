@@ -71,3 +71,17 @@ censor_discrete <- function(x, range) {
   na_value <- vctrs::vec_cast(NA, x)
   ifelse(x %in% range, x, na_value)
 }
+
+is_discrete <- function() {
+  is.factor(x) || is.character(x) || is.logical(x)
+}
+
+contains_call_to <- function(expr, name) {
+  if (rlang::is_call(expr, name)) {
+    TRUE
+  } else if (is.call(expr)) {
+    any(purrr::map_lgl(expr, contains_call_to, name))
+  } else {
+    FALSE
+  }
+}

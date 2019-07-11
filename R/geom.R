@@ -2,12 +2,21 @@
 Geom <- R6Class(
   "Geom",
   public = list(
+
+    aesthetics = function() {
+      character(0) # nocov
+    },
+
+    default_aesthetics = function() {
+      list() # nocov
+    },
+
     render_panel = function(data, panel, renderer) {
       renderer$render_stack(
         !!!purrr::map(
           dplyr::group_split(
             dplyr::group_by(
-              dplyr::collect(data),
+              data,
               .data$group
             )
           ),

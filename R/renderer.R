@@ -32,6 +32,21 @@ PlotRenderer <- R6Class(
 
     render_stack = function(...) {
       not_implemented() # nocov
+    },
+
+    default_scale = function(x, aesthetic) {
+      not_implemented() # nocov
+    },
+
+    aesthetics = function(geom_type) {
+      method <- self[[paste0("render_", geom_type)]]
+      setdiff(names(formals(method)), "...")
+    },
+
+    default_aesthetics = function(geom_type) {
+      method <- self[[paste0("render_", geom_type)]]
+      args <- formals(method)
+      as.list(args[!purrr::map_lgl(args, rlang::is_missing)])
     }
   )
 )
@@ -84,6 +99,10 @@ PlotRendererIdentity <- R6Class(
         rlang::list2(...),
         class = "rendered_stack"
       )
+    },
+
+    default_scale = function(x, aesthetic) {
+      ScaleNull$new(aesthetic)
     }
   )
 )
