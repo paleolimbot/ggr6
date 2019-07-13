@@ -7,7 +7,7 @@ GeomPoint <- R6Class(
       renderer$aesthetics("points")
     },
 
-    default_aesthetics = function(renderer) {
+    default_aesthetic_values = function(renderer) {
       renderer$default_aesthetics("points")
     },
 

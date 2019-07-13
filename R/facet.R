@@ -7,6 +7,10 @@ Facet <- R6Class(
       not_implemented() # nocov
     },
 
+    reset = function() {
+      not_implemented() # nocov
+    },
+
     panels = function(coord, scales) {
       not_implemented() # nocov
     },
@@ -22,6 +26,10 @@ FacetNull <- R6Class(
   public = list(
 
     train = function(data) {
+      invisible(self)
+    },
+
+    reset = function() {
       invisible(self)
     },
 

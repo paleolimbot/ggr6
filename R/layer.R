@@ -8,7 +8,7 @@ Layer <- R6Class(
     stat = NULL,
     position = NULL,
 
-    initialize = function(data_src = NULL, mapping = ColumnMapping$new(),
+    initialize = function(data_src = NULL, mapping = ColumnMappingIdentity$new(data_src),
                           geom = GeomBlank$new(), stat = StatIdentity$new(),
                           position = PositionIdentity$new()) {
       self$data_src <- data_src

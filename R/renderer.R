@@ -52,7 +52,7 @@ PlotRenderer <- R6Class(
 )
 
 PlotRendererIdentity <- R6Class(
-  "PlotRendererIdentity",
+  "PlotRendererIdentity", inherit = PlotRenderer,
   public = list(
 
     render_points = function(x, y, ...) {

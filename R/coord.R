@@ -10,6 +10,10 @@ Coord <- R6Class(
 
     transform = function(data_mapped, scales) {
       not_implemented() # nocov
+    },
+
+    finalize_panel = function(panel) {
+      not_implemented() # nocov
     }
   )
 )
@@ -19,6 +23,10 @@ CoordIdentity <- R6Class(
   public = list(
     transform = function(data_mapped, scales) {
       data_mapped
+    },
+
+    finalize_panel = function(panel) {
+      panel
     }
   )
 )

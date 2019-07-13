@@ -20,6 +20,10 @@ Scale <- R6Class(
       not_implemented() # nocov
     },
 
+    reset = function(x) {
+      not_implemented() # nocov
+    },
+
     map = function(x) {
       not_implemented() # nocov
     },
@@ -74,6 +78,10 @@ ScaleNull <- R6Class(
       invisible(self)
     },
 
+    reset = function(x) {
+      invisible(self)
+    },
+
     map = function(x) {
       x
     },
@@ -124,7 +132,37 @@ ScaleList <- R6Class(
     },
 
     aesthetics = function() {
-      unlist(purrr::map(self$lst, function(scale) scale$aesthetics))
+      unique(unlist(purrr::map(self$lst, function(scale) scale$aesthetics)))
+    },
+
+    scale = function(aesthetic) {
+      for (scale in self$lst) {
+        if (aesthetic %in% scale$aesthetics) {
+          return(scale)
+        }
+      }
+
+      abort("No scale for aesthetic `{aesthetic}`")
+    },
+
+    filter_by_aesthetics = function(aesthetics) {
+      new <- ScaleList$new()
+      for (scale in self$lst) {
+        if (any(aesthetics %in% scale$aesthetics)) {
+          new$add(scale)
+        }
+      }
+      new
+    },
+
+    discard_by_aesthetics = function(aesthetics) {
+      new <- ScaleList$new()
+      for (scale in self$lst) {
+        if (!any(aesthetics %in% scale$aesthetics)) {
+          new$add(scale)
+        }
+      }
+      new
     },
 
     transform_tbl = function(data) {
@@ -138,6 +176,14 @@ ScaleList <- R6Class(
     train_tbl = function(data_trans) {
       for (i in seq_len(self$size())) {
         self$get(i)$train_tbl(data_trans)
+      }
+
+      invisible(self)
+    },
+
+    reset = function() {
+      for (i in seq_len(self$size())) {
+        self$get(i)$reset()
       }
 
       invisible(self)
