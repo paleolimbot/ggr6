@@ -170,7 +170,7 @@ ScaleList <- R6Class(
         data <- self$get(i)$transform_tbl(data)
       }
 
-      tbl
+      data
     },
 
     train_tbl = function(data_trans) {
