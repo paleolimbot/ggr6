@@ -44,3 +44,61 @@ test_that("builder can build a basic plot", {
   rendered <- builder$render()
   expect_is(rendered, "rendered_panels")
 })
+
+test_that("Stat and geom defaults are processed during plot build", {
+  tbl <- tibble(x = 6:10, y = 1:5, col = rep(c("a", "b"), length.out = 5))
+
+  GeomPointDefault <- R6Class(
+    "GeomPointDefault", inherit = GeomPoint,
+    public = list(
+      default_aesthetic_values = function(renderer) {
+        list(default_geom_aesthetic = 1L)
+      }
+    )
+  )
+
+  StatIdentityDefault <- R6Class(
+    "StatIdentityDefault", inherit = StatIdentity,
+    public = list(
+      default_aesthetic_values = function(renderer) {
+        list(default_stat_aesthetic = 2L)
+      }
+    )
+  )
+
+  graphic <- Graphic$new()
+  layer <- Layer$new(
+    tbl,
+    geom = GeomPointDefault$new(),
+    stat = StatIdentityDefault$new()
+  )
+
+  graphic$layers$add(layer)
+  builder <- Builder$new(graphic)
+  builder$build()
+  built_data <- builder$plot_data[[1]]
+  expect_true("default_stat_aesthetic" %in% colnames(built_data))
+  expect_true("default_geom_aesthetic" %in% colnames(built_data))
+  expect_true(all(built_data$default_geom_aesthetic == 1))
+  expect_true(all(built_data$default_stat_aesthetic == 2))
+})
+
+test_that("Stat and geom overrides are processed during plot build", {
+  tbl <- tibble(x = 6:10, y = 1:5, col = rep(c("a", "b"), length.out = 5))
+
+  graphic <- Graphic$new()
+  layer <- Layer$new(
+    tbl,
+    geom = GeomPoint$new(list(set_geom_aesthetic = 1L)),
+    stat = StatIdentity$new(list(set_stat_aesthetic = 2L))
+  )
+
+  graphic$layers$add(layer)
+  builder <- Builder$new(graphic)
+  builder$build()
+  built_data <- builder$plot_data[[1]]
+  expect_true("set_stat_aesthetic" %in% colnames(built_data))
+  expect_true("set_geom_aesthetic" %in% colnames(built_data))
+  expect_true(all(built_data$set_geom_aesthetic == 1))
+  expect_true(all(built_data$set_stat_aesthetic == 2))
+})
