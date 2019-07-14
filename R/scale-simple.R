@@ -42,6 +42,10 @@ ScaleSimple <- R6Class(
       private$tbl_modify(data, self$transform)
     },
 
+    untransform_tbl = function(data) {
+      private$tbl_modify(data, self$untransform)
+    },
+
     train = function(x) {
       self$range$train(x)
       invisible(self)
@@ -53,6 +57,10 @@ ScaleSimple <- R6Class(
       purrr::walk(tbl, self$train)
 
       invisible(self)
+    },
+
+    reset = function() {
+      self$range$reset()
     },
 
     map_tbl = function(data_trans) {

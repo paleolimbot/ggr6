@@ -7,6 +7,8 @@ test_that("ScaleSimpleContinuous can be trained", {
   expect_equal(scale$trained_range(), c(1, 10))
   expect_equal(scale$limits(), c(1, 10))
   expect_false(scale$is_empty())
+  scale$reset()
+  expect_true(scale$is_empty())
 })
 
 test_that("ScaleSimpleContinuous transforms values", {
@@ -149,6 +151,8 @@ test_that("ScaleSimpleContinuous can transform, train, and map tbls", {
   tbl_map <- tibble(x = c("#000000", "#FFFFFF"), y = c(10, 20))
 
   expect_identical(scale$transform_tbl(tbl), tbl_trans)
+  # there is a tiny rounding error that keeps these from being identical
+  expect_identical(round(scale$untransform_tbl(tbl_trans)), tbl)
 
   expect_identical(scale$trained_range(), NULL)
   scale$train_tbl(tbl_trans)

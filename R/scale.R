@@ -142,7 +142,7 @@ ScaleList <- R6Class(
         }
       }
 
-      abort("No scale for aesthetic `{aesthetic}`")
+      abort(sprintf("No scale for aesthetic `%s`", aesthetic))
     },
 
     filter_by_aesthetics = function(aesthetics) {
@@ -168,6 +168,14 @@ ScaleList <- R6Class(
     transform_tbl = function(data) {
       for (i in seq_len(self$size())) {
         data <- self$get(i)$transform_tbl(data)
+      }
+
+      data
+    },
+
+    untransform_tbl = function(data) {
+      for (i in seq_len(self$size())) {
+        data <- self$get(i)$untransform_tbl(data)
       }
 
       data

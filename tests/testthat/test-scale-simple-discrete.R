@@ -7,6 +7,8 @@ test_that("ScaleSimpleDiscrete can be trained", {
   expect_equal(scale$trained_range(), c("a", "b", "c"))
   expect_equal(scale$limits(), c("a", "b", "c"))
   expect_false(scale$is_empty())
+  scale$reset()
+  expect_true(scale$is_empty())
 })
 
 test_that("ScaleSimpleDiscrete can be trained with drop = FALSE", {
@@ -128,6 +130,7 @@ test_that("ScaleSimpleDiscrete can transform, train, and map tbls", {
   tbl_map <- tibble(x = scales::hue_pal()(3), y = c(10, 20, 30))
 
   expect_identical(scale$transform_tbl(tbl), tbl_trans)
+  expect_identical(scale$untransform_tbl(tbl_trans), tbl)
 
   expect_identical(scale$trained_range(), NULL)
   scale$train_tbl(tbl_trans)

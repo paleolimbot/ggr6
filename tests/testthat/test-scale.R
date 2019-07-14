@@ -26,3 +26,43 @@ test_that("ScaleNull has NULL breaks, minor breaks, labels, and infinite limits"
   expect_null(scale$labels())
   expect_identical(scale$limits(), c(-Inf, Inf))
 })
+
+test_that("scale list methods work as expected", {
+
+  scale_x <- ScaleSimpleContinuous$new("x")$set_trans(scales::log10_trans())
+  scale_y <- ScaleSimpleContinuous$new("y")$set_trans(scales::log10_trans())
+  scales <- ScaleList$new()$add(scale_x)$add(scale_y)
+
+  expect_identical(scales$scale("x"), scale_x)
+  expect_identical(scales$scale("y"), scale_y)
+  expect_error(scales$filter_by_aesthetics("x")$scale("y"), "No scale for aesthetic")
+  expect_error(scales$filter_by_aesthetics("y")$scale("x"), "No scale for aesthetic")
+  expect_error(scales$discard_by_aesthetics("x")$scale("x"), "No scale for aesthetic")
+  expect_error(scales$discard_by_aesthetics("y")$scale("y"), "No scale for aesthetic")
+
+  tbl <- tibble(x = 10, y = 10, z = 10)
+  tbl_trans <- tibble(x = 1, y = 1, z = 10)
+
+  expect_identical(scales$transform_tbl(tbl), tbl_trans)
+  expect_identical(scales$untransform_tbl(tbl_trans), tbl)
+  expect_identical(scales$map_tbl(tbl_trans), tbl_trans)
+
+  expect_true(scale_x$is_empty())
+  expect_true(scale_y$is_empty())
+
+  scales$train_tbl(tbl_trans)
+
+  expect_false(scale_x$is_empty())
+  expect_false(scale_y$is_empty())
+  expect_identical(scale_x$limits(), c(1, 1))
+  expect_identical(scale_y$limits(), c(1, 1))
+
+  scales$reset()
+
+  expect_true(scale_x$is_empty())
+  expect_true(scale_y$is_empty())
+
+  expect_identical(scales$aesthetics(), c("x", "y"))
+  scales$add_missing(tbl, PlotRendererIdentity$new())
+  expect_identical(scales$aesthetics(), c("x", "y", "z"))
+})
