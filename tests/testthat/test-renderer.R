@@ -41,6 +41,18 @@ test_that("identity renderer can render all geometries", {
     renderer$render_stack(1, 2, 3),
     list(1, 2, 3)
   )
+
+
+  panel <- Panel$new()
+  expect_equivalent(
+    renderer$render_panel(panel, 1, 2, 3),
+    list(panel = panel, 1, 2, 3)
+  )
+
+  expect_equivalent(
+    renderer$render_panels(1, 2, 3),
+    list(1, 2, 3)
+  )
 })
 
 test_that("identity renderer contains a default scale that has an identity mapping", {

@@ -34,6 +34,14 @@ PlotRenderer <- R6Class(
       not_implemented() # nocov
     },
 
+    render_panel = function(panel, ...) {
+      not_implemented() # nocov
+    },
+
+    render_panels = function(...) {
+      not_implemented() # nocov
+    },
+
     default_scale = function(x, aesthetic) {
       not_implemented() # nocov
     },
@@ -98,6 +106,20 @@ PlotRendererIdentity <- R6Class(
       structure(
         rlang::list2(...),
         class = "rendered_stack"
+      )
+    },
+
+    render_panel = function(panel, ...) {
+      structure(
+        rlang::list2(panel = panel, ...),
+        class = "rendered_panel"
+      )
+    },
+
+    render_panels = function(...) {
+      structure(
+        rlang::list2(...),
+        class = "rendered_panels"
       )
     },
 

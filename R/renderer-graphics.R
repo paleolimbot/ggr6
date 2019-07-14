@@ -33,6 +33,34 @@ PlotRendererGraphics <- R6Class(
       purrr::walk(quos(...), rlang::eval_tidy)
     },
 
+    render_panel = function(panel, ...) {
+      x <- panel$scales$scale("x")
+      y <- panel$scales$scale("y")
+
+      graphics::plot(
+        # creates a blank dummy plot
+        x = 1, y = 1,
+        type = "n", axes = FALSE, xlab = NA, ylab = NA,
+
+        # sets the limits
+        xlim = x$limits(),
+        ylim = y$limits()
+      )
+
+      graphics::axis(1, at = x$breaks(), labels = x$labels())
+      graphics::axis(2, at = y$breaks(), labels = y$labels())
+
+      self$render_stack(...)
+    },
+
+    render_panels = function(...) {
+      dots <- quos(...)
+      n_panels <- length(dots)
+      withr::with_par(list(mfrow = grDevices::n2mfrow(n_panels)), {
+        purrr::walk(quos(...), rlang::eval_tidy)
+      })
+    },
+
     default_scale = function(x, aesthetic) {
       ScaleNull$new(aesthetic)
     }
