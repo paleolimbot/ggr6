@@ -28,7 +28,7 @@ Layer <- R6Class(
     },
 
     data_stat = function(data_stat) {
-      self$stat_mapping$map_new(data_stat)
+      self$stat_mapping$map_update(data_stat)
     }
   )
 )

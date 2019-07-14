@@ -83,7 +83,8 @@ Builder <- R6Class(
       self$scale_train_position(plot_data)
       plot_data <- self$scale_map_position(plot_data)
 
-      plot_data <- self$stat_compute(plot_data)
+      plot_data <- self$setup_stat_data(plot_data, self$renderer)
+      plot_data <- self$stat_compute(plot_data, self$renderer)
       plot_data <- self$map_stat_columns(plot_data)
 
       plot_data
@@ -107,7 +108,7 @@ Builder <- R6Class(
     },
 
     finish_data = function(plot_data) {
-      plot_data <- self$add_geom_defaults(plot_data, self$renderer)
+      plot_data <- self$setup_geom_data(plot_data, self$renderer)
 
       plot_data
     },
@@ -183,15 +184,22 @@ Builder <- R6Class(
       })
     },
 
-    stat_compute = function(plot_data) {
+    setup_stat_data = function(plot_data, renderer) {
       self$modify_plot_data(plot_data, function(panel, layer, data) {
-        layer$stat$compute_panel(data, panel)
+        layer$stat$setup_data(data, panel, renderer)
+      })
+    },
+
+    stat_compute = function(plot_data, renderer) {
+      self$modify_plot_data(plot_data, function(panel, layer, data) {
+        layer$stat$compute_panel(data, panel, renderer)
       })
     },
 
     map_stat_columns = function(plot_data) {
       self$modify_plot_data(plot_data, function(panel, layer, data) {
-        layer$data_stat(data)
+        data_mapped_user <- layer$data_stat(data)
+        layer$stat$default_mapping$map_new(data_mapped_user)
       })
     },
 
@@ -244,9 +252,9 @@ Builder <- R6Class(
 
     # self$finish_data() -----------------------
 
-    add_geom_defaults = function(plot_data, renderer) {
+    setup_geom_data = function(plot_data, renderer) {
       self$modify_plot_data(plot_data, function(panel, layer, data) {
-        layer$geom$add_default_aesthetic_values(data, panel, renderer)
+        layer$geom$setup_data(data, panel, renderer)
       })
     },
 

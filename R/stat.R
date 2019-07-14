@@ -16,7 +16,7 @@ Stat <- R6Class(
       invisible(self)
     },
 
-    compute_panel = function(data_trans, panel) {
+    compute_panel = function(data_trans, panel, renderer) {
       dplyr::ungroup(
         dplyr::group_modify(
           dplyr::group_by(data_trans, .data$group),
@@ -25,7 +25,7 @@ Stat <- R6Class(
       )
     },
 
-    compute_group = function(data_trans, panel) {
+    compute_group = function(data_trans, panel, renderer) {
       not_implemented() # nocov
     }
   )
@@ -34,7 +34,7 @@ Stat <- R6Class(
 StatIdentity <- R6Class(
   "StatIdentity", inherit = Stat,
   public = list(
-    compute_panel = function(data_trans, panel) {
+    compute_panel = function(data_trans, panel, renderer) {
       data_trans
     }
   )
