@@ -53,7 +53,7 @@ RendererGraphics <- R6Class(
       dots <- quos(...)
       n_panels <- length(dots)
       withr::with_par(list(mfrow = grDevices::n2mfrow(n_panels)), {
-        purrr::walk(quos(...), rlang::eval_tidy)
+        purrr::walk(dots, rlang::eval_tidy)
       })
     },
 

@@ -32,7 +32,7 @@ Builder <- R6Class(
 
     build = function() {
       if (is.null(self$plot_data) || is.null(self$panels)) {
-        invalid_state("Can't build a Graphic that has not been initialized using build_init()")
+        self$build_init()
       }
 
       plot_data <- self$prepare_data_and_scales(self$plot_data)
@@ -48,7 +48,7 @@ Builder <- R6Class(
 
     render = function() {
       if (is.null(self$plot_data) || is.null(self$panels) || all(purrr::map_lgl(self$plot_data, is.null))) {
-        invalid_state("Can't render a Graphic that has not been built using build()")
+        self$build()
       }
 
       self$renderer$render_panels(
