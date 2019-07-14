@@ -1,4 +1,13 @@
 
+test_that("identity column mappings can map columns", {
+  tbl <- tibble(fish = 1, whistle = "two", thinger = 3)
+  mapping <- ColumnMappingIdentity$new(tbl)
+
+  expect_identical(mapping$map_data(tbl), tbl)
+  expect_identical(mapping$map_data_stat(tbl), tbl)
+  expect_identical(mapping$aesthetics(), names(tbl))
+})
+
 test_that("quosure column mappings can map columns", {
   tbl <- tibble(fish = 1, whistle = "two", thinger = 3)
   mapping <- ColumnMappingQuosure$new(x = fish, y = whistle, z = stat(thinger))
