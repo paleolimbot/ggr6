@@ -1,8 +1,31 @@
 
 Stat <- R6Class(
-  "Stat",
+  "Stat", inherit = StatGeomBase,
+
   public = list(
+    default_mapping = NULL,
+
+    initialize = function(constant_aesthetic_values = list()) {
+      super$initialize(constant_aesthetic_values)
+      self$set_default_mapping(ColumnMappingIdentity$new())
+    },
+
+    set_default_mapping = function(default_mapping) {
+      assert_r6(default_mapping, "ColumnMapping")
+      self$default_mapping <- default_mapping
+      invisible(self)
+    },
+
     compute_panel = function(data_trans, panel) {
+      dplyr::ungroup(
+        dplyr::group_modify(
+          dplyr::group_by(data_trans, .data$group),
+          function(group_df, grouping) self$compute_group(group_df, panel, renderer)
+        )
+      )
+    },
+
+    compute_group = function(data_trans, panel) {
       not_implemented() # nocov
     }
   )

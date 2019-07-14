@@ -7,22 +7,27 @@ ColumnMapping <- R6Class(
       not_implemented() # nocov
     },
 
-    map_data = function(data) {
+    map = function(data) {
       not_implemented() # nocov
     },
 
-    map_data_stat = function(data) {
+    map_new = function(data) {
+      not_implemented() # nocov
+    },
+
+    map_update = function(data) {
       not_implemented() # nocov
     }
   )
 )
 
 ColumnMappingIdentity <- R6Class(
-  "ColumnMappingIdentity",
+  "ColumnMappingIdentity", inherit = ColumnMapping,
+
   public = list(
     names = NULL,
 
-    initialize = function(data) {
+    initialize = function(data = tibble()) {
       self$names <- colnames(data)
     },
 
@@ -30,18 +35,23 @@ ColumnMappingIdentity <- R6Class(
       self$names
     },
 
-    map_data = function(data) {
+    map = function(data) {
       data
     },
 
-    map_data_stat = function(data) {
+    map_new = function(data) {
+      data
+    },
+
+    map_update = function(data) {
       data
     }
   )
 )
 
 ColumnMappingQuosure <- R6Class(
-  "ColumnMappingQuosure",
+  "ColumnMappingQuosure", inherit = ColumnMapping,
+
   public = list(
     exprs = NULL,
 
@@ -56,20 +66,17 @@ ColumnMappingQuosure <- R6Class(
       names(self$exprs)
     },
 
-    map_data = function(data) {
-      is_stat_mapping <- purrr::map_lgl(self$exprs, contains_call_to, "stat")
-      exprs <- self$exprs[!is_stat_mapping]
-      dplyr::transmute(data, !!!exprs)
+    map = function(data) {
+      dplyr::transmute(data, !!!self$exprs)
     },
 
-    map_data_stat = function(data) {
-      is_stat_mapping <- purrr::map_lgl(self$exprs, contains_call_to, "stat")
-      exprs <- self$exprs[is_stat_mapping]
-      dplyr::mutate(data, !!!exprs)
+    map_new = function(data) {
+      new_aesthetics <- setdiff(self$aesthetics(), colnames(data))
+      dplyr::mutate(data, !!!self$exprs[new_aesthetics])
+    },
+
+    map_update = function(data) {
+      dplyr::mutate(data, !!!self$exprs)
     }
   )
 )
-
-stat <- function(x) {
-  x
-}

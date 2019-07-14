@@ -1,6 +1,7 @@
 
 Geom <- R6Class(
-  "Geom",
+  "Geom", inherit = StatGeomBase,
+
   public = list(
 
     aesthetics = function(renderer) {
@@ -19,16 +20,9 @@ Geom <- R6Class(
 
     render_panel = function(data, panel, renderer) {
       renderer$render_stack(
-        !!!purrr::map(
-          dplyr::group_split(
-            dplyr::group_by(
-              data,
-              .data$group
-            )
-          ),
-          self$render_group,
-          panel,
-          renderer
+        !!!dplyr::group_map(
+          dplyr::group_by(data, .data$group),
+          function(group_df, grouping) self$render_group(group_df, panel, renderer)
         )
       )
     },
