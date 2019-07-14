@@ -72,7 +72,7 @@ censor_discrete <- function(x, range) {
   ifelse(x %in% range, x, na_value)
 }
 
-is_discrete <- function() {
+is_discrete <- function(x) {
   is.factor(x) || is.character(x) || is.logical(x)
 }
 
