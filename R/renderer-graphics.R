@@ -53,7 +53,7 @@ RendererGraphics <- R6Class(
       self$render_stack(...)
     },
 
-    render_panels = function(...) {
+    render_panels = function(graphic, ...) {
       dots <- quos(...)
       n_panels <- length(dots)
       withr::with_par(list(mfrow = grDevices::n2mfrow(n_panels)), {

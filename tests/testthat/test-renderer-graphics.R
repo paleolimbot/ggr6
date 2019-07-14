@@ -4,6 +4,7 @@ context("renderer-graphics")
 test_that("graphics renderer can render all geometry types", {
 
   f <- function() {
+    graphic <- Graphic$new()
     renderer <- RendererGraphics$new()
     scale_x <- ScaleSimpleContinuous$new("x")$set_limits(c(-1, 11))
     scale_y <- ScaleSimpleContinuous$new("y")$set_limits(c(-1, 11))
@@ -11,6 +12,8 @@ test_that("graphics renderer can render all geometry types", {
     panel <- Panel$new(scales = scales)
 
     renderer$render_panels(
+      graphic,
+
       renderer$render_panel(
         panel,
 

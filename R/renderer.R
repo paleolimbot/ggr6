@@ -38,7 +38,7 @@ Renderer <- R6Class(
       not_implemented() # nocov
     },
 
-    render_panels = function(...) {
+    render_panels = function(graphic, ...) {
       not_implemented() # nocov
     },
 
@@ -116,9 +116,9 @@ RendererIdentity <- R6Class(
       )
     },
 
-    render_panels = function(...) {
+    render_panels = function(graphic, ...) {
       structure(
-        rlang::list2(...),
+        rlang::list2(graphic = graphic, ...),
         class = "rendered_panels"
       )
     },
