@@ -18,10 +18,6 @@ Renderer <- R6Class(
       not_implemented() # nocov
     },
 
-    render_sf = function(geometry, ...) {
-      not_implemented() # nocov
-    },
-
     render_text = function(x, y, label, ...) {
       not_implemented() # nocov
     },
@@ -81,13 +77,6 @@ RendererIdentity <- R6Class(
       structure(
         list(x = x, y = y, group = group, subgroup = subgroup, ...),
         class = "rendered_polygon"
-      )
-    },
-
-    render_sf = function(geometry, ...) {
-      structure(
-        list(geometry = geometry, ...),
-        class = "rendered_sf"
       )
     },
 

@@ -4,7 +4,7 @@ Coord <- R6Class(
   public = list(
     aesthetics = NULL,
 
-    initialize = function(aesthetics = c("x", "y", "geometry")) {
+    initialize = function(aesthetics = c("x", "y")) {
       self$aesthetics <- aesthetics
     },
 

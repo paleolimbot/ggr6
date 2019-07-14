@@ -3,7 +3,7 @@ test_that("identity renderer can render all geometries", {
   renderer <- RendererIdentity$new()
   args <- list(
     x = "x", y = "y", group = "group", label = "label",
-    subgroup = "subgroup", extra = "extra", geometry = "geometry"
+    subgroup = "subgroup", extra = "extra"
   )
   arg_names <- names(args)
 
@@ -19,11 +19,6 @@ test_that("identity renderer can render all geometries", {
 
   expect_identical(
     do.call(renderer$render_polygon, args)[arg_names],
-    args
-  )
-
-  expect_identical(
-    do.call(renderer$render_sf, args)[arg_names],
     args
   )
 

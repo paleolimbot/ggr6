@@ -17,10 +17,6 @@ RendererGraphics <- R6Class(
       private$render_grouped(tbl, graphics::polygon, quos(...))
     },
 
-    render_sf = function(geometry, ...) {
-      plot(geometry, ..., add = TRUE)
-    },
-
     render_text = function(x, y, label, cex = 1, col = "black", font = 1, ...) {
       graphics::text(x, y, label, cex = cex, col = col, font = font)
     },
