@@ -1,6 +1,6 @@
 
-PlotRenderer <- R6Class(
-  "PlotRenderer",
+Renderer <- R6Class(
+  "Renderer",
   public = list(
     render = function(plot_built) {
       not_implemented() # nocov
@@ -59,8 +59,8 @@ PlotRenderer <- R6Class(
   )
 )
 
-PlotRendererIdentity <- R6Class(
-  "PlotRendererIdentity", inherit = PlotRenderer,
+RendererIdentity <- R6Class(
+  "RendererIdentity", inherit = Renderer,
   public = list(
 
     render_points = function(x, y, ...) {

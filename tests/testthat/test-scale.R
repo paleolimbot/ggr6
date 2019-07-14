@@ -63,6 +63,6 @@ test_that("scale list methods work as expected", {
   expect_true(scale_y$is_empty())
 
   expect_identical(scales$aesthetics(), c("x", "y"))
-  scales$add_missing(tbl, PlotRendererIdentity$new())
+  scales$add_missing(tbl, RendererIdentity$new())
   expect_identical(scales$aesthetics(), c("x", "y", "z"))
 })

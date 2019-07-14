@@ -7,7 +7,7 @@ GraphicBuilder <- R6Class(
     panels = NULL,
     renderer = NULL,
 
-    initialize = function(graphic, renderer = PlotRendererIdentity$new()) {
+    initialize = function(graphic, renderer = RendererIdentity$new()) {
       self$layers <- graphic$layers
       self$scales <- graphic$scales
       self$coord <- graphic$coord

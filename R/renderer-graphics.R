@@ -1,6 +1,6 @@
 
-PlotRendererGraphics <- R6Class(
-  "PlotRendererGraphics",
+RendererGraphics <- R6Class(
+  "RendererGraphics", inherit = Renderer,
   public = list(
 
     render_points = function(x, y, pch = 1, cex = 1, col = "black", lwd = 1, fill = "black", ...) {
