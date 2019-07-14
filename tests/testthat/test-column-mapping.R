@@ -16,3 +16,7 @@ test_that("quosure column mappings can map columns", {
   expect_identical(mapping$map_data_stat(tbl), tibble(fish = 1, whistle = "two", thinger = 3, z = 3))
   expect_identical(mapping$aesthetics(), c("x", "y", "z"))
 })
+
+test_that("quosure column mapping throws an error when quosures aren't named", {
+  expect_error(ColumnMappingQuosure$new(not_named), "must be named")
+})
