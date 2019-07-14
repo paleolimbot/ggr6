@@ -10,12 +10,17 @@ test_that("builder can build a basic plot", {
 
   builder <- Builder$new(graphic)
 
+  expect_error(builder$build(), class = "invalid_state")
+  expect_error(builder$render(), class = "invalid_state")
+
   # initializer
   expect_is(builder$build_init(), "Builder")
   expect_equal(ncol(builder$plot_data), 1)
   expect_equal(nrow(builder$plot_data), 1)
   expect_length(builder$panels, 1)
   expect_is(builder$panels[[1]], "Panel")
+
+  expect_error(builder$render(), class = "invalid_state")
 
   # keep panel for checking scales
   panel <- builder$panels[[1]]
