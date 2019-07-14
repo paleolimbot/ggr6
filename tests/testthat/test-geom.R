@@ -24,9 +24,10 @@ test_that("Geom default panel calculation works", {
 
   df <- tibble(x = 1:5, group = rep(1:2, length.out = 5))
   geom <- GeomGroupedPoint$new()
+  panel <- Panel$new()
   renderer <- RendererIdentity$new()
 
-  rendered <- geom$render_panel(df, NULL, renderer)
+  rendered <- geom$render_panel(df, panel, renderer)
   expect_is(rendered, "rendered_stack")
   expect_length(rendered, 2)
   expect_is(rendered[[1]], "rendered_points")
