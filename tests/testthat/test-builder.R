@@ -1,4 +1,11 @@
 
+test_that("builder can build an empty plot", {
+  builder <- Builder$new(Graphic$new())
+  expect_silent(builder$build_init())
+  expect_silent(builder$build())
+  expect_is(builder$render(), "rendered_panels")
+})
+
 test_that("builder can build a basic plot", {
 
   tbl <- tibble(x = 6:10, y = 1:5, col = rep(c("a", "b"), length.out = 5))
