@@ -32,3 +32,31 @@ test_that("graphics renderer can render all geometry types", {
 
   vdiffr::expect_doppelganger("graphics renderer basic test", f)
 })
+
+test_that("graphics rendere can render a basic plot", {
+  f <- function() {
+    graphic <- Graphic$new()
+    renderer <- RendererGraphics$new()
+
+    tbl <- tibble(x = 6:10, y = 1:5, col = rep(c("a", "b"), length.out = 5))
+    graphic$layers$add(
+      Layer$new(tbl, geom = GeomPoint$new())
+    )
+    graphic$scales$add(ScaleSimpleContinuous$new("x"))
+    graphic$scales$add(ScaleSimpleContinuous$new("y"))
+    graphic$scales$add(
+      ScaleSimpleDiscrete$new("col")$
+        set_palette_factory(scales::hue_pal())$
+        set_na_value("grey50")
+    )
+
+    builder <- Builder$new(graphic, renderer)
+    builder$build_init()
+    builder$build()
+    builder$render()
+  }
+
+  f()
+  # can't get this to work quiet yet
+  # vdiffr::expect_doppelganger("graphics renderer built graphic", f)
+})

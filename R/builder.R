@@ -51,7 +51,21 @@ Builder <- R6Class(
         invalid_state("Can't render a Graphic that has not been built using build()")
       }
 
-      not_implemented()
+      self$renderer$render_panels(
+        self,
+        !!!purrr::imap(self$panels, function(panel, panel_index) {
+          self$renderer$render_panel(
+            panel,
+            !!!purrr::imap(self$layers$lst, function(layer, layer_index) {
+              layer$geom$render_panel(
+                self$plot_data[panel_index, layer_index][[1]],
+                panel,
+                self$renderer
+              )
+            })
+          )
+        })
+      )
     },
 
     # self$build() ------------------------------------

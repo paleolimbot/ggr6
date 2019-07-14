@@ -41,7 +41,11 @@ test_that("builder can build a basic plot", {
   finished <- builder$finish_data(mapped_np)
   expect_identical(finished[[1]], tbl)
 
-  # check the whole process
+  # check the whole build process
   builder$build()
   expect_identical(builder$plot_data[[1]], tbl)
+
+  # make sure the plot can be rendered
+  rendered <- builder$render()
+  expect_is(rendered, "rendered_panels")
 })
