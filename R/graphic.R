@@ -15,8 +15,21 @@ Graphic <- R6Class(
     initialize = function() {
       self$layers <- LayerList$new()
       self$scales <- ScaleList$new()
-      self$coord <- CoordIdentity$new()
-      self$facet <- FacetNull$new()
+
+      self$set_coord(CoordIdentity$new())
+      self$set_facet(FacetNull$new())
+    },
+
+    set_coord = function(coord) {
+      assert_r6(coord, "Coord")
+      self$coord <- coord
+      invisible(self)
+    },
+
+    set_facet = function(facet) {
+      assert_r6(facet, "Facet")
+      self$facet <- facet
+      invisible(self)
     }
   )
 )

@@ -124,10 +124,7 @@ ScaleList <- R6Class(
   "ScaleList", inherit = List,
   public = list(
     set = function(index, item) {
-      if (!is.R6(item) || !inherits(item, "Scale")) {
-        abort("`item` must be a Scale instance.")
-      }
-
+      assert_r6(item, "Scale")
       super$set(index, item)
     },
 
@@ -206,6 +203,8 @@ ScaleList <- R6Class(
     },
 
     add_missing = function(data, renderer) {
+      assert_r6(renderer, "Renderer")
+
       new_aesthetics <- setdiff(names(data), self$aesthetics())
       for (aesthetic in new_aesthetics) {
         self$add(renderer$default_scale(data[[aesthetic]], aesthetic))

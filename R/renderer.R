@@ -2,9 +2,6 @@
 Renderer <- R6Class(
   "Renderer",
   public = list(
-    render = function(plot_built) {
-      not_implemented() # nocov
-    },
 
     render_points = function(x, y, ...) {
       not_implemented() # nocov

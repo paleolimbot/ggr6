@@ -3,16 +3,21 @@ Builder <- R6Class(
   "Builder", inherit = Graphic,
 
   public = list(
-    plot_data = NULL,
-    panels = NULL,
     renderer = NULL,
 
     initialize = function(graphic, renderer = RendererIdentity$new()) {
       self$layers <- graphic$layers
       self$scales <- graphic$scales
-      self$coord <- graphic$coord
-      self$facet <- graphic$facet
+
+      self$set_coord(graphic$coord)
+      self$set_facet(graphic$facet)
+      self$set_renderer(renderer)
+    },
+
+    set_renderer = function(renderer) {
+      assert_r6(renderer, "Renderer")
       self$renderer <- renderer
+      invisible(self)
     },
 
     # high-level functions ---------------------------

@@ -1,7 +1,7 @@
 
 test_that("scale list only accepts scales", {
   scale_list <- ScaleList$new()
-  expect_error(scale_list$add(NULL), "Scale instance")
+  expect_error(scale_list$add(NULL), class = "bad_r6_type")
   expect_identical(scale_list$add(ScaleNull$new()), scale_list)
 })
 

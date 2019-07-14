@@ -1,10 +1,26 @@
 
 not_implemented <- function(message = "Not implemented") {
-  abort(message, trace = rlang::trace_back(bottom = 1), .subclass = "not_implemented")
+  abort(message, "not_implemented", trace = rlang::trace_back(bottom = 1))
 }
 
 invalid_state <- function(message = "Invalid state") {
-  abort(message, trace = rlang::trace_back(bottom = 1), .subclass = "invalid_state")
+  abort(message, "invalid_state", trace = rlang::trace_back(bottom = 1))
+}
+
+assert_r6 <- function(x, class) {
+  x_label <- rlang::as_label(enquo(x))
+
+  if (!is.R6(x) || !inherits(x, class)) {
+    actual_class <- paste(class(x), collapse = " / ")
+    message <- sprintf(
+      "`%s` does not inherit from R6 class `%s`\n(inherits from %s)",
+      x_label, class, actual_class
+    )
+
+    abort(message, "bad_r6_type", trace = rlang::trace_back(bottom = 1))
+  }
+
+  invisible(x)
 }
 
 function_or_value <- function(fun_or_value, ...) {

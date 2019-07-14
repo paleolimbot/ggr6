@@ -32,10 +32,7 @@ LayerList <- R6Class(
   "LayerList", inherit = List,
   public = list(
     set = function(index, item) {
-      if (!is.R6(item) || !inherits(item, "Layer")) {
-        abort("`item` must be a Layer instance.")
-      }
-
+      assert_r6(item, "Layer")
       super$set(index, item)
     }
   )
