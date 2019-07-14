@@ -1,6 +1,6 @@
 
-GraphicBuilder <- R6Class(
-  "GraphicBuilder", inherit = Graphic,
+Builder <- R6Class(
+  "Builder", inherit = Graphic,
 
   public = list(
     plot_data = NULL,

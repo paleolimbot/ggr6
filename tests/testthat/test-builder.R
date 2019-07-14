@@ -8,10 +8,10 @@ test_that("builder can build a basic plot", {
     Layer$new(tbl, geom = GeomPoint$new())
   )
 
-  builder <- GraphicBuilder$new(graphic)
+  builder <- Builder$new(graphic)
 
   # initializer
-  expect_is(builder$build_init(), "GraphicBuilder")
+  expect_is(builder$build_init(), "Builder")
   expect_equal(ncol(builder$plot_data), 1)
   expect_equal(nrow(builder$plot_data), 1)
   expect_length(builder$panels, 1)
