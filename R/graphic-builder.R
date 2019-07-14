@@ -172,8 +172,10 @@ GraphicBuilder <- R6Class(
     # self$compute_positions() -------------------------
 
     add_position_scales = function(renderer) {
+      position_aesthetics <- rlang::set_names(self$coord$aesthetics)
+      tbl_template <- tibble::as_tibble(purrr::map(position_aesthetics, ~numeric(0)))
       for (panel in self$panels) {
-        panel$scales$add_missing(tibble(x = numeric(0), y = numeric(0)), renderer)
+        panel$scales$add_missing(tbl_template, renderer)
       }
 
       invisible(self)
