@@ -1,4 +1,17 @@
 
+test_that("ScaleSimpleDataFrame behaves as expected", {
+  scale <- ScaleSimpleDataFrame$new("aesthetic")
+  expect_true(scale$is_empty())
+  expect_identical(scale$limits(), tibble())
+  expect_identical(scale$breaks(), tibble())
+  expect_identical(scale$labels(), tibble())
+  expect_error(scale$train(1:5), "Non-data frame supplied")
+
+  scale$train(tibble(x = c(1, 1), y = c(2, 2)))
+  expect_identical(scale$limits(), tibble(x = 1, y = 2))
+  expect_identical(scale$breaks(), tibble(x = 1, y = 2))
+})
+
 test_that("data frame range can be trained", {
   range <- RangeDataFrame$new()
   expect_null(range$range)

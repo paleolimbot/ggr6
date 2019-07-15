@@ -1,4 +1,15 @@
 
+ScaleSimpleDataFrame <- R6Class(
+  "ScaleSimpleDataFrame", inherit = ScaleSimpleDiscrete,
+
+  public = list(
+    initialize = function(aesthetics = character(0)) {
+      super$initialize(aesthetics)
+      self$set_range(RangeDataFrame$new())
+      self$set_limits_empty(tibble())
+    }
+  )
+)
 
 RangeDataFrame <- R6Class(
   "RangeDataFrame", inherit = scales::DiscreteRange,

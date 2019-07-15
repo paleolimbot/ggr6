@@ -11,6 +11,7 @@ ScaleSimpleDiscrete <- R6Class(
       self$set_range(scales::DiscreteRange$new())
       self$set_trans(discrete_identity_trans())
       self$set_drop(TRUE)
+      self$set_limits_empty(character(0))
     },
 
     train = function(x) {

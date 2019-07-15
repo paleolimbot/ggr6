@@ -1,4 +1,12 @@
 
+test_that("ScaleSimpleDiscrete has character(0) limits when empty", {
+  scale <- ScaleSimpleDiscrete$new()
+  expect_true(scale$is_empty())
+  expect_identical(scale$limits(), character(0))
+  expect_identical(scale$breaks(), character(0))
+  expect_identical(scale$labels(), character(0))
+})
+
 test_that("ScaleSimpleDiscrete can be trained", {
   scale <- ScaleSimpleDiscrete$new()
   expect_equal(scale$trained_range(), NULL)

@@ -41,10 +41,12 @@ is_waive <- function(x) inherits(x, "waiver")
 
 trans_discrete_new <- function(..., breaks = identity,
                                minor_breaks = function(breaks, limits, n) NULL,
+                               format = identity,
                                domain = c(-Inf, Inf)) {
   scales::trans_new(
     ...,
     breaks = breaks,
+    format = format,
     minor_breaks = minor_breaks,
     domain = domain
   )
