@@ -36,7 +36,7 @@ RendererGraphics <- R6Class(
       graphics::plot(
         # creates a blank dummy plot
         x = 1, y = 1,
-        type = "n", axes = FALSE, xlab = NA, ylab = NA,
+        type = "n", axes = FALSE, xlab = x$name(), ylab = y$name(),
 
         # sets the limits
         xlim = x$limits(),
