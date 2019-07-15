@@ -7,6 +7,8 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Travis build
+status](https://travis-ci.org/paleolimbot/ggr6.svg?branch=master)](https://travis-ci.org/paleolimbot/ggr6)
 <!-- badges: end -->
 
 The goal of ggr6 is to provide a modern developer-facing implementation
