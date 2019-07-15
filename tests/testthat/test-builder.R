@@ -8,7 +8,11 @@ test_that("builder can build an empty plot", {
 
 test_that("builder can build a basic plot", {
 
-  tbl <- tibble(x = 6:10, y = 1:5, col = rep(c("a", "b"), length.out = 5))
+  tbl <- tibble(
+    x = as.numeric(6:10),
+    y = as.numeric(1:5),
+    col = rep(c("a", "b"), length.out = 5)
+  )
 
   graphic <- Graphic$new()
   graphic$layers$add(

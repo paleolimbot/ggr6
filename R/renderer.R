@@ -110,7 +110,14 @@ RendererIdentity <- R6Class(
     },
 
     default_scale = function(x, aesthetic) {
-      ScaleNull$new(aesthetic)
+      if (aesthetic %in% c("x", "y")) {
+        if (is_discrete(x))
+          ScaleDiscretePosition$new(aesthetic)
+        else
+          ScaleContinuousPosition$new(aesthetic)
+      } else {
+        ScaleNull$new(aesthetic)
+      }
     }
   )
 )

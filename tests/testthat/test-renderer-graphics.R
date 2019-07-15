@@ -6,8 +6,8 @@ test_that("graphics renderer can render all geometry types", {
   f <- function() {
     graphic <- Graphic$new()
     renderer <- RendererGraphics$new()
-    scale_x <- ScaleContinuous$new("x")$set_limits(c(-1, 11))
-    scale_y <- ScaleContinuous$new("y")$set_limits(c(-1, 11))
+    scale_x <- ScaleContinuousPosition$new("x")$set_limits(c(-1, 11))
+    scale_y <- ScaleContinuousPosition$new("y")$set_limits(c(-1, 11))
     scales <- ScaleList$new()$add(scale_x)$add(scale_y)
     panel <- Panel$new(scales = scales)
 
@@ -42,8 +42,8 @@ test_that("graphics renderer can render a basic plot", {
     graphic$layers$add(
       Layer$new(tbl, geom = GeomPoint$new())
     )
-    graphic$scales$add(ScaleContinuous$new("x"))
-    graphic$scales$add(ScaleContinuous$new("y"))
+    graphic$scales$add(ScaleContinuousPosition$new("x"))
+    graphic$scales$add(ScaleContinuousPosition$new("y"))
     graphic$scales$add(
       ScaleDiscrete$new("col")$
         set_palette_factory(scales::hue_pal())$

@@ -39,8 +39,8 @@ RendererGraphics <- R6Class(
         type = "n", axes = FALSE, xlab = x$name(), ylab = y$name(),
 
         # sets the limits
-        xlim = x$limits(),
-        ylim = y$limits()
+        xlim = x$limits_continuous(),
+        ylim = y$limits_continuous()
       )
 
       graphics::axis(1, at = x$breaks(), labels = x$labels())
@@ -58,7 +58,33 @@ RendererGraphics <- R6Class(
     },
 
     default_scale = function(x, aesthetic) {
-      ScaleNull$new(aesthetic)
+      if (aesthetic %in% c("x", "y")) {
+        if (is_discrete(x))
+          ScaleDiscretePosition$new(aesthetic)
+        else
+          ScaleContinuousPosition$new(aesthetic)
+
+      } else if (aesthetic %in% c("col", "fill")) {
+        if (is_discrete(x)) {
+          ScaleDiscrete$new(aesthetic)$
+            set_palette_factory(scales::hue_pal())$
+            set_na_value("grey50")
+        } else {
+          ScaleContinuous$new(aesthetic)$
+            set_palette(scales::seq_gradient_pal())$
+            set_na_value("grey50")
+        }
+
+      } else if (aesthetic == "pch") {
+        if (is_discrete(x)) {
+          ScaleDiscrete$new(aesthetic)$
+            set_palette_factory(scales::shape_pal())
+        } else {
+          abort("Cannot map a continuous value to 'pch'")
+        }
+      } else {
+        ScaleNull$new(aesthetic)
+      }
     }
   ),
 
