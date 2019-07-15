@@ -1,0 +1,11 @@
+
+test_that("data frame range can be trained", {
+  range <- RangeDataFrame$new()
+  expect_null(range$range)
+  range$train(tibble(x = c(1, 1), y = c(2, 2)))
+  expect_identical(range$range, tibble(x = 1, y = 2))
+  range$train(tibble(x = 3, y = 2))
+  expect_identical(range$range, tibble(x = c(1, 3), y = c(2, 2)))
+  range$reset()
+  expect_null(range$range)
+})
