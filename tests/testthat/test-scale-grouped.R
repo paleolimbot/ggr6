@@ -9,3 +9,10 @@ test_that("data frame range can be trained", {
   range$reset()
   expect_null(range$range)
 })
+
+test_that("data frame range can be trained with drop = FALSE", {
+  range <- RangeDataFrame$new()
+  expect_null(range$range)
+  range$train(tibble(x = factor(c("a", "a"), levels = c("a", "b")), y = c(2, 2)), drop = FALSE)
+  expect_identical(range$range, tibble(x = factor(c("a", "b")), y = c(2, NA)))
+})
