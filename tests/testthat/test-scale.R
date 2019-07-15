@@ -1,4 +1,12 @@
 
+test_that("scale default name is the first aesthetic", {
+  scale <- Scale$new()
+  expect_identical(scale$name(), NA_character_)
+
+  scale <- Scale$new(c("x", "xend"))
+  expect_identical(scale$name(), "x")
+})
+
 test_that("scale list only accepts scales", {
   scale_list <- ScaleList$new()
   expect_error(scale_list$add(NULL), class = "bad_r6_type")

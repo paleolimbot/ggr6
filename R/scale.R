@@ -8,6 +8,10 @@ Scale <- R6Class(
       self$aesthetics <- aesthetics
     },
 
+    name = function(x) {
+      self$aesthetics[1]
+    },
+
     transform = function(x) {
       not_implemented() # nocov
     },
