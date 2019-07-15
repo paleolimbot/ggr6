@@ -62,6 +62,10 @@ Scale <- R6Class(
 
     limits = function() {
       not_implemented() # nocov
+    },
+
+    within_limits = function(x) {
+      not_implemented() # nocov
     }
   )
 )
@@ -82,7 +86,7 @@ ScaleNull <- R6Class(
       invisible(self)
     },
 
-    reset = function(x) {
+    reset = function() {
       invisible(self)
     },
 
@@ -120,6 +124,10 @@ ScaleNull <- R6Class(
 
     limits = function() {
       c(-Inf, Inf)
+    },
+
+    within_limits = function(x) {
+      rep(TRUE, length.out = length(x))
     }
   )
 )

@@ -7,6 +7,26 @@ ScaleDataFrame <- R6Class(
       super$initialize(aesthetics)
       self$set_range(RangeDataFrame$new())
       self$set_limits_empty(tibble())
+    },
+
+    within_limits = function(x) {
+      limits <- self$limits()
+      common_cols <- intersect(colnames(x), colnames(limits))
+      if (length(common_cols) == 0) {
+        return(rep(FALSE, length.out = nrow(x)))
+      }
+
+      limits$.in_limits <- TRUE
+      in_limits <- dplyr::pull(
+        dplyr::left_join(
+          x,
+          dplyr::mutate(limits, .in_limits = TRUE),
+          by = common_cols
+        ),
+        .data$.in_limits
+      )
+
+      dplyr::coalesce(in_limits, FALSE)
     }
   )
 )

@@ -40,6 +40,10 @@ ScaleDiscrete <- R6Class(
       ifelse(!is.na(mapped), mapped, na_mapped)
     },
 
+    within_limits = function(x) {
+      x %in% self$limits()
+    },
+
     set_palette_factory = function(palette_factory) {
       self$palette_factory <- palette_factory
       invisible(self)

@@ -30,6 +30,15 @@ test_that("ScaleContinuous limits are returned in transformed space", {
   expect_equal(scale$limits(), log10(c(1, 10)))
 })
 
+test_that("ScaleContinuous within_limits() works", {
+  scale <- ScaleContinuous$new()$set_limits(c(1, 10))
+  within_lims <- scale$within_limits(0:11)
+  expect_length(within_lims, 12)
+  expect_false(within_lims[1])
+  expect_false(within_lims[12])
+  expect_equal(sum(within_lims), 10)
+})
+
 test_that("ScaleContinuous breaks are the trans breaks by default", {
   scale <- ScaleContinuous$
     new()$

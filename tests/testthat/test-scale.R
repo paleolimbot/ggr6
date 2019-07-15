@@ -33,6 +33,7 @@ test_that("ScaleNull has NULL breaks, minor breaks, labels, and infinite limits"
   expect_null(scale$breaks_minor())
   expect_null(scale$labels())
   expect_identical(scale$limits(), c(-Inf, Inf))
+  expect_true(all(scale$within_limits(1:100)))
 })
 
 test_that("scale list methods work as expected", {

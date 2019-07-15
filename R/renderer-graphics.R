@@ -3,7 +3,7 @@ RendererGraphics <- R6Class(
   "RendererGraphics", inherit = Renderer,
   public = list(
 
-    render_points = function(x, y, pch = 1, cex = 1, col = "black", lwd = 1, fill = "black", ...) {
+    render_points = function(x, y, pch = 16, cex = 1, col = "black", lwd = 1, fill = "black", ...) {
       graphics::points(x, y, pch = pch, cex = cex, col = col, lwd = lwd, bg = fill)
     },
 
@@ -43,8 +43,8 @@ RendererGraphics <- R6Class(
         ylim = y$limits_continuous()
       )
 
-      graphics::axis(1, at = x$breaks(), labels = x$labels())
-      graphics::axis(2, at = y$breaks(), labels = y$labels())
+      graphics::axis(1, at = x$map(x$breaks()), labels = x$labels())
+      graphics::axis(2, at = y$map(y$breaks()), labels = y$labels())
 
       self$render_stack(...)
     },
@@ -71,6 +71,7 @@ RendererGraphics <- R6Class(
             set_na_value("grey50")
         } else {
           ScaleContinuous$new(aesthetic)$
+            set_rescaler(scales::rescale)$
             set_palette(scales::seq_gradient_pal())$
             set_na_value("grey50")
         }
@@ -82,6 +83,7 @@ RendererGraphics <- R6Class(
         } else {
           abort("Cannot map a continuous value to 'pch'")
         }
+
       } else {
         ScaleNull$new(aesthetic)
       }

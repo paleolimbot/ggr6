@@ -24,6 +24,11 @@ ScaleContinuous <- R6Class(
       ifelse(!is.na(mapped), mapped, na_mapped)
     },
 
+    within_limits = function(x) {
+      limits <- self$limits()
+      x >= limits[1] & x <= limits[2]
+    },
+
     set_trans = function(trans) {
       super$set_trans(trans)
       self$set_limits_empty(scales::squish(self$limits_empty, self$trans$domain))

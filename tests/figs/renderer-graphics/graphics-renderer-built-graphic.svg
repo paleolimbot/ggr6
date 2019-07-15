@@ -41,9 +41,9 @@
     <rect x='59.04' y='59.04' width='630.72' height='443.52' />
   </clipPath>
 </defs>
-<circle cx='82.40' cy='486.13' r='2.70pt' style='stroke-width: 0.75; stroke: #F8766D;' clip-path='url(#cpNTkuMDR8Njg5Ljc2fDUwMi41Nnw1OS4wNA==)' />
-<circle cx='228.40' cy='383.47' r='2.70pt' style='stroke-width: 0.75; stroke: #00BFC4;' clip-path='url(#cpNTkuMDR8Njg5Ljc2fDUwMi41Nnw1OS4wNA==)' />
-<circle cx='374.40' cy='280.80' r='2.70pt' style='stroke-width: 0.75; stroke: #F8766D;' clip-path='url(#cpNTkuMDR8Njg5Ljc2fDUwMi41Nnw1OS4wNA==)' />
-<circle cx='520.40' cy='178.13' r='2.70pt' style='stroke-width: 0.75; stroke: #00BFC4;' clip-path='url(#cpNTkuMDR8Njg5Ljc2fDUwMi41Nnw1OS4wNA==)' />
-<circle cx='666.40' cy='75.47' r='2.70pt' style='stroke-width: 0.75; stroke: #F8766D;' clip-path='url(#cpNTkuMDR8Njg5Ljc2fDUwMi41Nnw1OS4wNA==)' />
+<circle cx='82.40' cy='486.13' r='2.70pt' style='stroke-width: 0.75; stroke: none; fill: #F8766D;' clip-path='url(#cpNTkuMDR8Njg5Ljc2fDUwMi41Nnw1OS4wNA==)' />
+<circle cx='228.40' cy='383.47' r='2.70pt' style='stroke-width: 0.75; stroke: none; fill: #00BFC4;' clip-path='url(#cpNTkuMDR8Njg5Ljc2fDUwMi41Nnw1OS4wNA==)' />
+<circle cx='374.40' cy='280.80' r='2.70pt' style='stroke-width: 0.75; stroke: none; fill: #F8766D;' clip-path='url(#cpNTkuMDR8Njg5Ljc2fDUwMi41Nnw1OS4wNA==)' />
+<circle cx='520.40' cy='178.13' r='2.70pt' style='stroke-width: 0.75; stroke: none; fill: #00BFC4;' clip-path='url(#cpNTkuMDR8Njg5Ljc2fDUwMi41Nnw1OS4wNA==)' />
+<circle cx='666.40' cy='75.47' r='2.70pt' style='stroke-width: 0.75; stroke: none; fill: #F8766D;' clip-path='url(#cpNTkuMDR8Njg5Ljc2fDUwMi41Nnw1OS4wNA==)' />
 </svg>

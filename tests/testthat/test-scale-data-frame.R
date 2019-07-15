@@ -12,6 +12,15 @@ test_that("ScaleDataFrame behaves as expected", {
   expect_identical(scale$breaks(), tibble(x = 1, y = 2))
 })
 
+test_that("within_limits() works for a data frame scale", {
+  tbl1 <- tibble(x = c(1, 2), y = c(1, 2))
+  tbl2 <- tibble(x = c(2, 3), y = c(2, 3))
+
+  scale <- ScaleDataFrame$new()
+  scale$set_limits(tbl1)
+  expect_identical(scale$within_limits(tbl2), c(TRUE, FALSE))
+})
+
 test_that("data frame range can be trained", {
   range <- RangeDataFrame$new()
   expect_null(range$range)

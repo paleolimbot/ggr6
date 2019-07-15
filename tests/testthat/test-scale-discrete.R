@@ -50,6 +50,12 @@ test_that("ScaleDiscrete limits are returned in transformed space", {
   expect_is(scale$limits(), "out_class")
 })
 
+test_that("ScaleDiscrete within_limits() works", {
+  scale <- ScaleDiscrete$new()$set_limits(c("a", "b", "c"))
+  within_lims <- scale$within_limits(c("1", "a", "b", "c", "d"))
+  expect_identical(within_lims, c(F, T, T, T, F))
+})
+
 test_that("ScaleDiscrete breaks are the trans breaks by default", {
   trans <- trans_discrete_new(
     "test",
