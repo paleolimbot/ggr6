@@ -1,6 +1,6 @@
 
 test_that("discrete position scales can be trained using discrete and continuous values", {
-  scale <- ScaleSimpleDiscretePosition$new()
+  scale <- ScaleDiscretePosition$new()
   expect_true(scale$is_empty())
 
   scale$train(1:5)
@@ -21,7 +21,7 @@ test_that("discrete position scales can be trained using discrete and continuous
 })
 
 test_that("discrete position scales can map discrete and continuous values", {
-  scale <- ScaleSimpleDiscretePosition$new()
+  scale <- ScaleDiscretePosition$new()
   scale$train(c("a", "b", "c"))
   expect_identical(scale$map(c("a", "b", "c")), c(1L, 2L, 3L))
   expect_identical(scale$map(c(1L, 2L, 3L)), c(1L, 2L, 3L))
@@ -29,7 +29,7 @@ test_that("discrete position scales can map discrete and continuous values", {
 })
 
 test_that("continuous position scales can be trained", {
-  scale <- ScaleSimpleContinuousPosition$new()
+  scale <- ScaleContinuousPosition$new()
   expect_true(scale$is_empty())
 
   scale$train(1:5)
@@ -41,7 +41,7 @@ test_that("continuous position scales can be trained", {
 })
 
 test_that("continuous position scales can map values", {
-  scale <- ScaleSimpleContinuousPosition$new()
+  scale <- ScaleContinuousPosition$new()
   expect_identical(scale$map(c(1L, 2L, 3L)), c(1, 2, 3))
   expect_identical(scale$map(as.numeric(1:3)), as.numeric(1:3))
 })

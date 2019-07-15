@@ -1,6 +1,6 @@
 
-test_that("ScaleSimpleDataFrame behaves as expected", {
-  scale <- ScaleSimpleDataFrame$new("aesthetic")
+test_that("ScaleDataFrame behaves as expected", {
+  scale <- ScaleDataFrame$new("aesthetic")
   expect_true(scale$is_empty())
   expect_identical(scale$limits(), tibble())
   expect_identical(scale$breaks(), tibble())

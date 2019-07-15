@@ -1,6 +1,6 @@
 
-ScaleSimpleContinuousPosition <- R6Class(
-  "ScaleSimpleContinuousPosition", inherit = ScaleSimpleContinuous,
+ScaleContinuousPosition <- R6Class(
+  "ScaleContinuousPosition", inherit = ScaleContinuous,
 
   public = list(
     limits_continuous_in = NULL,
@@ -25,8 +25,8 @@ ScaleSimpleContinuousPosition <- R6Class(
   )
 )
 
-ScaleSimpleDiscretePosition <- R6Class(
-  "ScaleSimpleDiscretePosition", inherit = ScaleSimpleDiscrete,
+ScaleDiscretePosition <- R6Class(
+  "ScaleDiscretePosition", inherit = ScaleDiscrete,
 
   public = list(
     range_continuous = NULL,

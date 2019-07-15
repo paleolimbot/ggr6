@@ -1,6 +1,6 @@
 
-ScaleSimpleContinuous <- R6Class(
-  "ScaleSimpleContinuous", inherit = ScaleSimple,
+ScaleContinuous <- R6Class(
+  "ScaleContinuous", inherit = ScaleSimple,
 
   public = list(
     rescaler = NULL,

@@ -29,8 +29,8 @@ test_that("ScaleNull has NULL breaks, minor breaks, labels, and infinite limits"
 
 test_that("scale list methods work as expected", {
 
-  scale_x <- ScaleSimpleContinuous$new("x")$set_trans(scales::log10_trans())
-  scale_y <- ScaleSimpleContinuous$new("y")$set_trans(scales::log10_trans())
+  scale_x <- ScaleContinuous$new("x")$set_trans(scales::log10_trans())
+  scale_y <- ScaleContinuous$new("y")$set_trans(scales::log10_trans())
   scales <- ScaleList$new()$add(scale_x)$add(scale_y)
 
   expect_identical(scales$scale("x"), scale_x)

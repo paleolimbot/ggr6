@@ -1,6 +1,6 @@
 
-ScaleSimpleDiscrete <- R6Class(
-  "ScaleSimpleDiscrete", inherit = ScaleSimple,
+ScaleDiscrete <- R6Class(
+  "ScaleDiscrete", inherit = ScaleSimple,
 
   public = list(
     palette_factory = NULL,

@@ -1,14 +1,14 @@
 
-test_that("ScaleSimpleDiscrete has character(0) limits when empty", {
-  scale <- ScaleSimpleDiscrete$new()
+test_that("ScaleDiscrete has character(0) limits when empty", {
+  scale <- ScaleDiscrete$new()
   expect_true(scale$is_empty())
   expect_identical(scale$limits(), character(0))
   expect_identical(scale$breaks(), character(0))
   expect_identical(scale$labels(), character(0))
 })
 
-test_that("ScaleSimpleDiscrete can be trained", {
-  scale <- ScaleSimpleDiscrete$new()
+test_that("ScaleDiscrete can be trained", {
+  scale <- ScaleDiscrete$new()
   expect_equal(scale$trained_range(), NULL)
   expect_true(scale$is_empty())
   scale$train(c("a", "b", "c"))
@@ -19,8 +19,8 @@ test_that("ScaleSimpleDiscrete can be trained", {
   expect_true(scale$is_empty())
 })
 
-test_that("ScaleSimpleDiscrete can be trained with drop = FALSE", {
-  scale <- ScaleSimpleDiscrete$new()$set_drop(FALSE)
+test_that("ScaleDiscrete can be trained with drop = FALSE", {
+  scale <- ScaleDiscrete$new()$set_drop(FALSE)
   expect_equal(scale$trained_range(), NULL)
   expect_true(scale$is_empty())
   scale$train(factor(character(0), levels = c("a", "b", "c")))
@@ -29,20 +29,20 @@ test_that("ScaleSimpleDiscrete can be trained with drop = FALSE", {
   expect_false(scale$is_empty())
 })
 
-test_that("ScaleSimpleDiscrete transforms values", {
-  scale <- ScaleSimpleDiscrete$new()$set_trans(s3_trans("new_class"))
+test_that("ScaleDiscrete transforms values", {
+  scale <- ScaleDiscrete$new()$set_trans(s3_trans("new_class"))
   expect_equal(unclass(scale$transform(c("a", "b", "c"))), c("a", "b", "c"))
   expect_is(scale$transform(c("a", "b", "c")), "new_class")
 })
 
-test_that("ScaleSimpleDiscrete limits can be set", {
-  scale <- ScaleSimpleDiscrete$new()$set_limits(c("a", "b", "c"))
+test_that("ScaleDiscrete limits can be set", {
+  scale <- ScaleDiscrete$new()$set_limits(c("a", "b", "c"))
   expect_equal(scale$limits(), c("a", "b", "c"))
   expect_false(scale$is_empty())
 })
 
-test_that("ScaleSimpleDiscrete limits are returned in transformed space", {
-  scale <- ScaleSimpleDiscrete$
+test_that("ScaleDiscrete limits are returned in transformed space", {
+  scale <- ScaleDiscrete$
     new()$
     set_trans(s3_trans(class_out = "out_class"))$
     set_limits(c("a", "b"))
@@ -50,7 +50,7 @@ test_that("ScaleSimpleDiscrete limits are returned in transformed space", {
   expect_is(scale$limits(), "out_class")
 })
 
-test_that("ScaleSimpleDiscrete breaks are the trans breaks by default", {
+test_that("ScaleDiscrete breaks are the trans breaks by default", {
   trans <- trans_discrete_new(
     "test",
     transform = force, inverse = force,
@@ -58,7 +58,7 @@ test_that("ScaleSimpleDiscrete breaks are the trans breaks by default", {
     minor_breaks = function(breaks, limits, n) breaks
   )
 
-  scale <- ScaleSimpleDiscrete$
+  scale <- ScaleDiscrete$
     new()$
     set_trans(trans)$
     set_limits(c("a", "b", "c"))
@@ -67,14 +67,14 @@ test_that("ScaleSimpleDiscrete breaks are the trans breaks by default", {
   expect_equal(scale$breaks_minor(), c("c", "b", "a"))
 })
 
-test_that("ScaleSimpleDiscrete labels are the trans labels by default", {
+test_that("ScaleDiscrete labels are the trans labels by default", {
   trans <- trans_discrete_new(
     "test",
     transform = force, inverse = force,
     format = function(breaks) paste0("*", breaks, "*")
   )
 
-  scale <- ScaleSimpleDiscrete$
+  scale <- ScaleDiscrete$
     new()$
     set_trans(trans)$
     set_limits(c("a", "b", "c"))
@@ -82,13 +82,13 @@ test_that("ScaleSimpleDiscrete labels are the trans labels by default", {
   expect_identical(scale$labels(), c("*a*", "*b*", "*c*"))
 })
 
-test_that("ScaleSimpleDiscrete doesn't change values by default", {
-  scale <- ScaleSimpleDiscrete$new()
+test_that("ScaleDiscrete doesn't change values by default", {
+  scale <- ScaleDiscrete$new()
   expect_equal(scale$map(c("a", "b", "c")), c("a", "b", "c"))
 })
 
-test_that("ScaleSimpleDiscrete can map values to character output", {
-  scale <- ScaleSimpleDiscrete$
+test_that("ScaleDiscrete can map values to character output", {
+  scale <- ScaleDiscrete$
     new()$
     set_palette_factory(scales::hue_pal())$
     set_limits(c("a", "b", "c"))
@@ -96,8 +96,8 @@ test_that("ScaleSimpleDiscrete can map values to character output", {
   expect_equal(scale$map(c("a", "b", "c", NA)), c(scales::hue_pal()(3), NA))
 })
 
-test_that("ScaleSimpleDiscrete can censor values", {
-  scale <- ScaleSimpleDiscrete$
+test_that("ScaleDiscrete can censor values", {
+  scale <- ScaleDiscrete$
     new()$
     set_oob(censor_discrete)$
     set_limits(c("a", "b"))
@@ -105,12 +105,12 @@ test_that("ScaleSimpleDiscrete can censor values", {
   expect_equal(scale$map(c("a", "b", "c", NA)), c("a", "b", NA, NA))
 })
 
-test_that("ScaleSimpleDiscrete can set the NA value", {
-  scale <- ScaleSimpleDiscrete$new()$set_na_value("fishyfishyfishy")
+test_that("ScaleDiscrete can set the NA value", {
+  scale <- ScaleDiscrete$new()$set_na_value("fishyfishyfishy")
   expect_equal(scale$map(c(NA, "a", "b")), c("fishyfishyfishy", "a", "b"))
 })
 
-test_that("ScaleSimpleDiscrete can have a custom range set", {
+test_that("ScaleDiscrete can have a custom range set", {
   NullRange <- R6Class(
     "NullRange", inherit = scales::DiscreteRange,
     public = list(
@@ -120,7 +120,7 @@ test_that("ScaleSimpleDiscrete can have a custom range set", {
     )
   )
 
-  scale <- ScaleSimpleDiscrete$
+  scale <- ScaleDiscrete$
     new()$
     set_range(NullRange$new())
 
@@ -128,8 +128,8 @@ test_that("ScaleSimpleDiscrete can have a custom range set", {
   expect_identical(scale$trained_range(), NULL)
 })
 
-test_that("ScaleSimpleDiscrete can transform, train, and map tbls", {
-  scale <- ScaleSimpleDiscrete$new(aesthetics = "x")$
+test_that("ScaleDiscrete can transform, train, and map tbls", {
+  scale <- ScaleDiscrete$new(aesthetics = "x")$
     set_trans(s3_trans("new_class"))$
     set_palette_factory(scales::hue_pal())
 

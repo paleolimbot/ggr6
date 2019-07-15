@@ -1,6 +1,6 @@
 
-ScaleSimpleDataFrame <- R6Class(
-  "ScaleSimpleDataFrame", inherit = ScaleSimpleDiscrete,
+ScaleDataFrame <- R6Class(
+  "ScaleDataFrame", inherit = ScaleDiscrete,
 
   public = list(
     initialize = function(aesthetics = character(0)) {
