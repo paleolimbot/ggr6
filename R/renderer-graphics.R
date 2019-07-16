@@ -32,19 +32,21 @@ RendererGraphics <- R6Class(
     render_panel = function(panel, ...) {
       x <- panel$scales$scale("x")
       y <- panel$scales$scale("y")
+      guide_x <- x$guide$train(x)
+      guide_y <- y$guide$train(y)
 
       graphics::plot(
         # creates a blank dummy plot
         x = 1, y = 1,
-        type = "n", axes = FALSE, xlab = x$name(), ylab = y$name(),
+        type = "n", axes = FALSE, xlab = guide_x$title, ylab = guide_y$title,
 
         # sets the limits
         xlim = x$limits_continuous(),
         ylim = y$limits_continuous()
       )
 
-      graphics::axis(1, at = x$map(x$breaks()), labels = x$labels())
-      graphics::axis(2, at = y$map(y$breaks()), labels = y$labels())
+      graphics::axis(1, at = guide_x$key$x, labels = guide_x$key$.labels)
+      graphics::axis(2, at = guide_y$key$y, labels = guide_y$key$.labels)
 
       self$render_stack(...)
     },
@@ -60,9 +62,9 @@ RendererGraphics <- R6Class(
     default_scale = function(x, aesthetic) {
       if (aesthetic %in% c("x", "y")) {
         if (is_discrete(x))
-          ScaleDiscretePosition$new(aesthetic)
+          ScaleDiscretePosition$new(aesthetic)$set_guide(GuideAxis$new())
         else
-          ScaleContinuousPosition$new(aesthetic)
+          ScaleContinuousPosition$new(aesthetic)$set_guide(GuideAxis$new())
 
       } else if (aesthetic %in% c("col", "fill")) {
         if (is_discrete(x)) {

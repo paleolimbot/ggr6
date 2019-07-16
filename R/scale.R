@@ -3,9 +3,11 @@ Scale <- R6Class(
   "Scale",
   public = list(
     aesthetics = NULL,
+    guide = NULL,
 
     initialize = function(aesthetics = character(0)) {
       self$aesthetics <- aesthetics
+      self$set_guide(GuideNull$new())
     },
 
     name = function(x) {
@@ -66,6 +68,11 @@ Scale <- R6Class(
 
     within_limits = function(x) {
       not_implemented() # nocov
+    },
+
+    set_guide = function(guide) {
+      self$guide <- guide
+      invisible(self)
     }
   )
 )
