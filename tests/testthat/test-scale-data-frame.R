@@ -21,6 +21,11 @@ test_that("within_limits() works for a data frame scale", {
   expect_identical(scale$within_limits(tbl2), c(TRUE, FALSE))
 })
 
+test_that("within_limits() returns FALSE when the data frame scale is empty", {
+  scale <- ScaleDataFrame$new()
+  expect_identical(scale$within_limits(tibble(x = c(2, 3), y = c(2, 3))), c(FALSE, FALSE))
+})
+
 test_that("data frame range can be trained", {
   range <- RangeDataFrame$new()
   expect_null(range$range)
