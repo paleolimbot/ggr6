@@ -36,6 +36,11 @@ test_that("ScaleNull has NULL breaks, minor breaks, labels, and infinite limits"
   expect_true(all(scale$within_limits(1:100)))
 })
 
+test_that("ScaleNull can be reset", {
+  scale <- ScaleNull$new()
+  expect_identical(scale$reset(), scale)
+})
+
 test_that("scale list methods work as expected", {
 
   scale_x <- ScaleContinuous$new("x")$set_trans(scales::log10_trans())
