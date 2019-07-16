@@ -20,7 +20,8 @@ RoxygenNote: 6.1.1
 Suggests: 
     testthat (>= 2.1.0),
     roxygen2,
-    vdiffr
+    vdiffr,
+    covr
 Remotes: r-lib/scales
 URL: https://github.com/paleolimbot/ggr6
 BugReports: https://github.com/paleolimbot/ggr6/issues
