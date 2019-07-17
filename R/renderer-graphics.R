@@ -3,8 +3,8 @@ RendererGraphics <- R6Class(
   "RendererGraphics", inherit = Renderer,
   public = list(
 
-    render_points = function(x, y, pch = 16, cex = 1, col = "black", lwd = 1, pt.bg = "black", ...) {
-      graphics::points(x, y, pch = pch, cex = cex, col = col, lwd = lwd, bg = pt.bg)
+    render_points = function(x, y, pch = 16, cex = 1, col = "black", lwd = 1, bg = "black", ...) {
+      graphics::points(x, y, pch = pch, cex = cex, col = col, lwd = lwd, bg = bg)
     },
 
     render_path = function(x, y, group = 1, lty = 1, lwd = 1, col = "black", ...) {
@@ -70,18 +70,21 @@ RendererGraphics <- R6Class(
         if (is_discrete(x)) {
           ScaleDiscrete$new(aesthetic)$
             set_palette_factory(scales::hue_pal())$
-            set_na_value("grey50")
+            set_na_value("grey50")$
+            set_guide(GuideGraphicsLegend$new())
         } else {
           ScaleContinuous$new(aesthetic)$
             set_rescaler(scales::rescale)$
             set_palette(scales::seq_gradient_pal())$
-            set_na_value("grey50")
+            set_na_value("grey50")$
+            set_guide(GuideGraphicsLegend$new())
         }
 
       } else if (aesthetic == "pch") {
         if (is_discrete(x)) {
           ScaleDiscrete$new(aesthetic)$
-            set_palette_factory(scales::shape_pal())
+            set_palette_factory(scales::shape_pal())$
+            set_guide(GuideGraphicsLegend$new())
         } else {
           abort("Cannot map a continuous value to 'pch'")
         }
@@ -110,6 +113,7 @@ GuideGraphicsLegend <- R6Class(
 
   public = list(
     legend_args = NULL,
+    layer_defaults = NULL,
 
     initialize = function(...) {
       super$initialize()
@@ -121,6 +125,26 @@ GuideGraphicsLegend <- R6Class(
       }
 
       self$legend_args <- legend_args
+      self$layer_defaults <- NULL
+    },
+
+    train_layers = function(layers, renderer) {
+      defaults <- list()
+      for (layer in layers$lst) {
+        if (!any(self$aesthetics() %in% layer$mapping$aesthetics())) {
+          next
+        }
+
+        layer_defaults <- layer$geom$default_aesthetic_values(renderer)
+        if (inherits(layer$geom, "GeomPoint")) {
+          names(layer_defaults) <- gsub("(cex|lwd|bg)", "pt.\\1", names(layer_defaults))
+        }
+
+        defaults <- c(layer_defaults, defaults)
+      }
+
+      self$layer_defaults <- defaults[unique(names(defaults))]
+      invisible(self)
     },
 
     render = function(layers, panel, renderer) {

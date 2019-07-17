@@ -31,6 +31,10 @@ Guide <- R6Class(
       invisible(self)
     },
 
+    train_layers = function(layers, renderer) {
+      invisible(self)
+    },
+
     merge = function(guide) {
       key <- self$key
       other_key <- guide$key
@@ -51,7 +55,7 @@ Guide <- R6Class(
       }
     },
 
-    render = function(layers, panel, renderer) {
+    render = function(panel, renderer) {
       not_implemented() # nocov
     },
 

@@ -61,10 +61,22 @@ test_that("the graphics legend guide only accepts named arguments to the constru
   expect_silent(GuideGraphicsLegend$new())
 })
 
+test_that("the graphics legend guide can be trained with layer defaults", {
+  layers <- LayerList$new()$add(Layer$new(tibble(col = c("a", "b")), geom = GeomPoint$new()))
+  col_scale <- ScaleDiscrete$new("col")$
+    set_palette_factory(scales::hue_pal())$
+    train(c("a", "b"))
+
+  guide <- GuideGraphicsLegend$new()
+  guide$train(col_scale)
+  guide$train_layers(layers, RendererGraphics$new())
+
+  expect_identical(guide$layer_defaults$pt.lwd, 1)
+})
+
 test_that("the graphics legend can be rendered", {
   col_scale <- ScaleDiscrete$new("col")$
     set_palette_factory(scales::hue_pal())$
-    set_na_value("grey50")$
     train(c("one", "two", "three"))
 
   guide <- GuideGraphicsLegend$new(pch = 16)$train(col_scale)
