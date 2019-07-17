@@ -10,7 +10,7 @@ Guide <- R6Class(
     initialize = function() {
       self$set_key(tibble(.breaks = character(0), .labels = character(0)))
       self$set_title(waiver())
-      self$set_position(NULL)
+      self$set_position(waiver())
     },
 
     title = function() {

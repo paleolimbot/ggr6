@@ -48,6 +48,11 @@ test_that("Guide subclass can return uncensored breaks", {
   expect_identical(guide$key$.breaks, 1:5)
 })
 
+test_that("position can be set", {
+  expect_identical(Guide$new()$position(), waiver())
+  expect_identical(Guide$new()$set_position("pos")$position(), "pos")
+})
+
 test_that("identical guides are merged", {
   scale1 <- ScaleContinuous$new("aes1")$set_breaks(1:5)$set_limits(c(1, 5))
   scale2 <- ScaleContinuous$new("aes2")$set_breaks(1:5)$set_limits(c(1, 5))

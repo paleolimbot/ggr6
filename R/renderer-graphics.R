@@ -3,8 +3,8 @@ RendererGraphics <- R6Class(
   "RendererGraphics", inherit = Renderer,
   public = list(
 
-    render_points = function(x, y, pch = 16, cex = 1, col = "black", lwd = 1, fill = "black", ...) {
-      graphics::points(x, y, pch = pch, cex = cex, col = col, lwd = lwd, bg = fill)
+    render_points = function(x, y, pch = 16, cex = 1, col = "black", lwd = 1, pt.bg = "black", ...) {
+      graphics::points(x, y, pch = pch, cex = cex, col = col, lwd = lwd, bg = pt.bg)
     },
 
     render_path = function(x, y, group = 1, lty = 1, lwd = 1, col = "black", ...) {
@@ -101,6 +101,52 @@ RendererGraphics <- R6Class(
         }
       )
       invisible()
+    }
+  )
+)
+
+GuideGraphicsLegend <- R6Class(
+  "GuideGraphicsLegend", inherit = Guide,
+
+  public = list(
+    legend_args = NULL,
+
+    initialize = function(...) {
+      super$initialize()
+
+      legend_args <- list(...)
+
+      if (length(legend_args) > 0 && !rlang::is_named(legend_args)) {
+        abort("All legend guide arguments must be named")
+      }
+
+      self$legend_args <- legend_args
+    },
+
+    render = function(layers, panel, renderer) {
+      if (is.null(self$position())) {
+        return()
+      }
+
+      legend_args <- self$legend_args
+      key <- self$key
+      key$legend <- key$.labels
+
+      arg_names <- setdiff(
+        names(formals(graphics::legend)),
+        c("title", "x", "y")
+      )
+
+      key_arg_names <- setdiff(intersect(names(key), arg_names), names(legend_args))
+      legend_arg_names <- intersect(names(legend_args), arg_names)
+
+      exec(
+        graphics::legend,
+        self$position() %|W|% "bottomright",
+        title = self$title() %|W|% NULL,
+        !!!key[key_arg_names],
+        !!!legend_args[legend_arg_names]
+      )
     }
   )
 )

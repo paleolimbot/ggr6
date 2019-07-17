@@ -55,3 +55,24 @@ test_that("graphics renderer can render a basic plot", {
 
   vdiffr::expect_doppelganger("graphics renderer built graphic", f)
 })
+
+test_that("the graphics legend guide only accepts named arguments to the constructor", {
+  expect_error(GuideGraphicsLegend$new(a = 1, b = 2, 3), "must be named")
+  expect_silent(GuideGraphicsLegend$new())
+})
+
+test_that("the graphics legend can be rendered", {
+  col_scale <- ScaleDiscrete$new("col")$
+    set_palette_factory(scales::hue_pal())$
+    set_na_value("grey50")$
+    train(c("one", "two", "three"))
+
+  guide <- GuideGraphicsLegend$new(pch = 16)$train(col_scale)
+
+  f = function() {
+    plot(1:5)
+    guide$render(LayerList$new(), Panel$new(), RendererGraphics$new())
+  }
+
+  vdiffr::expect_doppelganger("basic graphics legend", f)
+})
