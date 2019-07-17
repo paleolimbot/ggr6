@@ -38,7 +38,7 @@ RendererGraphics <- R6Class(
       graphics::plot(
         # creates a blank dummy plot
         x = 1, y = 1,
-        type = "n", axes = FALSE, xlab = guide_x$title, ylab = guide_y$title,
+        type = "n", axes = FALSE, xlab = guide_x$title(), ylab = guide_y$title(),
 
         # sets the limits
         xlim = x$limits_continuous(),
@@ -62,9 +62,9 @@ RendererGraphics <- R6Class(
     default_scale = function(x, aesthetic) {
       if (aesthetic %in% c("x", "y")) {
         if (is_discrete(x))
-          ScaleDiscretePosition$new(aesthetic)$set_guide(GuideAxis$new())
+          ScaleDiscretePosition$new(aesthetic)$set_guide(Guide$new())
         else
-          ScaleContinuousPosition$new(aesthetic)$set_guide(GuideAxis$new())
+          ScaleContinuousPosition$new(aesthetic)$set_guide(Guide$new())
 
       } else if (aesthetic %in% c("col", "fill")) {
         if (is_discrete(x)) {
