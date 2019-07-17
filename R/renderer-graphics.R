@@ -62,9 +62,9 @@ RendererGraphics <- R6Class(
     default_scale = function(x, aesthetic) {
       if (aesthetic %in% c("x", "y")) {
         if (is_discrete(x))
-          ScaleDiscretePosition$new(aesthetic)$set_guide(Guide$new())
+          ScaleDiscretePosition$new(aesthetic)
         else
-          ScaleContinuousPosition$new(aesthetic)$set_guide(Guide$new())
+          ScaleContinuousPosition$new(aesthetic)
 
       } else if (aesthetic %in% c("col", "fill")) {
         if (is_discrete(x)) {

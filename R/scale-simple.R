@@ -24,6 +24,7 @@ ScaleSimple <- R6Class(
       self$set_oob(oob_keep)
       self$set_na_value(NA)
       self$set_limits_empty(c(1, 1))
+      self$set_guide(Guide$new())
     },
 
     is_empty = function() {

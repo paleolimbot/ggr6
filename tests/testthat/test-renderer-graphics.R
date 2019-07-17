@@ -6,8 +6,8 @@ test_that("graphics renderer can render all geometry types", {
   f <- function() {
     graphic <- Graphic$new()
     renderer <- RendererGraphics$new()
-    scale_x <- ScaleContinuousPosition$new("x")$set_limits(c(-1, 11))$set_guide(Guide$new())
-    scale_y <- ScaleContinuousPosition$new("y")$set_limits(c(-1, 11))$set_guide(Guide$new())
+    scale_x <- ScaleContinuousPosition$new("x")$set_limits(c(-1, 11))
+    scale_y <- ScaleContinuousPosition$new("y")$set_limits(c(-1, 11))
     scales <- ScaleList$new()$add(scale_x)$add(scale_y)
     panel <- Panel$new(scales = scales)
 
