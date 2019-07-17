@@ -57,7 +57,7 @@ test_that("builder can build a basic plot", {
 })
 
 test_that("Stat and geom defaults are processed during plot build", {
-  tbl <- tibble(x = 6:10, y = 1:5, col = rep(c("a", "b"), length.out = 5))
+  tbl <- tibble(x = 6:10, y = letters[1:5], col = rep(c("a", "b"), length.out = 5))
 
   GeomPointDefault <- R6Class(
     "GeomPointDefault", inherit = GeomPoint,

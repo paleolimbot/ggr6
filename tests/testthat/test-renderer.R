@@ -50,6 +50,12 @@ test_that("identity renderer can render all geometries", {
   )
 })
 
+test_that("identity renderer returns position scales for the x and y aesthetics", {
+  renderer <- RendererIdentity$new()
+  expect_is(renderer$default_scale(1, "x"), "ScaleContinuousPosition")
+  expect_is(renderer$default_scale(letters[1], "y"), "ScaleDiscretePosition")
+})
+
 test_that("identity renderer contains a default scale that has an identity mapping", {
   renderer <- RendererIdentity$new()
   scale <- renderer$default_scale(NULL, "aesthetic")
