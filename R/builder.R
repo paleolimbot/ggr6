@@ -53,7 +53,7 @@ Builder <- R6Class(
         self$build()
       }
 
-      self$build_guides()
+      self$train_guides()
 
       self$renderer$render_panels(
         self,
@@ -264,8 +264,10 @@ Builder <- R6Class(
 
     # self$render() ----------------------------
 
-    build_guides = function() {
-
+    train_guides = function() {
+      for (panel in self$panels) {
+        panel$train_guides(self$layers, self$renderer)
+      }
     },
 
     # utility methods ------------------------------

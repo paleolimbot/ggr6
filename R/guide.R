@@ -84,9 +84,9 @@ Guide <- R6Class(
 
     make_key = function(scale, censor = TRUE) {
       aesthetics <- scale$aesthetics
-      breaks <- scale$breaks()
-      labels <- scale$labels()
-      values <- scale$map(breaks)
+      breaks <- scale$breaks() %||% character(0)
+      labels <- scale$labels() %||% character(0)
+      values <- scale$map(breaks) %||% character(0)
       in_limits <- scale$within_limits(breaks)
 
       key <- tibble(
@@ -137,6 +137,14 @@ GuideList <- R6Class(
     set = function(index, item) {
       assert_r6(item, "Guide")
       super$set(index, item)
+    },
+
+    train_layers = function(layers, renderer) {
+      for (guide in self$lst) {
+        guide$train_layers(layers, renderer)
+      }
+
+      invisible(self)
     },
 
     merge_all = function() {

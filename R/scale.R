@@ -164,7 +164,7 @@ ScaleList <- R6Class(
     guides = function() {
       guides <- GuideList$new()
       for (scale in self$lst) {
-        guides$add(scale$guide$train(scale))
+        guides$add(scale$guide$clone()$train(scale))
       }
 
       guides
