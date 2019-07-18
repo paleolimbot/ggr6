@@ -8,11 +8,83 @@
 \usage{
 Scale
 }
-\arguments{
-\item{aesthetics}{A character vector of aesthetics that this
-scale will represent.}
-}
 \description{
 Scales are...
+
+Create a Scale object.
 }
+\details{
+@param aesthetics A list of aesthetics this scale will transform
+        and map.
+
+\code{Scale$name(x = )}
+
+
+
+\code{Scale$transform(x = )}
+
+
+
+\code{Scale$untransform(x = )}
+
+
+
+\code{Scale$train(x = )}
+
+
+
+\code{Scale$reset(x = )}
+
+
+
+\code{Scale$map(x = )}
+
+
+
+\code{Scale$transform_tbl(data = )}
+
+
+
+\code{Scale$untransform_tbl(data_trans = )}
+
+
+
+\code{Scale$train_tbl(data_trans = )}
+
+
+
+\code{Scale$map_tbl(data_trans = )}
+
+
+
+\code{Scale$breaks()}
+
+
+
+\code{Scale$breaks_minor()}
+
+
+
+\code{Scale$labels()}
+
+
+
+\code{Scale$limits()}
+
+
+
+\code{Scale$within_limits(x = )}
+
+
+
+\code{Scale$set_guide(guide = )}
+
+
+
+\code{Scale$clone(deep = FALSE)}
+}
+\section{Methods}{
+NA
+}
+
 \keyword{datasets}

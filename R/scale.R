@@ -1,4 +1,12 @@
 
+#' Convert between data spaces
+#'
+#' Scales are...
+#'
+#' @section Methods
+#' @eval r6doc("Scale")
+#'
+#' @export
 Scale <- R6Class(
   "Scale",
   public = list(
@@ -6,6 +14,12 @@ Scale <- R6Class(
     guide = NULL,
 
     initialize = function(aesthetics = character(0)) {
+      "
+      Create a Scale object.
+
+      @param aesthetics A list of aesthetics this scale will transform
+        and map.
+      "
       self$aesthetics <- aesthetics
       self$set_guide(GuideNull$new())
     },

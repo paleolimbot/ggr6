@@ -2,6 +2,7 @@
 
 export(":=")
 export(.data)
+export(Scale)
 export(enexpr)
 export(enexprs)
 export(enquo)

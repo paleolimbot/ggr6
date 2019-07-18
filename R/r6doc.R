@@ -20,11 +20,7 @@ r6doc_class <- function(Class, super = TRUE) {
   sections <- glue::glue(
     normalize_whitespace(
       "
-      @section `{classname}${name}()`
-
-      ```
-      {usage}
-      ```
+      \\code{{{usage}}}
 
       {docstring}
       "
