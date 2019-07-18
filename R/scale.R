@@ -161,6 +161,15 @@ ScaleList <- R6Class(
       abort(sprintf("No scale for aesthetic `%s`", aesthetic))
     },
 
+    guides = function() {
+      guides <- GuideList$new()
+      for (scale in self$lst) {
+        guides$add(scale$guide$train(scale))
+      }
+
+      guides
+    },
+
     filter_by_aesthetics = function(aesthetics) {
       new <- ScaleList$new()
       for (scale in self$lst) {

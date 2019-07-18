@@ -47,9 +47,13 @@ Builder <- R6Class(
     },
 
     render = function() {
-      if (is.null(self$plot_data) || is.null(self$panels) || all(purrr::map_lgl(self$plot_data, is.null))) {
+      if (is.null(self$plot_data) ||
+          is.null(self$panels) ||
+          all(purrr::map_lgl(self$plot_data, is.null))) {
         self$build()
       }
+
+      self$build_guides()
 
       self$renderer$render_panels(
         self,
@@ -256,6 +260,12 @@ Builder <- R6Class(
       self$modify_plot_data(plot_data, function(panel, layer, data) {
         layer$geom$setup_data(data, panel, renderer)
       })
+    },
+
+    # self$render() ----------------------------
+
+    build_guides = function() {
+
     },
 
     # utility methods ------------------------------

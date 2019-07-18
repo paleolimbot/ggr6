@@ -120,8 +120,50 @@ GuideNull <- R6Class(
       invisible(self)
     },
 
-    render = function(layers, panel, renderer) {
+    train_layers = function(layers, renderer) {
+      invisible(self)
+    },
+
+    render = function(panel, renderer) {
       renderer$render_null()
     }
   )
 )
+
+GuideList <- R6Class(
+  "GuideList", inherit = List,
+
+  public = list(
+    set = function(index, item) {
+      assert_r6(item, "Guide")
+      super$set(index, item)
+    },
+
+    merge_all = function() {
+      lst <- self$lst
+
+      for (i in seq_len(length(lst) - 1)) {
+        guide <- lst[[i]]
+        if (is.null(guide)) {
+          next
+        }
+
+        for (j in seq(i + 1, length(lst))) {
+          guide2 <- lst[[j]]
+          if (is.null(guide2)) {
+            next
+          }
+
+          if (guide$merge(guide2)) {
+            # "pop" guide2 from the list
+            lst[j] <- list(NULL)
+          }
+        }
+      }
+
+      self$lst <- purrr::compact(lst)
+      invisible(self)
+    }
+  )
+)
+

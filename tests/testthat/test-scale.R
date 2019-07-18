@@ -54,6 +54,10 @@ test_that("scale list methods work as expected", {
   expect_error(scales$discard_by_aesthetics("x")$scale("x"), "No scale for aesthetic")
   expect_error(scales$discard_by_aesthetics("y")$scale("y"), "No scale for aesthetic")
 
+  guides <- scales$guides()
+  expect_is(guides, "GuideList")
+  expect_equal(guides$size(), scales$size())
+
   tbl <- tibble(x = 10, y = 10, z = 10)
   tbl_trans <- tibble(x = 1, y = 1, z = 10)
 
