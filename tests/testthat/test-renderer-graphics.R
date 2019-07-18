@@ -46,7 +46,8 @@ test_that("graphics renderer can render a basic plot", {
     graphic$scales$add(
       ScaleDiscrete$new("col")$
         set_palette_factory(scales::hue_pal())$
-        set_na_value("grey50")
+        set_na_value("grey50")$
+        set_guide(GuideGraphicsLegend$new())
     )
 
     builder <- Builder$new(graphic, renderer)
@@ -83,8 +84,29 @@ test_that("the graphics legend can be rendered", {
 
   f = function() {
     plot(1:5)
-    guide$render(LayerList$new(), Panel$new(), RendererGraphics$new())
+    guide$render(Panel$new(), RendererGraphics$new())
   }
 
   vdiffr::expect_doppelganger("basic graphics legend", f)
 })
+
+test_that("the graphics legend can be rendered", {
+  x_scale <- ScaleContinuousPosition$new("x")$
+    train(1:10)
+  y_scale <- ScaleContinuousPosition$new("y")$
+    train(1:5)
+
+  x_guide <- GuideGraphicsAxis$new()$train(x_scale)
+  y_guide <- GuideGraphicsAxis$new()$train(y_scale)
+
+  f = function() {
+    plot(seq(1, 10, length.out = 5), 1:5, axes = FALSE)
+    x_guide$render(Panel$new(), RendererGraphics$new())
+    y_guide$render(Panel$new(), RendererGraphics$new())
+  }
+
+  vdiffr::expect_doppelganger("basic axis legend", f)
+})
+
+
+

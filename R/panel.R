@@ -16,6 +16,8 @@ Panel <- R6Class(
       guides <- self$scales$guides()
       guides$merge_all()
       guides$train_layers(layers, renderer)
+      self$guides <- guides
+
       invisible(self)
     },
 

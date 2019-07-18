@@ -32,23 +32,27 @@ RendererGraphics <- R6Class(
     render_panel = function(panel, ...) {
       x <- panel$scales$scale("x")
       y <- panel$scales$scale("y")
-      guide_x <- x$guide$train(x)
-      guide_y <- y$guide$train(y)
+      guide_x <- panel$guides$guide("x", default = GuideNull$new())
+      guide_y <- panel$guides$guide("y", default = GuideNull$new())
 
+      # create a blank plot
       graphics::plot(
-        # creates a blank dummy plot
         x = 1, y = 1,
-        type = "n", axes = FALSE, xlab = guide_x$title(), ylab = guide_y$title(),
+        type = "n", axes = FALSE, xlab = x$guide$title(), ylab = y$guide$title(),
 
         # sets the limits
         xlim = x$limits_continuous(),
         ylim = y$limits_continuous()
       )
 
-      graphics::axis(1, at = guide_x$key$x, labels = guide_x$key$.labels)
-      graphics::axis(2, at = guide_y$key$y, labels = guide_y$key$.labels)
-
+      # render data
       self$render_stack(...)
+
+      # render guides
+      purrr::map(
+        panel$guides$lst,
+        function(guide) guide$render(panel, renderer)
+      )
     },
 
     render_panels = function(graphic, ...) {
@@ -62,9 +66,11 @@ RendererGraphics <- R6Class(
     default_scale = function(x, aesthetic) {
       if (aesthetic %in% c("x", "y")) {
         if (is_discrete(x))
-          ScaleDiscretePosition$new(aesthetic)
+          ScaleDiscretePosition$new(aesthetic)$
+          set_guide(GuideGraphicsAxis$new())
         else
-          ScaleContinuousPosition$new(aesthetic)
+          ScaleContinuousPosition$new(aesthetic)$
+          set_guide(GuideGraphicsAxis$new())
 
       } else if (aesthetic %in% c("col", "fill")) {
         if (is_discrete(x)) {
@@ -108,6 +114,48 @@ RendererGraphics <- R6Class(
   )
 )
 
+GuideGraphicsAxis <- R6Class(
+  "GuideGraphicsAxis", inherit = Guide,
+
+  public = list(
+    axis_args = NULL,
+
+    initialize = function(...) {
+      super$initialize()
+      axis_args <- list(...)
+
+      if (length(axis_args) > 0 && !rlang::is_named(axis_args)) {
+        abort("All axis guide arguments must be named")
+      }
+
+      self$axis_args <- axis_args
+    },
+
+    render = function(panel, renderer) {
+      if (is.null(self$position())) {
+        return()
+      }
+
+      aesthetic <- if ("x" %in% self$aesthetics()) "x" else "y"
+      default_position <- if ("x" %in% self$aesthetics()) 1 else 2
+      position <- self$position %|W|% default_position
+
+      arg_names <- setdiff(
+        names(formals(graphics::axis)),
+        c("x", "y", "labels", "at")
+      )
+
+      exec(
+        graphics::axis,
+        default_position,
+        at = self$key[[aesthetic]],
+        labels = self$key$.labels,
+        !!!self$axis_args[intersect(names(self$axis_args), arg_names)]
+      )
+    }
+  )
+)
+
 GuideGraphicsLegend <- R6Class(
   "GuideGraphicsLegend", inherit = Guide,
 
@@ -117,7 +165,6 @@ GuideGraphicsLegend <- R6Class(
 
     initialize = function(...) {
       super$initialize()
-
       legend_args <- list(...)
 
       if (length(legend_args) > 0 && !rlang::is_named(legend_args)) {
@@ -147,7 +194,7 @@ GuideGraphicsLegend <- R6Class(
       invisible(self)
     },
 
-    render = function(layers, panel, renderer) {
+    render = function(panel, renderer) {
       if (is.null(self$position())) {
         return()
       }
@@ -160,6 +207,10 @@ GuideGraphicsLegend <- R6Class(
         names(formals(graphics::legend)),
         c("title", "x", "y")
       )
+
+      # combine the key with the default arguments
+      key <- c(unclass(key), self$layer_defaults)
+      key <- key[unique(names(key))]
 
       key_arg_names <- setdiff(intersect(names(key), arg_names), names(legend_args))
       legend_arg_names <- intersect(names(legend_args), arg_names)

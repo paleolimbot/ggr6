@@ -36,7 +36,7 @@ graphic <- Graphic$new()$
   add_layer(
     Layer$new(
       ggplot2::mpg,
-      mapping = ColumnMappingQuosure$new(x = class, y = hwy, col = displ, pch = drv),
+      mapping = ColumnMappingQuosure$new(x = cty, y = hwy, col = class),
       geom = GeomPoint$new()
     )
   )

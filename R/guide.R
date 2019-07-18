@@ -49,6 +49,7 @@ Guide <- R6Class(
         new_cols <- setdiff(colnames(other_key), colnames(key))
         new_key <- dplyr::bind_cols(key, other_key[new_cols])
         self$set_key(new_key)
+        self$set_position(self$position() %|W|% guide$position())
         TRUE
       } else {
         FALSE
@@ -137,6 +138,16 @@ GuideList <- R6Class(
     set = function(index, item) {
       assert_r6(item, "Guide")
       super$set(index, item)
+    },
+
+    guide = function(aesthetic, default = abort(sprintf("No guide for aesthetic `%s`", aesthetic))) {
+      for (guide in self$lst) {
+        if (aesthetic %in% guide$aesthetics()) {
+          return(guide)
+        }
+      }
+
+      default
     },
 
     train_layers = function(layers, renderer) {

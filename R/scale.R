@@ -151,14 +151,14 @@ ScaleList <- R6Class(
       unique(unlist(purrr::map(self$lst, function(scale) scale$aesthetics)))
     },
 
-    scale = function(aesthetic) {
+    scale = function(aesthetic, default = abort(sprintf("No scale for aesthetic `%s`", aesthetic))) {
       for (scale in self$lst) {
         if (aesthetic %in% scale$aesthetics) {
           return(scale)
         }
       }
 
-      abort(sprintf("No scale for aesthetic `%s`", aesthetic))
+      default
     },
 
     guides = function() {
