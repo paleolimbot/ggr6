@@ -38,7 +38,8 @@ RendererGraphics <- R6Class(
       # create a blank plot
       graphics::plot(
         x = 1, y = 1,
-        type = "n", axes = FALSE, xlab = x$guide$title(), ylab = y$guide$title(),
+        type = "n", axes = FALSE,
+        xlab = guide_x$title(), ylab = guide_y$title(),
 
         # sets the limits
         xlim = x$limits_continuous(),
