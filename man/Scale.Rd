@@ -25,17 +25,17 @@ scale that has infinite limits and never transforms or maps values,
 which is useful for testing and for values that should be passed
 to the \code{\link{Stat}} and \code{\link{Geom}} without being transformed or mapped.
 }
-\section{R6 Methods}{
+\section{Scale R6 Methods}{
 
 
 \code{Scale$new(aesthetics = character(0))}
 \itemize{
-\item Create a Scale object.
+\item Create a Scale object representing zero or more \code{aesthetics}.
 }
 
 \code{scale$name(x)}
 \itemize{
-\item Calculate the scale name, which should be a character vector of length 1. May return \code{\link[=waiver]{waiver()}} for when the scale name should be calculated from the \link{ColumnMapping}. This method may be removed in favour of this value living in the \link{Guide}.
+\item Calculate the scale name, which should be a character vector of length 1. May return \code{\link[=waiver]{waiver()}} for when the scale name should be calculated from the \code{\link{ColumnMapping}}. This method may be removed in favour of this value living in the \code{\link{Guide}}.
 }
 
 \code{scale$transform(x)}
@@ -112,6 +112,10 @@ to the \code{\link{Stat}} and \code{\link{Geom}} without being transformed or ma
 \itemize{
 \item Set the \link{Guide} that will be used to communicate the relationship between user data values and mapped data values.
 }
+}
+
+\section{ScaleNull inheritance}{
+ ScaleNull inherits from \code{\link{Scale}}
 }
 
 \keyword{datasets}

@@ -16,6 +16,8 @@
 #'
 #' @eval r6doc("Scale")
 #'
+#' @eval r6inherits("ScaleNull")
+#'
 #' @export
 Scale <- R6Class(
   "Scale",
@@ -25,7 +27,7 @@ Scale <- R6Class(
 
     initialize = function(aesthetics = character(0)) {
       "
-      Create a Scale object.
+      Create a Scale object representing zero or more `aesthetics`.
       "
       self$aesthetics <- aesthetics
       self$set_guide(GuideNull$new())
@@ -35,9 +37,9 @@ Scale <- R6Class(
       "
       Calculate the scale name, which should be a character vector of
       length 1. May return [waiver()] for when
-      the scale name should be calculated from the [ColumnMapping]. This
+      the scale name should be calculated from the [`ColumnMapping`]. This
       method may be removed in favour of this value living in the
-      [Guide].
+      [`Guide`].
       "
       self$aesthetics[1]
     },

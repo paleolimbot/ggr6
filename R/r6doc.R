@@ -1,4 +1,31 @@
 
+r6inherits <- function(class_name) {
+  r6inherits_class(get(class_name, envir = environment()))
+}
+
+r6inherits_class <- function(Class) {
+  inheritance <- r6inheritance(Class)
+  if (length(inheritance) > 0) {
+    names <- purrr::map_chr(inheritance, "classname")
+    sprintf(
+      "@section %s inheritance: %s inherits from %s",
+      Class$classname, Class$classname,
+      paste0("[`", names, "`]", collapse = ", ")
+    )
+  } else {
+    ""
+  }
+}
+
+r6inheritance <- function(Class) {
+  super <- Class$get_inherit()
+  if (is.null(super)) {
+    NULL
+  } else {
+    c(list(super), r6inheritance(super))
+  }
+}
+
 r6doc <- function(class_name, super = TRUE) {
   r6doc_class(get(class_name, envir = environment()), super = super)
 }
@@ -8,31 +35,46 @@ r6doc_class <- function(Class, super = TRUE) {
     abort("Can't create R6 documentation from something that isn't an R6 Class")
   }
 
-  methods_df <- r6methods(Class, super = super)
+  # complicated because we want to inherit the documentation from the
+  # superclass but don't want to say "inherited from" unless the
+  # implementation is coming from the superclass
+  methods_df_raw <- r6methods(Class, super = super)
+  methods_df <- r6methods(Class, super = super, discard_blank = TRUE)
+  methods_df_raw <- methods_df_raw[methods_df_raw$method_name %in% methods_df$method_name, ]
+  methods_df_raw <- methods_df_raw[match(methods_df_raw$method_name, methods_df$method_name), ]
 
   classname <- purrr::map_chr(methods_df$class, "classname")
   name <- methods_df$method_name
-  usage <- purrr::map2(name, methods_df$class, r6usage)
-  docstring <- purrr::map2(name, methods_df$class, function(name, Cls) {
-    r6docstring(Cls$public_methods[[name]])
-  })
+  usage <- purrr::map2(name, methods_df$class, r6usage, Class)
+  docstring <- methods_df$docstring
+
+  method_inherited <- !purrr::map_lgl(methods_df_raw$class, identical, Class)
+  inherited_text <- ifelse(method_inherited, paste0("(inherited from [`", classname, "`])"), "")
 
   # right now docstrings can only be one line long due to some seemingly odd
   # roxygen parsing.
   docstring <- gsub("\n+", " ", docstring)
-  sections <- paste0("`", usage, "`", "\n\n - ", docstring)
+  sections <- paste0("`", usage, "` ", inherited_text, "\n\n - ", docstring)
 
   # only use sections that have a docstring
   sections <- sections[docstring != ""]
 
-  paste0(c("@section R6 Methods:", sections), collapse = "\n\n")
+  section_title <- paste("@section", Class$classname, "R6 Methods:")
+  paste0(c(section_title, sections), collapse = "\n\n")
 }
 
-r6methods <- function(Class, super = TRUE) {
+r6methods <- function(Class, super = TRUE, discard_blank = FALSE) {
   methods <- tibble(
     class = list(Class),
-    method_name = names(Class$public_methods)
+    method_name = names(Class$public_methods),
+    method = Class$public_methods
   )
+
+  methods$docstring <- purrr::map(methods$method, r6docstring)
+
+  if (discard_blank) {
+    methods <- methods[methods$docstring != "", ]
+  }
 
   Super <- Class$get_inherit()
 
@@ -54,7 +96,7 @@ r6docstring <- function(fun) {
   }
 }
 
-r6usage <- function(method_name, Class) {
+r6usage <- function(method_name, Class, ChildClass = NULL) {
   if (!R6::is.R6Class(Class)) {
     abort("Can't create R6 method usage from something that isn't an R6 Class")
   }
@@ -74,6 +116,7 @@ r6usage <- function(method_name, Class) {
   syms <- purrr::map(names(args), rlang::sym)
   args[default_missing] <- syms[default_missing]
   names(args) <- replace(names(args), default_missing, "")
+  Class <- ChildClass %||% Class
 
   if (method_name == "initialize") {
     # initializer usage should look like Class$new(...)

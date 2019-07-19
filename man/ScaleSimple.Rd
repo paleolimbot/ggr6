@@ -11,4 +11,97 @@ ScaleSimple
 \description{
 Default implementation of Scale objects
 }
+\section{ScaleSimple inheritance}{
+ ScaleSimple inherits from \code{\link{Scale}}
+}
+
+\section{ScaleSimple R6 Methods}{
+
+
+\code{ScaleSimple$new(aesthetics = character(0))}
+\itemize{
+\item Create a Scale object representing zero or more \code{aesthetics}.
+}
+
+\code{scale_simple$name(x)}
+\itemize{
+\item Calculate the scale name, which should be a character vector of length 1. May return \code{\link[=waiver]{waiver()}} for when the scale name should be calculated from the \code{\link{ColumnMapping}}. This method may be removed in favour of this value living in the \code{\link{Guide}}.
+}
+
+\code{scale_simple$transform(x)}
+\itemize{
+\item Transform the user-data vector \code{x}. Usually called by \code{$transform_tbl()}.
+}
+
+\code{scale_simple$untransform(x)}
+\itemize{
+\item Untransform the transformed-data vector \code{x}.
+}
+
+\code{scale_simple$train(x)}
+\itemize{
+\item Train the scale with the transformed-data vector \code{x}. The range of values observed by the scale are used to calculate its \code{$limits()} (if these have not been specified manually). Usually called by \code{$train_tbl()}.
+}
+
+\code{scale_simple$reset()}
+\itemize{
+\item Forget all values that were 'remembered' by \code{$train()}.
+}
+
+\code{scale_simple$map(x)}
+\itemize{
+\item Convert the transformed-date vector \code{x} into mapped data space. This may be a numeric value (for position scales) or some other vector type (e.g., for colour scales). Usually called by \code{$map_tbl()}.
+}
+
+\code{scale_simple$transform_tbl(data)}
+\itemize{
+\item Call \code{$transform()} on the columns of \code{data} whose names are included in \code{$aesthetics}.
+}
+
+\code{scale_simple$untransform_tbl(data_trans)}
+\itemize{
+\item Call \code{$untransform()} on the columns of \code{data} whose names are included in \code{$aesthetics}.
+}
+
+\code{scale_simple$train_tbl(data_trans)}
+\itemize{
+\item Call \code{$train()} on the columns of \code{data} whose names are included in \code{$aesthetics}.
+}
+
+\code{scale_simple$map_tbl(data_trans)}
+\itemize{
+\item Call \code{$map()} on the columns of \code{data} whose names are included in \code{$aesthetics}.
+}
+
+\code{scale_simple$breaks()}
+\itemize{
+\item Calculate the breaks, which are usually nicely-numbered values around the scale \code{$limits()}.
+}
+
+\code{scale_simple$breaks_minor()} (inherited from \code{\link{Scale}})
+\itemize{
+\item Calculate the minor breaks, which are usually nicely-numbered values between the scale \code{$breaks()} and around the scale \code{$limits()}.
+}
+
+\code{scale_simple$labels()} (inherited from \code{\link{Scale}})
+\itemize{
+\item Calculate the labels associated with the \code{$breaks()}.
+}
+
+\code{scale_simple$limits()}
+\itemize{
+\item Calculate the scale \code{$limits()}, which is usually the range of values observed but could also be set.
+}
+
+\code{scale_simple$within_limits(x)}
+\itemize{
+\item Returns a logical vector describing whether or not values in the transformed-data vector \code{x} are within the scale \code{$limits()}.
+}
+
+\code{scale_simple$set_guide(guide)} (inherited from \code{\link{Scale}})
+\itemize{
+\item Set the \link{Guide} that will be used to communicate the relationship between user data values and mapped data values.
+}
+}
+
 \keyword{datasets}

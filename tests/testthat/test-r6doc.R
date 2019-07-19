@@ -40,7 +40,7 @@ test_that("r6doc_class can use superclass documentation", {
   # cat(doc)
   expect_is(doc, "character")
   expect_length(doc, 1)
-  expect_match(doc, "cls\\$fun1")
+  expect_match(doc, "cls_sub\\$fun1")
 })
 
 test_that("r6methods can resolve superclass methods", {
@@ -114,3 +114,24 @@ test_that("r6usage genreates a valid function call for usage", {
   expect_true(is.call(parse(text = usage_str)[[1]]))
 })
 
+test_that("r6inheritance correctly finds and documents inheritance", {
+  Cls <- R6Class("Cls", public = list(fun1 = function(a, b) NULL, fun2 = function() NULL))
+  ClsSub <- R6Class(
+    "ClsSub", inherit = Cls,
+    public = list(
+      fun2 = function() {
+        "A docstring"
+        NULL
+      },
+      fun3 = function(c) NULL
+    )
+  )
+
+  inherit <- r6inheritance(ClsSub)
+  expect_length(inherit, 1)
+  expect_identical(inherit[[1]], Cls)
+
+  expect_identical(r6inherits_class(Cls), "")
+  expect_match(r6inherits_class(ClsSub), "^@section")
+  expect_match(r6inherits("ScaleSimple"), "^@section")
+})

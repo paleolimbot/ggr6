@@ -1,6 +1,10 @@
 
 #' Default implementation of Scale objects
 #'
+#' @eval r6inherits("ScaleSimple")
+#'
+#' @eval r6doc("ScaleSimple")
+#'
 #' @export
 ScaleSimple <- R6Class(
   "ScaleSimple", inherit = Scale,
