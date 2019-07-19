@@ -44,19 +44,21 @@ Scale <- R6Class(
       self$aesthetics[1]
     },
 
+    # don't calculate test coverage for abstract methods
+    # nocov start
     transform = function(x) {
       "
       Transform the user-data vector `x`. Usually called by
       `$transform_tbl()`.
       "
-      not_implemented() # nocov
+      not_implemented()
     },
 
     untransform = function(x) {
       "
       Untransform the transformed-data vector `x`.
       "
-      not_implemented() # nocov
+      not_implemented()
     },
 
     train = function(x) {
@@ -66,14 +68,14 @@ Scale <- R6Class(
       calculate its `$limits()` (if these have not been
       specified manually). Usually called by `$train_tbl()`.
       "
-      not_implemented() # nocov
+      not_implemented()
     },
 
     reset = function() {
       "
       Forget all values that were 'remembered' by `$train()`.
       "
-      not_implemented() # nocov
+      not_implemented()
     },
 
     map = function(x) {
@@ -83,7 +85,7 @@ Scale <- R6Class(
       some other vector type (e.g., for colour scales). Usually
       called by `$map_tbl()`.
       "
-      not_implemented() # nocov
+      not_implemented()
     },
 
     transform_tbl = function(data) {
@@ -91,7 +93,7 @@ Scale <- R6Class(
       Call `$transform()` on the columns of `data` whose names
       are included in `$aesthetics`.
       "
-      not_implemented() # nocov
+      not_implemented()
     },
 
     untransform_tbl = function(data_trans) {
@@ -99,7 +101,7 @@ Scale <- R6Class(
       Call `$untransform()` on the columns of `data` whose names
       are included in `$aesthetics`.
       "
-      not_implemented() # nocov
+      not_implemented()
     },
 
     train_tbl = function(data_trans) {
@@ -107,7 +109,7 @@ Scale <- R6Class(
       Call `$train()` on the columns of `data` whose names
       are included in `$aesthetics`.
       "
-      not_implemented() # nocov
+      not_implemented()
     },
 
     map_tbl = function(data_trans) {
@@ -115,7 +117,7 @@ Scale <- R6Class(
       Call `$map()` on the columns of `data` whose names
       are included in `$aesthetics`.
       "
-      not_implemented() # nocov
+      not_implemented()
     },
 
     breaks = function() {
@@ -123,7 +125,7 @@ Scale <- R6Class(
       Calculate the breaks, which are usually nicely-numbered
       values around the scale `$limits()`.
       "
-      not_implemented() # nocov
+      not_implemented()
     },
 
     breaks_minor = function() {
@@ -132,14 +134,14 @@ Scale <- R6Class(
       values between the scale `$breaks()` and
       around the scale `$limits()`.
       "
-      not_implemented() # nocov
+      not_implemented()
     },
 
     labels = function() {
       "
       Calculate the labels associated with the `$breaks()`.
       "
-      not_implemented() # nocov
+      not_implemented()
     },
 
     limits = function() {
@@ -147,7 +149,7 @@ Scale <- R6Class(
       Calculate the scale `$limits()`, which is usually the range
       of values observed but could also be set.
       "
-      not_implemented() # nocov
+      not_implemented()
     },
 
     within_limits = function(x) {
@@ -155,8 +157,10 @@ Scale <- R6Class(
       Returns a logical vector describing whether or not values in
       the transformed-data vector `x` are within the scale `$limits()`.
       "
-      not_implemented() # nocov
+      not_implemented()
     },
+
+    # nocov end
 
     set_guide = function(guide) {
       "
