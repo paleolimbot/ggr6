@@ -1,4 +1,11 @@
 
+#' Discrete Scale
+#'
+#' @eval r6inherits("ScaleDiscrete")
+#'
+#' @eval r6doc("ScaleDiscrete")
+#'
+#' @export
 ScaleDiscrete <- R6Class(
   "ScaleDiscrete", inherit = ScaleSimple,
 
