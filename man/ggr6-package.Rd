@@ -11,6 +11,7 @@ Implements the Grammar of Graphics using R6 reference objects.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://paleolimbot.github.io/ggr6}
   \item \url{https://github.com/paleolimbot/ggr6}
   \item Report bugs at \url{https://github.com/paleolimbot/ggr6/issues}
 }

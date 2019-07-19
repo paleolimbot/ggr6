@@ -25,5 +25,5 @@ Suggests:
     vdiffr,
     covr
 Remotes: r-lib/scales
-URL: https://github.com/paleolimbot/ggr6
+URL: https://paleolimbot.github.io/ggr6, https://github.com/paleolimbot/ggr6
 BugReports: https://github.com/paleolimbot/ggr6/issues
