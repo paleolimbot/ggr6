@@ -49,10 +49,10 @@ test_that("scale list methods work as expected", {
 
   expect_identical(scales$scale("x"), scale_x)
   expect_identical(scales$scale("y"), scale_y)
-  expect_error(scales$filter_by_aesthetics("x")$scale("y"), "No scale for aesthetic")
-  expect_error(scales$filter_by_aesthetics("y")$scale("x"), "No scale for aesthetic")
-  expect_error(scales$discard_by_aesthetics("x")$scale("x"), "No scale for aesthetic")
-  expect_error(scales$discard_by_aesthetics("y")$scale("y"), "No scale for aesthetic")
+  expect_null(scales$filter_by_aesthetics("x")$scale("y"))
+  expect_null(scales$filter_by_aesthetics("y")$scale("x"))
+  expect_null(scales$discard_by_aesthetics("x")$scale("x"))
+  expect_null(scales$discard_by_aesthetics("y")$scale("y"))
 
   guides <- scales$guides()
   expect_is(guides, "GuideList")

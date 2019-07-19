@@ -12,13 +12,76 @@ Guide
 GuideNull
 }
 \description{
-Guide objects are a graphical representation of \code{\link{Scale}}s, in that
+Guide objects are a graphical representation of \link{Scale}s, in that
 they communicate the relationship between user data values and
-mapped data values. Each \code{\link{Scale}} must have a Guide, although this
+mapped data values. Each \link{Scale} must have a Guide, although this
 can be (and often is) \code{GuideNull}, which draws nothing). Guides which
 have the same name, class, breaks, and labels are merged together,
 such that in the final plot there may be more than one scale represented
 by one guide. All guides except \code{GuideNull} will probably have to be
-subclassed for each \code{\link{Renderer}}.
+subclassed for each \link{Renderer}.
 }
+\section{Guide R6 Methods}{
+
+
+\code{Guide$new()}
+\itemize{
+\item Create a Guide object.
+}
+
+\code{guide$title()}
+\itemize{
+\item Return the title that should be displayed by this guide.
+}
+
+\code{guide$position()}
+\itemize{
+\item Return the object describing the position of this guide (specific to the \link{Renderer}). A value of \code{NULL} means it should not be displayed; a value of \code{waiver()} means the position is unspecified.
+}
+
+\code{guide$aesthetics()}
+\itemize{
+\item The aesthetics represented by this \code{Guide}.
+}
+
+\code{guide$train(scale)}
+\itemize{
+\item Add information from a \link{Scale} to this guide. This creates the \code{$key} field, which is a \code{\link[tibble:tibble]{tibble::tibble()}} with a column for each aesthetic and a \code{.breaks} and \code{.labels} column.
+}
+
+\code{guide$train_layers(layers, renderer)}
+\itemize{
+\item Add information from a \link{LayerList} to this object. This is used to assemble the default aesthetic values and geometry primatives that will be displayed by the guide.
+}
+
+\code{guide$merge(guide)}
+\itemize{
+\item Merges information from another guide into this guide. The default implementation is to merge only if the Guides have the same class, breaks, labels, title, and position. This would occur if a user maps the same column to two aesthetics. Returns \code{TRUE} if a merge occured, \code{FALSE} otherwise. This is usually called by \link{GuideList}'s \code{$merge_all()} method.
+}
+
+\code{guide$render(panel, renderer)}
+\itemize{
+\item Renders the guide.
+}
+
+\code{guide$set_key(key)}
+\itemize{
+\item Sets the \code{$key} for this Guide, which is a \code{\link[tibble:tibble]{tibble::tibble()}} with a column for each aesthetic and a \code{.breaks} and \code{.labels} column.
+}
+
+\code{guide$set_position(position)}
+\itemize{
+\item Sets the \code{$position()} for this guide. Use \code{NULL} to hide, \code{waiver()} to let the \link{Renderer} choose, or some other \link{Renderer}-specific value.
+}
+
+\code{guide$make_key(scale, censor = TRUE)}
+\itemize{
+\item Creates the \code{$key} based on a \link{Scale}, optionally censoring the breaks to ensure they are within the \link{Scale}'s \code{$limits()}.
+}
+}
+
+\section{GuideNull inheritance}{
+ GuideNull inherits from \code{\link{Guide}}
+}
+
 \keyword{datasets}

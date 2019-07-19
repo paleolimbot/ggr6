@@ -1,4 +1,9 @@
 
+#' Build a Graphic
+#'
+#' Builds and renders a [Graphic] using a [Renderer].
+#'
+#' @export
 Builder <- R6Class(
   "Builder", inherit = Graphic,
 

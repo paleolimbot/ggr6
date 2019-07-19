@@ -2,17 +2,17 @@
 #' Convert between data spaces
 #'
 #' Scales convert between the user data space, the data space used
-#' to compute the [`Stat`]s (transformed data space), and the data space
-#' used by the [`Geom`]s (mapped data space) to draw graphical objects.
-#' Scales also compute breaks and labels used in the [`Guide`]s. Most useful
-#' Scale classes inherit from [`ScaleSimple`], which is designed to leverage
+#' to compute the [Stat]s (transformed data space), and the data space
+#' used by the [Geom]s (mapped data space) to draw graphical objects.
+#' Scales also compute breaks and labels used in the [Guide]s. Most useful
+#' Scale classes inherit from [ScaleSimple], which is designed to leverage
 #' the [scales][scales::scales] package. Each scale represents zero
 #' or more `$aesthetics` (character vector), and contains a `$guide`
-#' ([`Guide`] object) that will be used to communicate the relationship
+#' ([Guide] object) that will be used to communicate the relationship
 #' between user data values and mapped data values. `ScaleNull` is a
 #' scale that has infinite limits and never transforms or maps values,
 #' which is useful for testing and for values that should be passed
-#' to the [`Stat`] and [`Geom`] without being transformed or mapped.
+#' to the [Stat] and [Geom] without being transformed or mapped.
 #'
 #' @eval r6doc("Scale")
 #'
@@ -39,7 +39,7 @@ Scale <- R6Class(
       length 1. May return [waiver()] for when
       the scale name should be calculated from the [`ColumnMapping`]. This
       method may be removed in favour of this value living in the
-      [`Guide`].
+      [Guide].
       "
       self$aesthetics[1]
     },
@@ -238,6 +238,17 @@ ScaleNull <- R6Class(
   )
 )
 
+#' Mutable List of Scale objects
+#'
+#' ScaleList objects contain a list of [Scale]s, and have
+#' methods that can perform the same operation on all the
+#' scales they contain. They currently also generate the
+#' [GuideList] of trained [Guide]s based on the [Scale]s
+#' they contain.
+#'
+#' @eval r6doc("ScaleList")
+#'
+#' @export
 ScaleList <- R6Class(
   "ScaleList", inherit = List,
   public = list(
@@ -247,10 +258,17 @@ ScaleList <- R6Class(
     },
 
     aesthetics = function() {
+      "
+      A character vector of aesthetics represented by the [Scale]s
+      within the list.
+      "
       unique(unlist(purrr::map(self$lst, function(scale) scale$aesthetics)))
     },
 
-    scale = function(aesthetic, default = abort(sprintf("No scale for aesthetic `%s`", aesthetic))) {
+    scale = function(aesthetic, default = NULL) {
+      "
+      Extract a scale by `aesthetic` (returning `default` if there is none.)
+      "
       for (scale in self$lst) {
         if (aesthetic %in% scale$aesthetics) {
           return(scale)
@@ -261,6 +279,10 @@ ScaleList <- R6Class(
     },
 
     guides = function() {
+      "
+      Returns a [GuideList] of [Guide]s extracted and trained from the
+      [Scale]s within the object.
+      "
       guides <- GuideList$new()
       for (scale in self$lst) {
         guides$add(scale$guide$clone()$train(scale))
@@ -270,6 +292,10 @@ ScaleList <- R6Class(
     },
 
     filter_by_aesthetics = function(aesthetics) {
+      "
+      Return a new `ScaleList` containing any scale representing
+      one or more `aesthetics` specified.
+      "
       new <- ScaleList$new()
       for (scale in self$lst) {
         if (any(aesthetics %in% scale$aesthetics)) {
@@ -280,6 +306,10 @@ ScaleList <- R6Class(
     },
 
     discard_by_aesthetics = function(aesthetics) {
+      "
+      Return a new `ScaleList` containing any scale that does not
+      represent the `aesthetics` specified.
+      "
       new <- ScaleList$new()
       for (scale in self$lst) {
         if (!any(aesthetics %in% scale$aesthetics)) {
@@ -290,6 +320,10 @@ ScaleList <- R6Class(
     },
 
     transform_tbl = function(data) {
+      "
+      Calls the `$transform_tbl()` method for each [Scale] iteratively,
+      returning the result.
+      "
       for (i in seq_len(self$size())) {
         data <- self$get(i)$transform_tbl(data)
       }
@@ -298,6 +332,10 @@ ScaleList <- R6Class(
     },
 
     untransform_tbl = function(data) {
+      "
+      Calls the `$untransform_tbl()` method for each [Scale] iteratively,
+      returning the result.
+      "
       for (i in seq_len(self$size())) {
         data <- self$get(i)$untransform_tbl(data)
       }
@@ -306,6 +344,9 @@ ScaleList <- R6Class(
     },
 
     train_tbl = function(data_trans) {
+      "
+      Calls the `$transform_tbl()` method for each [Scale].
+      "
       for (i in seq_len(self$size())) {
         self$get(i)$train_tbl(data_trans)
       }
@@ -314,6 +355,10 @@ ScaleList <- R6Class(
     },
 
     reset = function() {
+      "
+      Calls the `$reset()` method for each [Scale] iteratively,
+      returning the result.
+      "
       for (i in seq_len(self$size())) {
         self$get(i)$reset()
       }
@@ -322,6 +367,10 @@ ScaleList <- R6Class(
     },
 
     map_tbl = function(data_trans) {
+      "
+      Calls the `$map_tbl()` method for each [Scale] iteratively,
+      returning the result.
+      "
       for (i in seq_len(self$size())) {
         data_trans <- self$get(i)$map_tbl(data_trans)
       }
@@ -330,6 +379,10 @@ ScaleList <- R6Class(
     },
 
     add_missing = function(data, renderer) {
+      "
+      Add missing scales to this object based on data (whose names
+      are aesthetics) and the [Renderer].
+      "
       assert_r6(renderer, "Renderer")
 
       new_aesthetics <- setdiff(names(data), self$aesthetics())

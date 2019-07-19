@@ -1,4 +1,7 @@
 
+#' Specify a Graphic
+#'
+#' @export
 Graphic <- R6Class(
   "Graphic",
 

@@ -100,7 +100,7 @@ Continuous Scale
 
 \code{scale_continuous$name(x)} (inherited from \code{\link{Scale}})
 \itemize{
-\item Calculate the scale name, which should be a character vector of length 1. May return \code{\link[=waiver]{waiver()}} for when the scale name should be calculated from the \code{\link{ColumnMapping}}. This method may be removed in favour of this value living in the \code{\link{Guide}}.
+\item Calculate the scale name, which should be a character vector of length 1. May return \code{\link[=waiver]{waiver()}} for when the scale name should be calculated from the \code{\link{ColumnMapping}}. This method may be removed in favour of this value living in the \link{Guide}.
 }
 
 \code{scale_continuous$map(x)} (inherited from \code{\link{Scale}})

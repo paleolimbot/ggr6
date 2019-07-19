@@ -1,6 +1,23 @@
 
 #' Render and assemble a Graphic
 #'
+#' The role of the renderer isn't solidified in ggr6. Currently it's an
+#' abstraction of various graphics backend that allow ggr6 to focus on the
+#' grammar (rather than on rendering graphical objects). Currently it has
+#' methods for rendering graphical primitives, methods for finding
+#' the aesthetics that are supported by each primitive, methods for
+#' constructing default scales for each aesthetic, and methods for
+#' assembling panels.
+#'
+#' Realistically, each renderer needs its own collection
+#' of [Geom], [Facet], [Coord], and [Scale] subclasses.
+#' The role of ggr6 is to provide robust superclasses for these such
+#' that the subclasses can focus on rendering. This package provides
+#' `RendererIdentity` for testing and [RendererGraphics], which uses the
+#' base [graphics][graphics::graphics-package] package to render graphics.
+#'
+#' @eval r6inherits("RendererIdentity")
+#'
 #' @export
 Renderer <- R6Class(
   "Renderer",

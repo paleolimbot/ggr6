@@ -85,7 +85,7 @@ test_that("null guides can be merged", {
 test_that("guides can be extracted by aesthetic", {
   guides <- GuideList$new()$add(Guide$new()$train(ScaleNull$new("aes1")))
   expect_is(guides$guide("aes1"), "Guide")
-  expect_error(guides$guide("not_an_aes"), "No guide for aesthetic")
+  expect_null(guides$guide("not_an_aes"))
 })
 
 test_that("A GuideList can be merged in place", {

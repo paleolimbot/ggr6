@@ -1,14 +1,18 @@
 
 #' Graphical represntation of Scales
 #'
-#' Guide objects are a graphical representation of [`Scale`]s, in that
+#' Guide objects are a graphical representation of [Scale]s, in that
 #' they communicate the relationship between user data values and
-#' mapped data values. Each [`Scale`] must have a Guide, although this
+#' mapped data values. Each [Scale] must have a Guide, although this
 #' can be (and often is) `GuideNull`, which draws nothing). Guides which
 #' have the same name, class, breaks, and labels are merged together,
 #' such that in the final plot there may be more than one scale represented
 #' by one guide. All guides except `GuideNull` will probably have to be
-#' subclassed for each [`Renderer`].
+#' subclassed for each [Renderer].
+#'
+#' @eval r6doc("Guide")
+#'
+#' @eval r6inherits("GuideNull")
 #'
 #' @export
 Guide <- R6Class(
@@ -20,34 +24,65 @@ Guide <- R6Class(
     position_in = NULL,
 
     initialize = function() {
+      "
+      Create a Guide object.
+      "
       self$set_key(tibble(.breaks = character(0), .labels = character(0)))
       self$set_title(waiver())
       self$set_position(waiver())
     },
 
     title = function() {
+      "
+      Return the title that should be displayed by this guide.
+      "
       self$title_in
     },
 
     position = function() {
+      "
+      Return the object describing the position of this guide (specific
+      to the [Renderer]). A value of `NULL` means it should not be displayed;
+      a value of `waiver()` means the position is unspecified.
+      "
       self$position_in
     },
 
     aesthetics = function() {
+      "
+      The aesthetics represented by this `Guide`.
+      "
       self$aesthetics_from_key(self$key)
     },
 
     train = function(scale) {
+      "
+      Add information from a [Scale] to this guide. This creates the
+      `$key` field, which is a [tibble::tibble()] with a column for each
+      aesthetic and a `.breaks` and `.labels` column.
+      "
       self$set_title(self$title() %|W|% scale$name())
       self$key <- self$make_key(scale)
       invisible(self)
     },
 
     train_layers = function(layers, renderer) {
+      "
+      Add information from a [LayerList] to this object. This is used
+      to assemble the default aesthetic values and geometry primatives
+      that will be displayed by the guide.
+      "
       invisible(self)
     },
 
     merge = function(guide) {
+      "
+      Merges information from another guide into this guide. The default implementation
+      is to merge only if the Guides have the same class, breaks, labels, title, and
+      position. This would occur if a user maps the same column to two aesthetics.
+      Returns `TRUE` if a merge occured, `FALSE` otherwise. This is usually called by
+      [GuideList]'s `$merge_all()` method.
+      "
       key <- self$key
       other_key <- guide$key
 
@@ -68,9 +103,14 @@ Guide <- R6Class(
       }
     },
 
+    # nocov start
     render = function(panel, renderer) {
-      not_implemented() # nocov
+      "
+      Renders the guide.
+      "
+      not_implemented()
     },
+    # nocov end
 
     set_title = function(title) {
       self$title_in <- title
@@ -78,6 +118,10 @@ Guide <- R6Class(
     },
 
     set_key = function(key) {
+      "
+      Sets the `$key` for this Guide, which is a [tibble::tibble()] with
+      a column for each aesthetic and a `.breaks` and `.labels` column.
+      "
       if (!tibble::is_tibble(key)) {
         abort("A guide `key` must be a tibble")
       }
@@ -91,11 +135,20 @@ Guide <- R6Class(
     },
 
     set_position = function(position) {
+      "
+      Sets the `$position()` for this guide. Use `NULL` to hide,
+      `waiver()` to let the [Renderer] choose, or some other
+      [Renderer]-specific value.
+      "
       self$position_in <- position
       invisible(self)
     },
 
     make_key = function(scale, censor = TRUE) {
+      "
+      Creates the `$key` based on a [Scale], optionally censoring the breaks
+      to ensure they are within the [Scale]'s `$limits()`.
+      "
       aesthetics <- scale$aesthetics
       breaks <- scale$breaks() %||% character(0)
       labels <- scale$labels() %||% character(0)
@@ -145,6 +198,11 @@ GuideNull <- R6Class(
   )
 )
 
+#' List of Guides
+#'
+#' @eval r6doc("GuideList")
+#'
+#' @export
 GuideList <- R6Class(
   "GuideList", inherit = List,
 
@@ -154,7 +212,10 @@ GuideList <- R6Class(
       super$set(index, item)
     },
 
-    guide = function(aesthetic, default = abort(sprintf("No guide for aesthetic `%s`", aesthetic))) {
+    guide = function(aesthetic, default = NULL) {
+      "
+      Extract a guide by `aesthetic` (returning `default` if there is none.)
+      "
       for (guide in self$lst) {
         if (aesthetic %in% guide$aesthetics()) {
           return(guide)
@@ -165,6 +226,9 @@ GuideList <- R6Class(
     },
 
     train_layers = function(layers, renderer) {
+      "
+      Calls the `$train_layers()` method of each [Guide].
+      "
       for (guide in self$lst) {
         guide$train_layers(layers, renderer)
       }
@@ -173,6 +237,10 @@ GuideList <- R6Class(
     },
 
     merge_all = function() {
+      "
+      Merges the [Guide] objects by calling their `$merge()` methods
+      iteratively. Merging is done in-place.
+      "
       lst <- self$lst
 
       for (i in seq_len(length(lst) - 1)) {

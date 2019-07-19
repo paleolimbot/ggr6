@@ -13,17 +13,17 @@ ScaleNull
 }
 \description{
 Scales convert between the user data space, the data space used
-to compute the \code{\link{Stat}}s (transformed data space), and the data space
-used by the \code{\link{Geom}}s (mapped data space) to draw graphical objects.
-Scales also compute breaks and labels used in the \code{\link{Guide}}s. Most useful
-Scale classes inherit from \code{\link{ScaleSimple}}, which is designed to leverage
+to compute the \link{Stat}s (transformed data space), and the data space
+used by the \link{Geom}s (mapped data space) to draw graphical objects.
+Scales also compute breaks and labels used in the \link{Guide}s. Most useful
+Scale classes inherit from \link{ScaleSimple}, which is designed to leverage
 the \link[scales:scales]{scales} package. Each scale represents zero
 or more \code{$aesthetics} (character vector), and contains a \code{$guide}
-(\code{\link{Guide}} object) that will be used to communicate the relationship
+(\link{Guide} object) that will be used to communicate the relationship
 between user data values and mapped data values. \code{ScaleNull} is a
 scale that has infinite limits and never transforms or maps values,
 which is useful for testing and for values that should be passed
-to the \code{\link{Stat}} and \code{\link{Geom}} without being transformed or mapped.
+to the \link{Stat} and \link{Geom} without being transformed or mapped.
 }
 \section{Scale R6 Methods}{
 
@@ -35,7 +35,7 @@ to the \code{\link{Stat}} and \code{\link{Geom}} without being transformed or ma
 
 \code{scale$name(x)}
 \itemize{
-\item Calculate the scale name, which should be a character vector of length 1. May return \code{\link[=waiver]{waiver()}} for when the scale name should be calculated from the \code{\link{ColumnMapping}}. This method may be removed in favour of this value living in the \code{\link{Guide}}.
+\item Calculate the scale name, which should be a character vector of length 1. May return \code{\link[=waiver]{waiver()}} for when the scale name should be calculated from the \code{\link{ColumnMapping}}. This method may be removed in favour of this value living in the \link{Guide}.
 }
 
 \code{scale$transform(x)}

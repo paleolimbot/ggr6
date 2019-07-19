@@ -1,4 +1,16 @@
 
+#' Split data in to one or more panels
+#'
+#' Facets as implemented in ggr6 split layer data into
+#' one or more pieces, and generate the list of [Panel]
+#' objects that contain the list of [Scale]s, the list of
+#' [Guide]s, and a reference to the [Coord]inate system.
+#' Eventually they will have to also draw the panels (currently
+#' this is the job of the [Renderer]). The default `FacetNull`
+#' draws one panel with all of each [Layer]'s data.
+#'
+#' @eval r6inherits("FacetNull")
+#'
 Facet <- R6Class(
   "Facet",
   public = list(
@@ -21,6 +33,8 @@ Facet <- R6Class(
   )
 )
 
+#' @rdname Facet
+#' @export
 FacetNull <- R6Class(
   "FacetNull", inherit = Facet,
   public = list(

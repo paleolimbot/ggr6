@@ -1,4 +1,12 @@
 
+#' Graphics Renderer
+#'
+#' A [Renderer] based on the [graphics][graphics::graphics-package] package. This
+#' is mostly used for testing at the moment.
+#'
+#' @eval r6inherits("RendererGraphics")
+#'
+#' @export
 RendererGraphics <- R6Class(
   "RendererGraphics", inherit = Renderer,
   public = list(
