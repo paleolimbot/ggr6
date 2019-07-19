@@ -1,4 +1,7 @@
 
+#' Transform data
+#'
+#' @export
 Stat <- R6Class(
   "Stat", inherit = StatGeomBase,
 
@@ -31,6 +34,8 @@ Stat <- R6Class(
   )
 )
 
+#' @rdname Stat
+#' @export
 StatIdentity <- R6Class(
   "StatIdentity", inherit = Stat,
   public = list(

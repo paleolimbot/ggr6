@@ -17,17 +17,15 @@ r6doc_class <- function(Class, super = TRUE) {
     r6docstring(Cls$public_methods[[name]])
   })
 
-  sections <- glue::glue(
-    normalize_whitespace(
-      "
-      \\code{{{usage}}}
+  # right now docstrings can only be one line long due to some seemingly odd
+  # roxygen parsing.
+  docstring <- gsub("\n+", " ", docstring)
+  sections <- paste0("`", usage, "`", "\n\n - ", docstring)
 
-      {docstring}
-      "
-    )
-  )
+  # only use sections that have a docstring
+  sections <- sections[docstring != ""]
 
-  paste0(sections, collapse = "\n\n")
+  paste0(c("@section R6 Methods:", sections), collapse = "\n\n")
 }
 
 r6methods <- function(Class, super = TRUE) {
@@ -66,9 +64,32 @@ r6usage <- function(method_name, Class) {
     abort(sprintf("No such method: %s$%s", Class$classname, method_name))
   }
 
+  args <- formals(fun)
+  if (is.null(args)) {
+    args <- list()
+    names(args) <- character(0)
+  }
+
+  default_missing <- purrr::map_lgl(args, rlang::is_missing)
+  syms <- purrr::map(names(args), rlang::sym)
+  args[default_missing] <- syms[default_missing]
+  names(args) <- replace(names(args), default_missing, "")
+
+  if (method_name == "initialize") {
+    # initializer usage should look like Class$new(...)
+    object_name <- Class$classname
+    method_name <- "new"
+  } else {
+    # method usage should use a different object name, since
+    # Class$fun() won't actually work. Current behaviour is a crude
+    # CamelCase to snake_case converter, since that's usually the name
+    # of the instance in ggr6.
+    object_name <- tolower(gsub("([a-z])([A-Z])", "\\1_\\2", Class$classname))
+  }
+
   call <- rlang::call2(
-    "$", rlang::sym(Class$classname),
-    rlang::call2(method_name, !!!formals(fun))
+    "$", rlang::sym(object_name),
+    rlang::call2(method_name, !!!args)
   )
 
   paste0(format(call), collapse = "\n")

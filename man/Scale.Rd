@@ -3,88 +3,115 @@
 \docType{data}
 \name{Scale}
 \alias{Scale}
+\alias{ScaleNull}
 \title{Convert between data spaces}
 \format{An object of class \code{R6ClassGenerator} of length 24.}
 \usage{
 Scale
+
+ScaleNull
 }
 \description{
-Scales are...
-
-Create a Scale object.
+Scales convert between the user data space, the data space used
+to compute the \code{\link{Stat}}s (transformed data space), and the data space
+used by the \code{\link{Geom}}s (mapped data space) to draw graphical objects.
+Scales also compute breaks and labels used in the \code{\link{Guide}}s. Most useful
+Scale classes inherit from \code{\link{ScaleSimple}}, which is designed to leverage
+the \link[scales:scales]{scales} package. Each scale represents zero
+or more \code{$aesthetics} (character vector), and contains a \code{$guide}
+(\code{\link{Guide}} object) that will be used to communicate the relationship
+between user data values and mapped data values. \code{ScaleNull} is a
+scale that has infinite limits and never transforms or maps values,
+which is useful for testing and for values that should be passed
+to the \code{\link{Stat}} and \code{\link{Geom}} without being transformed or mapped.
 }
-\details{
-@param aesthetics A list of aesthetics this scale will transform
-        and map.
-
-\code{Scale$name(x = )}
+\section{R6 Methods}{
 
 
-
-\code{Scale$transform(x = )}
-
-
-
-\code{Scale$untransform(x = )}
-
-
-
-\code{Scale$train(x = )}
-
-
-
-\code{Scale$reset(x = )}
-
-
-
-\code{Scale$map(x = )}
-
-
-
-\code{Scale$transform_tbl(data = )}
-
-
-
-\code{Scale$untransform_tbl(data_trans = )}
-
-
-
-\code{Scale$train_tbl(data_trans = )}
-
-
-
-\code{Scale$map_tbl(data_trans = )}
-
-
-
-\code{Scale$breaks()}
-
-
-
-\code{Scale$breaks_minor()}
-
-
-
-\code{Scale$labels()}
-
-
-
-\code{Scale$limits()}
-
-
-
-\code{Scale$within_limits(x = )}
-
-
-
-\code{Scale$set_guide(guide = )}
-
-
-
-\code{Scale$clone(deep = FALSE)}
+\code{Scale$new(aesthetics = character(0))}
+\itemize{
+\item Create a Scale object.
 }
-\section{Methods}{
-NA
+
+\code{scale$name(x)}
+\itemize{
+\item Calculate the scale name, which should be a character vector of length 1. May return \code{\link[=waiver]{waiver()}} for when the scale name should be calculated from the \link{ColumnMapping}. This method may be removed in favour of this value living in the \link{Guide}.
+}
+
+\code{scale$transform(x)}
+\itemize{
+\item Transform the user-data vector \code{x}. Usually called by \code{$transform_tbl()}.
+}
+
+\code{scale$untransform(x)}
+\itemize{
+\item Untransform the transformed-data vector \code{x}.
+}
+
+\code{scale$train(x)}
+\itemize{
+\item Train the scale with the transformed-data vector \code{x}. The range of values observed by the scale are used to calculate its \code{$limits()} (if these have not been specified manually). Usually called by \code{$train_tbl()}.
+}
+
+\code{scale$reset()}
+\itemize{
+\item Forget all values that were 'remembered' by \code{$train()}.
+}
+
+\code{scale$map(x)}
+\itemize{
+\item Convert the transformed-date vector \code{x} into mapped data space. This may be a numeric value (for position scales) or some other vector type (e.g., for colour scales). Usually called by \code{$map_tbl()}.
+}
+
+\code{scale$transform_tbl(data)}
+\itemize{
+\item Call \code{$transform()} on the columns of \code{data} whose names are included in \code{$aesthetics}.
+}
+
+\code{scale$untransform_tbl(data_trans)}
+\itemize{
+\item Call \code{$untransform()} on the columns of \code{data} whose names are included in \code{$aesthetics}.
+}
+
+\code{scale$train_tbl(data_trans)}
+\itemize{
+\item Call \code{$train()} on the columns of \code{data} whose names are included in \code{$aesthetics}.
+}
+
+\code{scale$map_tbl(data_trans)}
+\itemize{
+\item Call \code{$map()} on the columns of \code{data} whose names are included in \code{$aesthetics}.
+}
+
+\code{scale$breaks()}
+\itemize{
+\item Calculate the breaks, which are usually nicely-numbered values around the scale \code{$limits()}.
+}
+
+\code{scale$breaks_minor()}
+\itemize{
+\item Calculate the minor breaks, which are usually nicely-numbered values between the scale \code{$breaks()} and around the scale \code{$limits()}.
+}
+
+\code{scale$labels()}
+\itemize{
+\item Calculate the labels associated with the \code{$breaks()}.
+}
+
+\code{scale$limits()}
+\itemize{
+\item Calculate the scale \code{$limits()}, which is usually the range of values observed but could also be set.
+}
+
+\code{scale$within_limits(x)}
+\itemize{
+\item Returns a logical vector describing whether or not values in the transformed-data vector \code{x} are within the scale \code{$limits()}.
+}
+
+\code{scale$set_guide(guide)}
+\itemize{
+\item Set the \link{Guide} that will be used to communicate the relationship between user data values and mapped data values.
+}
 }
 
 \keyword{datasets}

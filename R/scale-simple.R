@@ -1,4 +1,7 @@
 
+#' Default implementation of Scale objects
+#'
+#' @export
 ScaleSimple <- R6Class(
   "ScaleSimple", inherit = Scale,
   public = list(

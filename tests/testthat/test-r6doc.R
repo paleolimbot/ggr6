@@ -12,7 +12,19 @@ test_that("r6doc_class can document a class", {
 })
 
 test_that("r6doc_class can use superclass documentation", {
-  Cls <- R6Class("Cls", public = list(fun1 = function(a, b) NULL, fun2 = function() NULL))
+  Cls <- R6Class(
+    "Cls",
+    public = list(
+      fun1 = function(a, b) {
+        "A docstring"
+        NULL
+      },
+      fun2 = function() {
+        "Another docstring"
+        NULL
+      }
+    )
+  )
   ClsSub <- R6Class(
     "ClsSub", inherit = Cls,
     public = list(
@@ -28,7 +40,7 @@ test_that("r6doc_class can use superclass documentation", {
   # cat(doc)
   expect_is(doc, "character")
   expect_length(doc, 1)
-  expect_match(doc, "Cls\\$fun1")
+  expect_match(doc, "cls\\$fun1")
 })
 
 test_that("r6methods can resolve superclass methods", {
@@ -80,6 +92,12 @@ test_that("r6docstring extracts a docstring from a function", {
 test_that("r6docstring doesn't extract docstrings from functions that only contain a string", {
   expect_identical(r6docstring(function() "a string"), "")
   expect_identical(r6docstring(function() {"a string"}), "")
+})
+
+test_that("r6usage handles the initializer specially", {
+  Cls <- R6Class("Cls", public = list(initialize = function() NULL, fun = function() NULL))
+  expect_identical(r6usage("initialize", Cls), "Cls$new()")
+  expect_identical(r6usage("fun", Cls), "cls$fun()")
 })
 
 test_that("r6usage errors when a method does not exist", {

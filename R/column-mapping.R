@@ -1,4 +1,7 @@
 
+#' Create a tibble from user data
+#'
+#' @export
 ColumnMapping <- R6Class(
   "ColumnMapping",
   public = list(

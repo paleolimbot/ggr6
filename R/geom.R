@@ -1,4 +1,7 @@
 
+#' Render a graphical object
+#'
+#' @export
 Geom <- R6Class(
   "Geom", inherit = StatGeomBase,
 
@@ -19,6 +22,8 @@ Geom <- R6Class(
   )
 )
 
+#' @rdname Geom
+#' @export
 GeomBlank = R6Class(
   "GeomBlank", inherit = Geom,
   public = list(

@@ -1,4 +1,16 @@
 
+#' Graphical represntation of Scales
+#'
+#' Guide objects are a graphical representation of [`Scale`]s, in that
+#' they communicate the relationship between user data values and
+#' mapped data values. Each [`Scale`] must have a Guide, although this
+#' can be (and often is) `GuideNull`, which draws nothing). Guides which
+#' have the same name, class, breaks, and labels are merged together,
+#' such that in the final plot there may be more than one scale represented
+#' by one guide. All guides except `GuideNull` will probably have to be
+#' subclassed for each [`Renderer`].
+#'
+#' @export
 Guide <- R6Class(
   "Guide",
 
@@ -109,6 +121,8 @@ Guide <- R6Class(
   )
 )
 
+#' @rdname Guide
+#' @export
 GuideNull <- R6Class(
   "GuideNull", inherit = Guide,
 

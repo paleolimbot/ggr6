@@ -31,6 +31,11 @@ function_or_value <- function(fun_or_value, ...) {
   }
 }
 
+#' Default value
+#'
+#' A `waiver()` is used to specify a default value when `NULL` has meaning.
+#'
+#' @export
 waiver <- function() structure(list(), class = "waiver")
 
 is_waive <- function(x) inherits(x, "waiver")

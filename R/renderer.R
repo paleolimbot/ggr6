@@ -1,4 +1,7 @@
 
+#' Render and assemble a Graphic
+#'
+#' @export
 Renderer <- R6Class(
   "Renderer",
   public = list(
@@ -52,6 +55,8 @@ Renderer <- R6Class(
   )
 )
 
+#' @rdname Renderer
+#' @export
 RendererIdentity <- R6Class(
   "RendererIdentity", inherit = Renderer,
   public = list(
