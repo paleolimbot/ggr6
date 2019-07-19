@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Default implementation of Scale objects — ScaleSimple • ggr6</title>
+<title>Discrete Scale — ScaleDiscrete • ggr6</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,12 +30,9 @@
 
 
 
-<meta property="og:title" content="Default implementation of Scale objects — ScaleSimple" />
+<meta property="og:title" content="Discrete Scale — ScaleDiscrete" />
 
-<meta property="og:description" content="Most useful scales will inherit from ScaleContinuous or
-ScaleDiscrete, both of which use the scales
-package to create meaningful mappings between user data and
-aesthetics with useful breaks and labels." />
+<meta property="og:description" content="Discrete Scale" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,118 +99,88 @@ aesthetics with useful breaks and labels." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Default implementation of Scale objects</h1>
-    <small class="dont-index">Source: <a href='https://github.com/paleolimbot/ggr6/blob/master/R/scale-simple.R'><code>R/scale-simple.R</code></a></small>
-    <div class="hidden name"><code>ScaleSimple.Rd</code></div>
+    <h1>Discrete Scale</h1>
+    <small class="dont-index">Source: <a href='https://github.com/paleolimbot/ggr6/blob/master/R/scale-discrete.R'><code>R/scale-discrete.R</code></a></small>
+    <div class="hidden name"><code>ScaleDiscrete.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Most useful scales will inherit from <a href='ScaleContinuous.html'>ScaleContinuous</a> or
-<a href='ScaleDiscrete.html'>ScaleDiscrete</a>, both of which use the <a href='https://www.rdocumentation.org/packages/scales/topics/package-scales'>scales</a>
-package to create meaningful mappings between user data and
-aesthetics with useful breaks and labels.</p>
+    <p>Discrete Scale</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>ScaleSimple</span></pre>
+    <pre class="usage"><span class='no'>ScaleDiscrete</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
     
-    <h2 class="hasAnchor" id="scalesimple-inheritance"><a class="anchor" href="#scalesimple-inheritance"></a>ScaleSimple inheritance</h2>
+    <h2 class="hasAnchor" id="scalediscrete-inheritance"><a class="anchor" href="#scalediscrete-inheritance"></a>ScaleDiscrete inheritance</h2>
 
-    <p>ScaleSimple inherits from <code><a href='Scale.html'>Scale</a></code></p>
+    <p>ScaleDiscrete inherits from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>, <code><a href='Scale.html'>Scale</a></code></p>
     
-    <h2 class="hasAnchor" id="scalesimple-r-methods"><a class="anchor" href="#scalesimple-r-methods"></a>ScaleSimple R6 Methods</h2>
+    <h2 class="hasAnchor" id="scalediscrete-r-methods"><a class="anchor" href="#scalediscrete-r-methods"></a>ScaleDiscrete R6 Methods</h2>
 
     
-    <p><code>scale_simple$is_empty()</code></p><ul>
+    <p><code>scale_discrete$is_empty()</code> (inherited from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>)</p><ul>
 <li><p>Returns <code>TRUE</code> if the scale has <code>$limits()</code> (or can calculate them).</p></li>
 </ul>
-    <p><code>scale_simple$breaks()</code></p><ul>
+    <p><code>scale_discrete$breaks()</code> (inherited from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>)</p><ul>
 <li><p>Calculates and returns breaks in transformed data space. This can be a function of the <code>$limits()</code> and by default the <code>$breaks()</code> method of the transform is used. For continuous scales this is usually <code><a href='https://www.rdocumentation.org/packages/labeling/topics/extended'>labeling::extended()</a></code>, and for discrete scales the default is to return the limits unchanged.</p></li>
 </ul>
-    <p><code>scale_simple$breaks_minor()</code></p><ul>
+    <p><code>scale_discrete$breaks_minor()</code> (inherited from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>)</p><ul>
 <li><p>Calculates and returns minor breaks in transformed data space. This can be a function of the <code>$breaks()</code>, <code>$limits()</code>, and number of intervals between breaks (usually 2). Minor breaks usually don't make sense for discrete scales.</p></li>
 </ul>
-    <p><code>scale_simple$labels()</code></p><ul>
+    <p><code>scale_discrete$labels()</code> (inherited from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>)</p><ul>
 <li><p>Calculates and returns the labels associated with the <code>$breaks()</code>. This can be a function of the <code>$breaks()</code>, and by default the <code>$format()</code> method of the transform is used.</p></li>
 </ul>
-    <p><code>scale_simple$limits()</code></p><ul>
+    <p><code>scale_discrete$limits()</code> (inherited from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>)</p><ul>
 <li><p>Calculates and returns the limits. This can be a funnction of the <code>$trained_range()</code>, and defaults to returning the <code>$trained_range()</code>. Continuous limits are always a numeric vector of length 2; discrete limits are usually a character vector containing possible values.</p></li>
 </ul>
-    <p><code>scale_simple$trained_range()</code></p><ul>
+    <p><code>scale_discrete$trained_range()</code> (inherited from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>)</p><ul>
 <li><p>The range of the values in transformed data space that were observed for this scale's aesthetics. Contiuous ranges are always <code>NULL</code> (when no values were observed) or a numeric vector of length 2; discrete ranges are usually a character vector of values that were observed in the data.</p></li>
 </ul>
-    <p><code>scale_simple$set_breaks(breaks)</code></p><ul>
+    <p><code>scale_discrete$set_breaks(breaks)</code> (inherited from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>)</p><ul>
 <li><p>Set the breaks for this scale. Can be a vector of breaks in user data space or a function of the <code>$limits()</code>.</p></li>
 </ul>
-    <p><code>scale_simple$set_breaks_minor(breaks_minor)</code></p><ul>
+    <p><code>scale_discrete$set_breaks_minor(breaks_minor)</code> (inherited from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>)</p><ul>
 <li><p>Set the minor breaks for this scale. Can be a vector of breaks in user data space or a function of the <code>$breaks()</code>, <code>$limits()</code>, and the number 2.</p></li>
 </ul>
-    <p><code>scale_simple$set_labels(labels)</code></p><ul>
+    <p><code>scale_discrete$set_labels(labels)</code> (inherited from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>)</p><ul>
 <li><p>Set the labels for this scale. Can be a vector of labels or a function of the <code>$breaks()</code>.</p></li>
 </ul>
-    <p><code>scale_simple$set_limits(limits)</code> (inherited from <code>ScaleSimple</code>)</p><ul>
+    <p><code>scale_discrete$set_limits(limits)</code> (inherited from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>)</p><ul>
 <li><p>Set the limits for this scale. Can be a function of the <code>$trained_range()</code> or a vector (length 2 numeric for continuous scales or a character vector for discrete scales).</p></li>
 </ul>
-    <p><code>scale_simple$set_oob(oob)</code></p><ul>
+    <p><code>scale_discrete$set_oob(oob)</code> (inherited from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>)</p><ul>
 <li><p>Set the out-of-bounds function for this scale. The out-of-bounds function is a function of a vector and the <code>$limits()</code>; useful oob functions include <code><a href='oob_keep.html'>oob_keep()</a></code> (which does nothing; the default), <code><a href='https://www.rdocumentation.org/packages/scales/topics/censor'>scales::censor()</a></code> (which sets values outside the limits to <code>NA</code>) and <code><a href='https://www.rdocumentation.org/packages/scales/topics/squish'>scales::squish()</a></code> (which sets values outside the limits to the outermost values), and <code><a href='censor_discrete.html'>censor_discrete()</a></code> (which works like <code><a href='https://www.rdocumentation.org/packages/scales/topics/censor'>scales::censor()</a></code> but works for discrete scales).</p></li>
 </ul>
-    <p><code>scale_simple$set_range(range)</code></p><ul>
+    <p><code>scale_discrete$set_range(range)</code> (inherited from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>)</p><ul>
 <li><p>Set the range class for this scale. This must be a subclass of <a href='https://www.rdocumentation.org/packages/scales/topics/Range'>scales::Range</a>.</p></li>
 </ul>
-    <p><code>scale_simple$set_rescaler(rescaler)</code></p><ul>
+    <p><code>scale_discrete$set_rescaler(rescaler)</code> (inherited from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>)</p><ul>
 <li><p>Set the rescaler function for this scale. Rescaled values (between 0 and 1) are often useful as inputs to continuous palletes. This function should take a keyword argument <code>from</code>, which is the scale <code>$limits()</code>. The most useful values for <code>rescaler</code> are <code><a href='rescale_none.html'>rescale_none()</a></code> (the default) and <code><a href='https://www.rdocumentation.org/packages/scales/topics/rescale'>scales::rescale()</a></code>.</p></li>
 </ul>
-    <p><code>scale_simple$set_trans(trans)</code></p><ul>
+    <p><code>scale_discrete$set_trans(trans)</code> (inherited from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>)</p><ul>
 <li><p>Set the transform for this scale. See <code><a href='https://www.rdocumentation.org/packages/scales/topics/trans_new'>scales::trans_new()</a></code> for a list of transforms for continuous scales. For discrete scales, the default value of <code><a href='trans_discrete_new.html'>discrete_identity_trans()</a></code> is probably the only value that makes sense.</p></li>
 </ul>
-    <p><code>scale_simple$set_na_value(na_value)</code></p><ul>
+    <p><code>scale_discrete$set_na_value(na_value)</code> (inherited from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>)</p><ul>
 <li><p>Set the output (mapped data space) value that will represent <code>NA</code> values for this scale.</p></li>
 </ul>
-    <p><code>scale_simple$set_limits_empty(limits_empty)</code></p><ul>
+    <p><code>scale_discrete$set_limits_empty(limits_empty)</code> (inherited from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>)</p><ul>
 <li><p>Set the limits to return (in transformed data space) when <code>$is_empty()</code> returns <code>TRUE</code>.</p></li>
 </ul>
-    <p><code>ScaleSimple$new(aesthetics = character(0))</code></p><ul>
-<li><p>Create a Scale object representing zero or more <code>aesthetics</code>.</p></li>
-</ul>
-    <p><code>scale_simple$name(x)</code></p><ul>
+    <p><code>scale_discrete$name(x)</code> (inherited from <code><a href='Scale.html'>Scale</a></code>)</p><ul>
 <li><p>Calculate the scale name, which should be a character vector of length 1. May return <code><a href='waiver.html'>waiver()</a></code> for when the scale name should be calculated from the <code><a href='ColumnMapping.html'>ColumnMapping</a></code>. This method may be removed in favour of this value living in the <code><a href='Guide.html'>Guide</a></code>.</p></li>
 </ul>
-    <p><code>scale_simple$transform(x)</code></p><ul>
-<li><p>Transform the user-data vector <code>x</code>. Usually called by <code>$transform_tbl()</code>.</p></li>
-</ul>
-    <p><code>scale_simple$untransform(x)</code></p><ul>
-<li><p>Untransform the transformed-data vector <code>x</code>.</p></li>
-</ul>
-    <p><code>scale_simple$train(x)</code></p><ul>
-<li><p>Train the scale with the transformed-data vector <code>x</code>. The range of values observed by the scale are used to calculate its <code>$limits()</code> (if these have not been specified manually). Usually called by <code>$train_tbl()</code>.</p></li>
-</ul>
-    <p><code>scale_simple$reset()</code></p><ul>
-<li><p>Forget all values that were 'remembered' by <code>$train()</code>.</p></li>
-</ul>
-    <p><code>scale_simple$map(x)</code></p><ul>
+    <p><code>scale_discrete$map(x)</code> (inherited from <code><a href='Scale.html'>Scale</a></code>)</p><ul>
 <li><p>Convert the transformed-date vector <code>x</code> into mapped data space. This may be a numeric value (for position scales) or some other vector type (e.g., for colour scales). Usually called by <code>$map_tbl()</code>.</p></li>
 </ul>
-    <p><code>scale_simple$transform_tbl(data)</code></p><ul>
-<li><p>Call <code>$transform()</code> on the columns of <code>data</code> whose names are included in <code>$aesthetics</code>.</p></li>
-</ul>
-    <p><code>scale_simple$untransform_tbl(data_trans)</code></p><ul>
-<li><p>Call <code>$untransform()</code> on the columns of <code>data</code> whose names are included in <code>$aesthetics</code>.</p></li>
-</ul>
-    <p><code>scale_simple$train_tbl(data_trans)</code> (inherited from <code><a href='Scale.html'>Scale</a></code>)</p><ul>
-<li><p>Call <code>$train()</code> on the columns of <code>data</code> whose names are included in <code>$aesthetics</code>.</p></li>
-</ul>
-    <p><code>scale_simple$map_tbl(data_trans)</code></p><ul>
-<li><p>Call <code>$map()</code> on the columns of <code>data</code> whose names are included in <code>$aesthetics</code>.</p></li>
-</ul>
-    <p><code>scale_simple$within_limits(x)</code></p><ul>
+    <p><code>scale_discrete$within_limits(x)</code> (inherited from <code><a href='Scale.html'>Scale</a></code>)</p><ul>
 <li><p>Returns a logical vector describing whether or not values in the transformed-data vector <code>x</code> are within the scale <code>$limits()</code>.</p></li>
 </ul>
-    <p><code>scale_simple$set_guide(guide)</code> (inherited from <code><a href='Scale.html'>Scale</a></code>)</p><ul>
+    <p><code>scale_discrete$set_guide(guide)</code> (inherited from <code><a href='Scale.html'>Scale</a></code>)</p><ul>
 <li><p>Set the <a href='Guide.html'>Guide</a> that will be used to communicate the relationship between user data values and mapped data values.</p></li>
 </ul>
     
@@ -225,9 +192,9 @@ aesthetics with useful breaks and labels.</p>
       
       <li><a href="#format">Format</a></li>
 
-      <li><a href="#scalesimple-inheritance">ScaleSimple inheritance</a></li>
+      <li><a href="#scalediscrete-inheritance">ScaleDiscrete inheritance</a></li>
 
-      <li><a href="#scalesimple-r-methods">ScaleSimple R6 Methods</a></li>
+      <li><a href="#scalediscrete-r-methods">ScaleDiscrete R6 Methods</a></li>
           </ul>
 
   </div>

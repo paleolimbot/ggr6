@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • ggr6</title>
+<title>Don't rescale — rescale_none • ggr6</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,12 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Don't rescale — rescale_none" />
+
+<meta property="og:description" content="This rescaler just returns its input, as opposed to
+scales::rescale(), scales::rescale_max(), and scales::rescale_mid(),
+all of which return values between 0 and 1." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -47,7 +52,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -94,120 +99,55 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Don't rescale</h1>
+    <small class="dont-index">Source: <a href='https://github.com/paleolimbot/ggr6/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>rescale_none.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>This rescaler just returns its input, as opposed to
+<code><a href='https://www.rdocumentation.org/packages/scales/topics/rescale'>scales::rescale()</a></code>, <code><a href='https://www.rdocumentation.org/packages/scales/topics/rescale_max'>scales::rescale_max()</a></code>, and <code><a href='https://www.rdocumentation.org/packages/scales/topics/rescale_mid'>scales::rescale_mid()</a></code>,
+all of which return values between 0 and 1.</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="ColumnMapping.html">ColumnMapping</a></code> </p>
-        </td>
-        <td><p>Create a tibble from user data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="Geom.html">Geom</a></code> <code><a href="Geom.html">GeomBlank</a></code> </p>
-        </td>
-        <td><p>Render a graphical object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="Guide.html">Guide</a></code> <code><a href="Guide.html">GuideNull</a></code> </p>
-        </td>
-        <td><p>Graphical represntation of Scales</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="Renderer.html">Renderer</a></code> <code><a href="Renderer.html">RendererIdentity</a></code> </p>
-        </td>
-        <td><p>Render and assemble a Graphic</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="Scale.html">Scale</a></code> <code><a href="Scale.html">ScaleNull</a></code> </p>
-        </td>
-        <td><p>Convert between data spaces</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ScaleContinuous.html">ScaleContinuous</a></code> </p>
-        </td>
-        <td><p>Continuous Scale</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ScaleDiscrete.html">ScaleDiscrete</a></code> </p>
-        </td>
-        <td><p>Discrete Scale</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ScaleSimple.html">ScaleSimple</a></code> </p>
-        </td>
-        <td><p>Default implementation of Scale objects</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="Stat.html">Stat</a></code> <code><a href="Stat.html">StatIdentity</a></code> </p>
-        </td>
-        <td><p>Transform data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="censor_discrete.html">censor_discrete()</a></code> </p>
-        </td>
-        <td><p>Censor discrete values</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="oob_keep.html">oob_keep()</a></code> </p>
-        </td>
-        <td><p>Keep out-of-bounds values</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rescale_none.html">rescale_none()</a></code> </p>
-        </td>
-        <td><p>Don't rescale</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="trans_discrete_new.html">trans_discrete_new()</a></code> <code><a href="trans_discrete_new.html">discrete_identity_trans()</a></code> </p>
-        </td>
-        <td><p>Discrete Transform</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="waiver.html">waiver()</a></code> </p>
-        </td>
-        <td><p>Default value</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>rescale_none</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>A vector of values.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Used to accept any other parameters.</p></td>
+    </tr>
     </table>
-  </div>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p><code>x</code> unchanged</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw pkg'>scales</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/scales/topics/rescale'>rescale</a></span>(<span class='fl'>1</span>:<span class='fl'>5</span>)</div><div class='output co'>#&gt; [1] 0.00 0.25 0.50 0.75 1.00</div><div class='input'><span class='fu'>rescale_none</span>(<span class='fl'>1</span>:<span class='fl'>5</span>)</div><div class='output co'>#&gt; [1] 1 2 3 4 5</div><div class='input'>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 
