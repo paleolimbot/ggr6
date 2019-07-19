@@ -113,14 +113,14 @@ subclassed for each Renderer." />
 
     <div class="ref-description">
     
-    <p>Guide objects are a graphical representation of <code><a href='Scale.html'>Scale</a></code>s, in that
+    <p>Guide objects are a graphical representation of <a href='Scale.html'>Scale</a>s, in that
 they communicate the relationship between user data values and
-mapped data values. Each <code><a href='Scale.html'>Scale</a></code> must have a Guide, although this
+mapped data values. Each <a href='Scale.html'>Scale</a> must have a Guide, although this
 can be (and often is) <code>GuideNull</code>, which draws nothing). Guides which
 have the same name, class, breaks, and labels are merged together,
 such that in the final plot there may be more than one scale represented
 by one guide. All guides except <code>GuideNull</code> will probably have to be
-subclassed for each <code><a href='Renderer.html'>Renderer</a></code>.</p>
+subclassed for each <a href='Renderer.html'>Renderer</a>.</p>
     
     </div>
 
@@ -132,6 +132,47 @@ subclassed for each <code><a href='Renderer.html'>Renderer</a></code>.</p>
 
     <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
     
+    <h2 class="hasAnchor" id="guide-r-methods"><a class="anchor" href="#guide-r-methods"></a>Guide R6 Methods</h2>
+
+    
+    <p><code>Guide$new()</code></p><ul>
+<li><p>Create a Guide object.</p></li>
+</ul>
+    <p><code>guide$title()</code></p><ul>
+<li><p>Return the title that should be displayed by this guide.</p></li>
+</ul>
+    <p><code>guide$position()</code></p><ul>
+<li><p>Return the object describing the position of this guide (specific to the <a href='Renderer.html'>Renderer</a>). A value of <code>NULL</code> means it should not be displayed; a value of <code><a href='waiver.html'>waiver()</a></code> means the position is unspecified.</p></li>
+</ul>
+    <p><code>guide$aesthetics()</code></p><ul>
+<li><p>The aesthetics represented by this <code>Guide</code>.</p></li>
+</ul>
+    <p><code>guide$train(scale)</code></p><ul>
+<li><p>Add information from a <a href='Scale.html'>Scale</a> to this guide. This creates the <code>$key</code> field, which is a <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> with a column for each aesthetic and a <code>.breaks</code> and <code>.labels</code> column.</p></li>
+</ul>
+    <p><code>guide$train_layers(layers, renderer)</code></p><ul>
+<li><p>Add information from a <a href='LayerList.html'>LayerList</a> to this object. This is used to assemble the default aesthetic values and geometry primatives that will be displayed by the guide.</p></li>
+</ul>
+    <p><code>guide$merge(guide)</code></p><ul>
+<li><p>Merges information from another guide into this guide. The default implementation is to merge only if the Guides have the same class, breaks, labels, title, and position. This would occur if a user maps the same column to two aesthetics. Returns <code>TRUE</code> if a merge occured, <code>FALSE</code> otherwise. This is usually called by <a href='GuideList.html'>GuideList</a>'s <code>$merge_all()</code> method.</p></li>
+</ul>
+    <p><code>guide$render(panel, renderer)</code></p><ul>
+<li><p>Renders the guide.</p></li>
+</ul>
+    <p><code>guide$set_key(key)</code></p><ul>
+<li><p>Sets the <code>$key</code> for this Guide, which is a <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> with a column for each aesthetic and a <code>.breaks</code> and <code>.labels</code> column.</p></li>
+</ul>
+    <p><code>guide$set_position(position)</code></p><ul>
+<li><p>Sets the <code>$position()</code> for this guide. Use <code>NULL</code> to hide, <code><a href='waiver.html'>waiver()</a></code> to let the <a href='Renderer.html'>Renderer</a> choose, or some other <a href='Renderer.html'>Renderer</a>-specific value.</p></li>
+</ul>
+    <p><code>guide$make_key(scale, censor = TRUE)</code></p><ul>
+<li><p>Creates the <code>$key</code> based on a <a href='Scale.html'>Scale</a>, optionally censoring the breaks to ensure they are within the <a href='Scale.html'>Scale</a>'s <code>$limits()</code>.</p></li>
+</ul>
+    
+    <h2 class="hasAnchor" id="guidenull-inheritance"><a class="anchor" href="#guidenull-inheritance"></a>GuideNull inheritance</h2>
+
+    <p>GuideNull inherits from <code>Guide</code></p>
+    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -139,6 +180,10 @@ subclassed for each <code><a href='Renderer.html'>Renderer</a></code>.</p>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
+
+      <li><a href="#guide-r-methods">Guide R6 Methods</a></li>
+
+      <li><a href="#guidenull-inheritance">GuideNull inheritance</a></li>
           </ul>
 
   </div>

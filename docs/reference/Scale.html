@@ -118,17 +118,17 @@ to the Stat and Geom without being transformed or mapped." />
     <div class="ref-description">
     
     <p>Scales convert between the user data space, the data space used
-to compute the <code><a href='Stat.html'>Stat</a></code>s (transformed data space), and the data space
-used by the <code><a href='Geom.html'>Geom</a></code>s (mapped data space) to draw graphical objects.
-Scales also compute breaks and labels used in the <code><a href='Guide.html'>Guide</a></code>s. Most useful
-Scale classes inherit from <code><a href='ScaleSimple.html'>ScaleSimple</a></code>, which is designed to leverage
+to compute the <a href='Stat.html'>Stat</a>s (transformed data space), and the data space
+used by the <a href='Geom.html'>Geom</a>s (mapped data space) to draw graphical objects.
+Scales also compute breaks and labels used in the <a href='Guide.html'>Guide</a>s. Most useful
+Scale classes inherit from <a href='ScaleSimple.html'>ScaleSimple</a>, which is designed to leverage
 the <a href='https://www.rdocumentation.org/packages/scales/topics/package-scales'>scales</a> package. Each scale represents zero
 or more <code>$aesthetics</code> (character vector), and contains a <code>$guide</code>
-(<code><a href='Guide.html'>Guide</a></code> object) that will be used to communicate the relationship
+(<a href='Guide.html'>Guide</a> object) that will be used to communicate the relationship
 between user data values and mapped data values. <code>ScaleNull</code> is a
 scale that has infinite limits and never transforms or maps values,
 which is useful for testing and for values that should be passed
-to the <code><a href='Stat.html'>Stat</a></code> and <code><a href='Geom.html'>Geom</a></code> without being transformed or mapped.</p>
+to the <a href='Stat.html'>Stat</a> and <a href='Geom.html'>Geom</a> without being transformed or mapped.</p>
     
     </div>
 
@@ -147,7 +147,7 @@ to the <code><a href='Stat.html'>Stat</a></code> and <code><a href='Geom.html'>G
 <li><p>Create a Scale object representing zero or more <code>aesthetics</code>.</p></li>
 </ul>
     <p><code>scale$name(x)</code></p><ul>
-<li><p>Calculate the scale name, which should be a character vector of length 1. May return <code><a href='waiver.html'>waiver()</a></code> for when the scale name should be calculated from the <code><a href='ColumnMapping.html'>ColumnMapping</a></code>. This method may be removed in favour of this value living in the <code><a href='Guide.html'>Guide</a></code>.</p></li>
+<li><p>Calculate the scale name, which should be a character vector of length 1. May return <code><a href='waiver.html'>waiver()</a></code> for when the scale name should be calculated from the <code><a href='ColumnMapping.html'>ColumnMapping</a></code>. This method may be removed in favour of this value living in the <a href='Guide.html'>Guide</a>.</p></li>
 </ul>
     <p><code>scale$transform(x)</code></p><ul>
 <li><p>Transform the user-data vector <code>x</code>. Usually called by <code>$transform_tbl()</code>.</p></li>

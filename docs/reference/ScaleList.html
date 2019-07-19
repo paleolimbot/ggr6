@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ggr6: An Implementaation of the Grammar of Graphics in R6 — ggr6-package • ggr6</title>
+<title>Mutable List of Scale objects — ScaleList • ggr6</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,13 @@
 
 
 
-<meta property="og:title" content="ggr6: An Implementaation of the Grammar of Graphics in R6 — ggr6-package" />
+<meta property="og:title" content="Mutable List of Scale objects — ScaleList" />
 
-<meta property="og:description" content="Implements the Grammar of Graphics using R6 reference objects." />
+<meta property="og:description" content="ScaleList objects contain a list of Scales, and have
+methods that can perform the same operation on all the
+scales they contain. They currently also generate the
+GuideList of trained Guides based on the Scales
+they contain." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -99,25 +103,63 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>ggr6: An Implementaation of the Grammar of Graphics in R6</h1>
-    <small class="dont-index">Source: <a href='https://github.com/paleolimbot/ggr6/blob/master/R/ggr6-package.R'><code>R/ggr6-package.R</code></a></small>
-    <div class="hidden name"><code>ggr6-package.Rd</code></div>
+    <h1>Mutable List of Scale objects</h1>
+    <small class="dont-index">Source: <a href='https://github.com/paleolimbot/ggr6/blob/master/R/scale.R'><code>R/scale.R</code></a></small>
+    <div class="hidden name"><code>ScaleList.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Implements the Grammar of Graphics using R6 reference objects.</p>
+    <p>ScaleList objects contain a list of <a href='Scale.html'>Scale</a>s, and have
+methods that can perform the same operation on all the
+scales they contain. They currently also generate the
+<a href='GuideList.html'>GuideList</a> of trained <a href='Guide.html'>Guide</a>s based on the <a href='Scale.html'>Scale</a>s
+they contain.</p>
     
     </div>
 
+    <pre class="usage"><span class='no'>ScaleList</span></pre>
         
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <div class='dont-index'><p>Useful links:</p><ul>
-<li><p><a href='https://paleolimbot.github.io/ggr6'>https://paleolimbot.github.io/ggr6</a></p></li>
-<li><p><a href='https://github.com/paleolimbot/ggr6'>https://github.com/paleolimbot/ggr6</a></p></li>
-<li><p>Report bugs at <a href='https://github.com/paleolimbot/ggr6/issues'>https://github.com/paleolimbot/ggr6/issues</a></p></li>
-</ul></div>
+    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
+    
+    <h2 class="hasAnchor" id="scalelist-r-methods"><a class="anchor" href="#scalelist-r-methods"></a>ScaleList R6 Methods</h2>
+
+    
+    <p><code>scale_list$aesthetics()</code> (inherited from <code>ScaleList</code>)</p><ul>
+<li><p>A character vector of aesthetics represented by the <a href='Scale.html'>Scale</a>s within the list.</p></li>
+</ul>
+    <p><code>scale_list$scale(aesthetic, default = NULL)</code></p><ul>
+<li><p>Extract a scale by <code>aesthetic</code> (returning <code>default</code> if there is none.)</p></li>
+</ul>
+    <p><code>scale_list$guides()</code></p><ul>
+<li><p>Returns a <a href='GuideList.html'>GuideList</a> of <a href='Guide.html'>Guide</a>s extracted and trained from the <a href='Scale.html'>Scale</a>s within the object.</p></li>
+</ul>
+    <p><code>scale_list$filter_by_aesthetics(aesthetics)</code></p><ul>
+<li><p>Return a new <code>ScaleList</code> containing any scale representing one or more <code>aesthetics</code> specified.</p></li>
+</ul>
+    <p><code>scale_list$discard_by_aesthetics(aesthetics)</code></p><ul>
+<li><p>Return a new <code>ScaleList</code> containing any scale that does not represent the <code>aesthetics</code> specified.</p></li>
+</ul>
+    <p><code>scale_list$transform_tbl(data)</code></p><ul>
+<li><p>Calls the <code>$transform_tbl()</code> method for each <a href='Scale.html'>Scale</a> iteratively, returning the result.</p></li>
+</ul>
+    <p><code>scale_list$untransform_tbl(data)</code></p><ul>
+<li><p>Calls the <code>$untransform_tbl()</code> method for each <a href='Scale.html'>Scale</a> iteratively, returning the result.</p></li>
+</ul>
+    <p><code>scale_list$train_tbl(data_trans)</code></p><ul>
+<li><p>Calls the <code>$transform_tbl()</code> method for each <a href='Scale.html'>Scale</a>.</p></li>
+</ul>
+    <p><code>scale_list$reset()</code></p><ul>
+<li><p>Calls the <code>$reset()</code> method for each <a href='Scale.html'>Scale</a> iteratively, returning the result.</p></li>
+</ul>
+    <p><code>scale_list$map_tbl(data_trans)</code></p><ul>
+<li><p>Calls the <code>$map_tbl()</code> method for each <a href='Scale.html'>Scale</a> iteratively, returning the result.</p></li>
+</ul>
+    <p><code>scale_list$add_missing(data, renderer)</code></p><ul>
+<li><p>Add missing scales to this object based on data (whose names are aesthetics) and the <a href='Renderer.html'>Renderer</a>.</p></li>
+</ul>
     
 
   </div>
@@ -125,11 +167,11 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#format">Format</a></li>
+
+      <li><a href="#scalelist-r-methods">ScaleList R6 Methods</a></li>
           </ul>
 
-    <h2>Author</h2>
-    <p><strong>Maintainer</strong>: Dewey Dunnington <a href='mailto:dewey@fishandwhistle.net'>dewey@fishandwhistle.net</a> (0000-0002-9415-4582)</p>
   </div>
 </div>
 

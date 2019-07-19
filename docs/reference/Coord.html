@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ggr6: An Implementaation of the Grammar of Graphics in R6 — ggr6-package • ggr6</title>
+<title>Coordinate systems — Coord • ggr6</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,14 @@
 
 
 
-<meta property="og:title" content="ggr6: An Implementaation of the Grammar of Graphics in R6 — ggr6-package" />
+<meta property="og:title" content="Coordinate systems — Coord" />
 
-<meta property="og:description" content="Implements the Grammar of Graphics using R6 reference objects." />
+<meta property="og:description" content="Coordinate systems pick which aesthetics are position aesthetics,
+finalize the Panel at the end of the build process, and transform
+coordinates. Regardless of their aesthetics, they should always
+return from their $transform() method a data frame with x and y
+columns. The default CoordIdentity does not change the Panel and
+performs no changes in its $transform() method." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -99,25 +104,46 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>ggr6: An Implementaation of the Grammar of Graphics in R6</h1>
-    <small class="dont-index">Source: <a href='https://github.com/paleolimbot/ggr6/blob/master/R/ggr6-package.R'><code>R/ggr6-package.R</code></a></small>
-    <div class="hidden name"><code>ggr6-package.Rd</code></div>
+    <h1>Coordinate systems</h1>
+    <small class="dont-index">Source: <a href='https://github.com/paleolimbot/ggr6/blob/master/R/coord.R'><code>R/coord.R</code></a></small>
+    <div class="hidden name"><code>Coord.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Implements the Grammar of Graphics using R6 reference objects.</p>
+    <p>Coordinate systems pick which <code>aesthetics</code> are position <code>aesthetics</code>,
+finalize the <a href='Panel.html'>Panel</a> at the end of the build process, and transform
+coordinates. Regardless of their <code>aesthetics</code>, they should always
+return from their <code>$transform()</code> method a data frame with <code>x</code> and <code>y</code>
+columns. The default <code>CoordIdentity</code> does not change the <a href='Panel.html'>Panel</a> and
+performs no changes in its <code>$transform()</code> method.</p>
     
     </div>
 
-        
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <pre class="usage"><span class='no'>Coord</span>
 
-    <div class='dont-index'><p>Useful links:</p><ul>
-<li><p><a href='https://paleolimbot.github.io/ggr6'>https://paleolimbot.github.io/ggr6</a></p></li>
-<li><p><a href='https://github.com/paleolimbot/ggr6'>https://github.com/paleolimbot/ggr6</a></p></li>
-<li><p>Report bugs at <a href='https://github.com/paleolimbot/ggr6/issues'>https://github.com/paleolimbot/ggr6/issues</a></p></li>
-</ul></div>
+<span class='no'>CoordIdentity</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
+    
+    <h2 class="hasAnchor" id="coord-r-methods"><a class="anchor" href="#coord-r-methods"></a>Coord R6 Methods</h2>
+
+    
+    <p><code>Coord$new(aesthetics = c("x", "y"))</code></p><ul>
+<li><p>Create a coordinate system representing one or more position <code>aesthetics</code>.</p></li>
+</ul>
+    <p><code>coord$transform(data_mapped, scales)</code></p><ul>
+<li><p>Transform a data frame containing columns representing one or more position <code>$aesthetics</code>. This method should always return a data frame with <code>x</code> and <code>y</code> columns and  leave non-position columns unchanged.</p></li>
+</ul>
+    <p><code>coord$finalize_panel(panel)</code></p><ul>
+<li><p>Finalize the <a href='Panel.html'>Panel</a> object at the end of the build process. This is where scale expansion (if any) can occur.</p></li>
+</ul>
+    
+    <h2 class="hasAnchor" id="coordidentity-inheritance"><a class="anchor" href="#coordidentity-inheritance"></a>CoordIdentity inheritance</h2>
+
+    <p>CoordIdentity inherits from <code>Coord</code></p>
     
 
   </div>
@@ -125,11 +151,13 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#format">Format</a></li>
+
+      <li><a href="#coord-r-methods">Coord R6 Methods</a></li>
+
+      <li><a href="#coordidentity-inheritance">CoordIdentity inheritance</a></li>
           </ul>
 
-    <h2>Author</h2>
-    <p><strong>Maintainer</strong>: Dewey Dunnington <a href='mailto:dewey@fishandwhistle.net'>dewey@fishandwhistle.net</a> (0000-0002-9415-4582)</p>
   </div>
 </div>
 

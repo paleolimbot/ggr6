@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ggr6: An Implementaation of the Grammar of Graphics in R6 — ggr6-package • ggr6</title>
+<title>Adjust positions before rendering — Position • ggr6</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,11 @@
 
 
 
-<meta property="og:title" content="ggr6: An Implementaation of the Grammar of Graphics in R6 — ggr6-package" />
+<meta property="og:title" content="Adjust positions before rendering — Position" />
 
-<meta property="og:description" content="Implements the Grammar of Graphics using R6 reference objects." />
+<meta property="og:description" content="Positions are called once per panel per layer between
+the Stat computation and the Geom computation. The
+default PositionIdentity does no position adjustment." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -99,25 +101,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>ggr6: An Implementaation of the Grammar of Graphics in R6</h1>
-    <small class="dont-index">Source: <a href='https://github.com/paleolimbot/ggr6/blob/master/R/ggr6-package.R'><code>R/ggr6-package.R</code></a></small>
-    <div class="hidden name"><code>ggr6-package.Rd</code></div>
+    <h1>Adjust positions before rendering</h1>
+    <small class="dont-index">Source: <a href='https://github.com/paleolimbot/ggr6/blob/master/R/position.R'><code>R/position.R</code></a></small>
+    <div class="hidden name"><code>Position.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Implements the Grammar of Graphics using R6 reference objects.</p>
+    <p>Positions are called once per panel per layer between
+the <a href='Stat.html'>Stat</a> computation and the <a href='Geom.html'>Geom</a> computation. The
+default <code>PositionIdentity</code> does no position adjustment.</p>
     
     </div>
 
-        
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <pre class="usage"><span class='no'>Position</span>
 
-    <div class='dont-index'><p>Useful links:</p><ul>
-<li><p><a href='https://paleolimbot.github.io/ggr6'>https://paleolimbot.github.io/ggr6</a></p></li>
-<li><p><a href='https://github.com/paleolimbot/ggr6'>https://github.com/paleolimbot/ggr6</a></p></li>
-<li><p>Report bugs at <a href='https://github.com/paleolimbot/ggr6/issues'>https://github.com/paleolimbot/ggr6/issues</a></p></li>
-</ul></div>
+<span class='no'>PositionIdentity</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
+    
+    <h2 class="hasAnchor" id="position-r-methods"><a class="anchor" href="#position-r-methods"></a>Position R6 Methods</h2>
+
+    
+    <p><code>position$compute_panel(transformed_data, panel)</code></p><ul>
+<li><p>Perform position adjustment, returning a transformed copy of <code>transformed_data</code>.</p></li>
+</ul>
+    
+    <h2 class="hasAnchor" id="positionidentity-inheritance"><a class="anchor" href="#positionidentity-inheritance"></a>PositionIdentity inheritance</h2>
+
+    <p>PositionIdentity inherits from <code>Position</code></p>
     
 
   </div>
@@ -125,11 +139,13 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#format">Format</a></li>
+
+      <li><a href="#position-r-methods">Position R6 Methods</a></li>
+
+      <li><a href="#positionidentity-inheritance">PositionIdentity inheritance</a></li>
           </ul>
 
-    <h2>Author</h2>
-    <p><strong>Maintainer</strong>: Dewey Dunnington <a href='mailto:dewey@fishandwhistle.net'>dewey@fishandwhistle.net</a> (0000-0002-9415-4582)</p>
   </div>
 </div>
 

@@ -32,7 +32,13 @@
 
 <meta property="og:title" content="Render and assemble a Graphic — Renderer" />
 
-<meta property="og:description" content="Render and assemble a Graphic" />
+<meta property="og:description" content="The role of the renderer isn't solidified in ggr6. Currently it's an
+abstraction of various graphics backend that allow ggr6 to focus on the
+grammar (rather than on rendering graphical objects). Currently it has
+methods for rendering graphical primitives, methods for finding
+the aesthetics that are supported by each primitive, methods for
+constructing default scales for each aesthetic, and methods for
+assembling panels." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,7 +112,13 @@
 
     <div class="ref-description">
     
-    <p>Render and assemble a Graphic</p>
+    <p>The role of the renderer isn't solidified in ggr6. Currently it's an
+abstraction of various graphics backend that allow ggr6 to focus on the
+grammar (rather than on rendering graphical objects). Currently it has
+methods for rendering graphical primitives, methods for finding
+the aesthetics that are supported by each primitive, methods for
+constructing default scales for each aesthetic, and methods for
+assembling panels.</p>
     
     </div>
 
@@ -118,6 +130,19 @@
 
     <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Realistically, each renderer needs its own collection
+of <a href='Geom.html'>Geom</a>, <a href='Facet.html'>Facet</a>, <a href='Coord.html'>Coord</a>, and <a href='Scale.html'>Scale</a> subclasses.
+The role of ggr6 is to provide robust superclasses for these such
+that the subclasses can focus on rendering. This package provides
+<code>RendererIdentity</code> for testing and <a href='RendererGraphics.html'>RendererGraphics</a>, which uses the
+base <a href='https://www.rdocumentation.org/packages/graphics/topics/graphics-package'>graphics</a> package to render graphics.</p>
+    
+    <h2 class="hasAnchor" id="rendereridentity-inheritance"><a class="anchor" href="#rendereridentity-inheritance"></a>RendererIdentity inheritance</h2>
+
+    <p>RendererIdentity inherits from <code>Renderer</code></p>
+    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -125,6 +150,10 @@
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#rendereridentity-inheritance">RendererIdentity inheritance</a></li>
           </ul>
 
   </div>

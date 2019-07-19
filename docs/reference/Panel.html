@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ggr6: An Implementaation of the Grammar of Graphics in R6 — ggr6-package • ggr6</title>
+<title>Panels — Panel • ggr6</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,14 @@
 
 
 
-<meta property="og:title" content="ggr6: An Implementaation of the Grammar of Graphics in R6 — ggr6-package" />
+<meta property="og:title" content="Panels — Panel" />
 
-<meta property="og:description" content="Implements the Grammar of Graphics using R6 reference objects." />
+<meta property="og:description" content="Panel objects are the Geom-, Stat-, and Position-facing
+representation of the Coord, Scale, and Guide objects.
+Panels are created by the Facet and finalized by the Coord at the
+end of the build process. Currently they also train the Guide objects,
+but this is against the philosphy of the Panel (a vessel in which information
+relevant to the Panel is contained) and should be moved to the Builder." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -99,25 +104,46 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>ggr6: An Implementaation of the Grammar of Graphics in R6</h1>
-    <small class="dont-index">Source: <a href='https://github.com/paleolimbot/ggr6/blob/master/R/ggr6-package.R'><code>R/ggr6-package.R</code></a></small>
-    <div class="hidden name"><code>ggr6-package.Rd</code></div>
+    <h1>Panels</h1>
+    <small class="dont-index">Source: <a href='https://github.com/paleolimbot/ggr6/blob/master/R/panel.R'><code>R/panel.R</code></a></small>
+    <div class="hidden name"><code>Panel.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Implements the Grammar of Graphics using R6 reference objects.</p>
+    <p>Panel objects are the <a href='Geom.html'>Geom</a>-, <a href='Stat.html'>Stat</a>-, and <a href='Position.html'>Position</a>-facing
+representation of the <a href='Coord.html'>Coord</a>, <a href='Scale.html'>Scale</a>, and <a href='Guide.html'>Guide</a> objects.
+Panels are created by the <a href='Facet.html'>Facet</a> and finalized by the <a href='Coord.html'>Coord</a> at the
+end of the build process. Currently they also train the <a href='Guide.html'>Guide</a> objects,
+but this is against the philosphy of the Panel (a vessel in which information
+relevant to the Panel is contained) and should be moved to the <a href='Builder.html'>Builder</a>.</p>
     
     </div>
 
+    <pre class="usage"><span class='no'>Panel</span></pre>
         
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <div class='dont-index'><p>Useful links:</p><ul>
-<li><p><a href='https://paleolimbot.github.io/ggr6'>https://paleolimbot.github.io/ggr6</a></p></li>
-<li><p><a href='https://github.com/paleolimbot/ggr6'>https://github.com/paleolimbot/ggr6</a></p></li>
-<li><p>Report bugs at <a href='https://github.com/paleolimbot/ggr6/issues'>https://github.com/paleolimbot/ggr6/issues</a></p></li>
-</ul></div>
+    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
+    
+    <h2 class="hasAnchor" id="panel-r-methods"><a class="anchor" href="#panel-r-methods"></a>Panel R6 Methods</h2>
+
+    
+    <p><code>Panel$new(coord = CoordIdentity$new(), scales = ScaleList$new())</code></p><ul>
+<li><p>Create a Panel with a <a href='Coord.html'>Coord</a> and <a href='ScaleList.html'>ScaleList</a>.</p></li>
+</ul>
+    <p><code>panel$train_guides(layers, renderer)</code></p><ul>
+<li><p>This method should be moved to the <a href='Builder.html'>Builder</a>.</p></li>
+</ul>
+    <p><code>panel$position_scales()</code></p><ul>
+<li><p>Returns a <a href='ScaleList.html'>ScaleList</a> for each position aesthetic defined by the <a href='Coord.html'>Coord</a>.</p></li>
+</ul>
+    <p><code>panel$non_position_scales()</code></p><ul>
+<li><p>Returns a <a href='ScaleList.html'>ScaleList</a> of scales representing non-position aesthetics.</p></li>
+</ul>
+    <p><code>panel$transform(data)</code></p><ul>
+<li><p>Calls the <a href='Coord.html'>Coord</a>'s <code>$transform()</code> method.</p></li>
+</ul>
     
 
   </div>
@@ -125,11 +151,11 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#format">Format</a></li>
+
+      <li><a href="#panel-r-methods">Panel R6 Methods</a></li>
           </ul>
 
-    <h2>Author</h2>
-    <p><strong>Maintainer</strong>: Dewey Dunnington <a href='mailto:dewey@fishandwhistle.net'>dewey@fishandwhistle.net</a> (0000-0002-9415-4582)</p>
   </div>
 </div>
 
