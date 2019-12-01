@@ -46,6 +46,10 @@ List of Guides
 \if{html}{\out{<div class="r">}}\preformatted{GuideList$guide(aesthetic, default = NULL)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Extract a guide by \code{aesthetic} (returning \code{default} if there is none.)
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-train_layers"></a>}}
@@ -54,12 +58,21 @@ List of Guides
 \if{html}{\out{<div class="r">}}\preformatted{GuideList$train_layers(layers, renderer)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Calls the \verb{$train_layers()} method of each \link{Guide}.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-merge_all"></a>}}
 \subsection{Method \code{merge_all()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GuideList$merge_all()}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Merges the \link{Guide} objects by calling their \verb{$merge()} methods
+iteratively. Merging is done in-place.
 }
 
 }

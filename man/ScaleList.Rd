@@ -56,12 +56,21 @@ they contain.
 \if{html}{\out{<div class="r">}}\preformatted{ScaleList$aesthetics()}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+A character vector of aesthetics represented by the \link{Scale}s
+within the list.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-scale"></a>}}
 \subsection{Method \code{scale()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ScaleList$scale(aesthetic, default = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Extract a scale by \code{aesthetic} (returning \code{default} if there is none.)
 }
 
 }
@@ -72,12 +81,22 @@ they contain.
 \if{html}{\out{<div class="r">}}\preformatted{ScaleList$guides()}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Returns a \link{GuideList} of \link{Guide}s extracted and trained from the
+\link{Scale}s within the object.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-filter_by_aesthetics"></a>}}
 \subsection{Method \code{filter_by_aesthetics()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ScaleList$filter_by_aesthetics(aesthetics)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Return a new \code{ScaleList} containing any scale representing
+one or more \code{aesthetics} specified.
 }
 
 }
@@ -88,12 +107,22 @@ they contain.
 \if{html}{\out{<div class="r">}}\preformatted{ScaleList$discard_by_aesthetics(aesthetics)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Return a new \code{ScaleList} containing any scale that does not
+represent the \code{aesthetics} specified.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-transform_tbl"></a>}}
 \subsection{Method \code{transform_tbl()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ScaleList$transform_tbl(data)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Calls the \verb{$transform_tbl()} method for each \link{Scale} iteratively,
+returning the result.
 }
 
 }
@@ -104,12 +133,23 @@ they contain.
 \if{html}{\out{<div class="r">}}\preformatted{ScaleList$untransform_tbl(data)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Calls the \verb{$untransform_tbl()} method for each \link{Scale} iteratively,
+returning the result.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-train_tbl"></a>}}
 \subsection{Method \code{train_tbl()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ScaleList$train_tbl(data_trans)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Calls the \verb{$transform_tbl()} method for each \link{Scale}.
+Calls the \verb{$reset()} method for each \link{Scale} iteratively,
+returning the result.
 }
 
 }
@@ -128,12 +168,22 @@ they contain.
 \if{html}{\out{<div class="r">}}\preformatted{ScaleList$map_tbl(data_trans)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Calls the \verb{$map_tbl()} method for each \link{Scale} iteratively,
+returning the result.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-add_missing"></a>}}
 \subsection{Method \code{add_missing()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ScaleList$add_missing(data, renderer)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Add missing scales to this object based on data (whose names
+are aesthetics) and the \link{Renderer}.
 }
 
 }

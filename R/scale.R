@@ -40,127 +40,107 @@ Scale <- R6Class(
 
     # don't calculate test coverage for abstract methods
     # nocov start
+    #' @details
+    #' Transform the user-data vector `x`. Usually called by
+    #' `$transform_tbl()`.
     transform = function(x) {
-      "
-      Transform the user-data vector `x`. Usually called by
-      `$transform_tbl()`.
-      "
       not_implemented()
     },
 
+    #' @details Untransform the transformed-data vector `x`.
     untransform = function(x) {
-      "
-      Untransform the transformed-data vector `x`.
-      "
       not_implemented()
     },
 
+    #' @details
+    #' Train the scale with the transformed-data vector `x`.
+    #' The range of values observed by the scale are used to
+    #' calculate its `$limits()` (if these have not been
+    #' specified manually). Usually called by `$train_tbl()`.
     train = function(x) {
-      "
-      Train the scale with the transformed-data vector `x`.
-      The range of values observed by the scale are used to
-      calculate its `$limits()` (if these have not been
-      specified manually). Usually called by `$train_tbl()`.
-      "
       not_implemented()
     },
 
+    #' @details Forget all values that were 'remembered' by `$train()`.
     reset = function() {
-      "
-      Forget all values that were 'remembered' by `$train()`.
-      "
       not_implemented()
     },
 
+    #' @details
+    #' Convert the transformed-date vector `x` into mapped data
+    #' space. This may be a numeric value (for position scales) or
+    #' some other vector type (e.g., for colour scales). Usually
+    #' called by `$map_tbl()`.
     map = function(x) {
-      "
-      Convert the transformed-date vector `x` into mapped data
-      space. This may be a numeric value (for position scales) or
-      some other vector type (e.g., for colour scales). Usually
-      called by `$map_tbl()`.
-      "
       not_implemented()
     },
 
+    #' @details
+    #' Call `$transform()` on the columns of `data` whose names
+    #' are included in `$aesthetics`.
     transform_tbl = function(data) {
-      "
-      Call `$transform()` on the columns of `data` whose names
-      are included in `$aesthetics`.
-      "
       not_implemented()
     },
 
+    #' @details
+    #' Call `$untransform()` on the columns of `data` whose names
+    #' are included in `$aesthetics`.
     untransform_tbl = function(data_trans) {
-      "
-      Call `$untransform()` on the columns of `data` whose names
-      are included in `$aesthetics`.
-      "
       not_implemented()
     },
 
+    #' @details
+    #' Call `$train()` on the columns of `data` whose names
+    #' are included in `$aesthetics`.
     train_tbl = function(data_trans) {
-      "
-      Call `$train()` on the columns of `data` whose names
-      are included in `$aesthetics`.
-      "
       not_implemented()
     },
 
+    #' @details
+    #' Call `$map()` on the columns of `data` whose names
+    #' are included in `$aesthetics`.
     map_tbl = function(data_trans) {
-      "
-      Call `$map()` on the columns of `data` whose names
-      are included in `$aesthetics`.
-      "
       not_implemented()
     },
 
+    #' @details
+    #' Calculate the breaks, which are usually nicely-numbered
+    #' values around the scale `$limits()`.
     breaks = function() {
-      "
-      Calculate the breaks, which are usually nicely-numbered
-      values around the scale `$limits()`.
-      "
       not_implemented()
     },
 
+    #' @details
+    #' Calculate the minor breaks, which are usually nicely-numbered
+    #' values between the scale `$breaks()` and
+    #' around the scale `$limits()`.
     breaks_minor = function() {
-      "
-      Calculate the minor breaks, which are usually nicely-numbered
-      values between the scale `$breaks()` and
-      around the scale `$limits()`.
-      "
       not_implemented()
     },
 
+    #' @details Calculate the labels associated with the `$breaks()`.
     labels = function() {
-      "
-      Calculate the labels associated with the `$breaks()`.
-      "
       not_implemented()
     },
 
+    #' @details Calculate the scale `$limits()`, which is usually the range
+    #' of values observed but could also be set.
     limits = function() {
-      "
-      Calculate the scale `$limits()`, which is usually the range
-      of values observed but could also be set.
-      "
       not_implemented()
     },
 
+    #' @details Returns a logical vector describing whether or not values in
+    #' the transformed-data vector `x` are within the scale `$limits()`.
     within_limits = function(x) {
-      "
-      Returns a logical vector describing whether or not values in
-      the transformed-data vector `x` are within the scale `$limits()`.
-      "
       not_implemented()
     },
 
     # nocov end
 
+    #' @details
+    #' Set the [Guide] that will be used to communicate the relationship
+    #' between user data values and mapped data values.
     set_guide = function(guide) {
-      "
-      Set the [Guide] that will be used to communicate the relationship
-      between user data values and mapped data values.
-      "
       assert_r6(guide, "Guide")
       self$guide <- guide
       invisible(self)
@@ -249,18 +229,16 @@ ScaleList <- R6Class(
       super$set(index, item)
     },
 
+    #' @details
+    #' A character vector of aesthetics represented by the [Scale]s
+    #' within the list.
     aesthetics = function() {
-      "
-      A character vector of aesthetics represented by the [Scale]s
-      within the list.
-      "
       unique(unlist(purrr::map(self$lst, function(scale) scale$aesthetics)))
     },
 
+    #' @details
+    #' Extract a scale by `aesthetic` (returning `default` if there is none.)
     scale = function(aesthetic, default = NULL) {
-      "
-      Extract a scale by `aesthetic` (returning `default` if there is none.)
-      "
       for (scale in self$lst) {
         if (aesthetic %in% scale$aesthetics) {
           return(scale)
@@ -270,11 +248,10 @@ ScaleList <- R6Class(
       default
     },
 
+    #' @details
+    #' Returns a [GuideList] of [Guide]s extracted and trained from the
+    #' [Scale]s within the object.
     guides = function() {
-      "
-      Returns a [GuideList] of [Guide]s extracted and trained from the
-      [Scale]s within the object.
-      "
       guides <- GuideList$new()
       for (scale in self$lst) {
         guides$add(scale$guide$clone()$train(scale))
@@ -283,11 +260,10 @@ ScaleList <- R6Class(
       guides
     },
 
+    #' @details
+    #' Return a new `ScaleList` containing any scale representing
+    #' one or more `aesthetics` specified.
     filter_by_aesthetics = function(aesthetics) {
-      "
-      Return a new `ScaleList` containing any scale representing
-      one or more `aesthetics` specified.
-      "
       new <- ScaleList$new()
       for (scale in self$lst) {
         if (any(aesthetics %in% scale$aesthetics)) {
@@ -297,11 +273,10 @@ ScaleList <- R6Class(
       new
     },
 
+    #' @details
+    #' Return a new `ScaleList` containing any scale that does not
+    #' represent the `aesthetics` specified.
     discard_by_aesthetics = function(aesthetics) {
-      "
-      Return a new `ScaleList` containing any scale that does not
-      represent the `aesthetics` specified.
-      "
       new <- ScaleList$new()
       for (scale in self$lst) {
         if (!any(aesthetics %in% scale$aesthetics)) {
@@ -311,11 +286,10 @@ ScaleList <- R6Class(
       new
     },
 
+    #' @details
+    #' Calls the `$transform_tbl()` method for each [Scale] iteratively,
+    #' returning the result.
     transform_tbl = function(data) {
-      "
-      Calls the `$transform_tbl()` method for each [Scale] iteratively,
-      returning the result.
-      "
       for (i in seq_len(self$size())) {
         data <- self$get(i)$transform_tbl(data)
       }
@@ -323,11 +297,10 @@ ScaleList <- R6Class(
       data
     },
 
+    #' @details
+    #' Calls the `$untransform_tbl()` method for each [Scale] iteratively,
+    #' returning the result.
     untransform_tbl = function(data) {
-      "
-      Calls the `$untransform_tbl()` method for each [Scale] iteratively,
-      returning the result.
-      "
       for (i in seq_len(self$size())) {
         data <- self$get(i)$untransform_tbl(data)
       }
@@ -335,10 +308,8 @@ ScaleList <- R6Class(
       data
     },
 
+    #' @details Calls the `$transform_tbl()` method for each [Scale].
     train_tbl = function(data_trans) {
-      "
-      Calls the `$transform_tbl()` method for each [Scale].
-      "
       for (i in seq_len(self$size())) {
         self$get(i)$train_tbl(data_trans)
       }
@@ -346,11 +317,9 @@ ScaleList <- R6Class(
       invisible(self)
     },
 
+    #' Calls the `$reset()` method for each [Scale] iteratively,
+    #' returning the result.
     reset = function() {
-      "
-      Calls the `$reset()` method for each [Scale] iteratively,
-      returning the result.
-      "
       for (i in seq_len(self$size())) {
         self$get(i)$reset()
       }
@@ -358,11 +327,10 @@ ScaleList <- R6Class(
       invisible(self)
     },
 
+    #' @details
+    #' Calls the `$map_tbl()` method for each [Scale] iteratively,
+    #' returning the result.
     map_tbl = function(data_trans) {
-      "
-      Calls the `$map_tbl()` method for each [Scale] iteratively,
-      returning the result.
-      "
       for (i in seq_len(self$size())) {
         data_trans <- self$get(i)$map_tbl(data_trans)
       }
@@ -370,11 +338,10 @@ ScaleList <- R6Class(
       data_trans
     },
 
+    #' @details
+    #' Add missing scales to this object based on data (whose names
+    #' are aesthetics) and the [Renderer].
     add_missing = function(data, renderer) {
-      "
-      Add missing scales to this object based on data (whose names
-      are aesthetics) and the [Renderer].
-      "
       assert_r6(renderer, "Renderer")
 
       new_aesthetics <- setdiff(names(data), self$aesthetics())

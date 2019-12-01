@@ -76,12 +76,21 @@ method may be removed in favour of this value living in the
 \if{html}{\out{<div class="r">}}\preformatted{Scale$transform(x)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Transform the user-data vector \code{x}. Usually called by
+\verb{$transform_tbl()}.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-untransform"></a>}}
 \subsection{Method \code{untransform()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Scale$untransform(x)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Untransform the transformed-data vector \code{x}.
 }
 
 }
@@ -92,12 +101,23 @@ method may be removed in favour of this value living in the
 \if{html}{\out{<div class="r">}}\preformatted{Scale$train(x)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Train the scale with the transformed-data vector \code{x}.
+The range of values observed by the scale are used to
+calculate its \verb{$limits()} (if these have not been
+specified manually). Usually called by \verb{$train_tbl()}.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-reset"></a>}}
 \subsection{Method \code{reset()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Scale$reset()}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Forget all values that were 'remembered' by \verb{$train()}.
 }
 
 }
@@ -108,12 +128,24 @@ method may be removed in favour of this value living in the
 \if{html}{\out{<div class="r">}}\preformatted{Scale$map(x)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Convert the transformed-date vector \code{x} into mapped data
+space. This may be a numeric value (for position scales) or
+some other vector type (e.g., for colour scales). Usually
+called by \verb{$map_tbl()}.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-transform_tbl"></a>}}
 \subsection{Method \code{transform_tbl()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Scale$transform_tbl(data)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Call \verb{$transform()} on the columns of \code{data} whose names
+are included in \verb{$aesthetics}.
 }
 
 }
@@ -124,12 +156,22 @@ method may be removed in favour of this value living in the
 \if{html}{\out{<div class="r">}}\preformatted{Scale$untransform_tbl(data_trans)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Call \verb{$untransform()} on the columns of \code{data} whose names
+are included in \verb{$aesthetics}.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-train_tbl"></a>}}
 \subsection{Method \code{train_tbl()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Scale$train_tbl(data_trans)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Call \verb{$train()} on the columns of \code{data} whose names
+are included in \verb{$aesthetics}.
 }
 
 }
@@ -140,12 +182,22 @@ method may be removed in favour of this value living in the
 \if{html}{\out{<div class="r">}}\preformatted{Scale$map_tbl(data_trans)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Call \verb{$map()} on the columns of \code{data} whose names
+are included in \verb{$aesthetics}.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-breaks"></a>}}
 \subsection{Method \code{breaks()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Scale$breaks()}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Calculate the breaks, which are usually nicely-numbered
+values around the scale \verb{$limits()}.
 }
 
 }
@@ -156,12 +208,22 @@ method may be removed in favour of this value living in the
 \if{html}{\out{<div class="r">}}\preformatted{Scale$breaks_minor()}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Calculate the minor breaks, which are usually nicely-numbered
+values between the scale \verb{$breaks()} and
+around the scale \verb{$limits()}.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-labels"></a>}}
 \subsection{Method \code{labels()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Scale$labels()}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Calculate the labels associated with the \verb{$breaks()}.
 }
 
 }
@@ -172,6 +234,11 @@ method may be removed in favour of this value living in the
 \if{html}{\out{<div class="r">}}\preformatted{Scale$limits()}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Calculate the scale \verb{$limits()}, which is usually the range
+of values observed but could also be set.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-within_limits"></a>}}
@@ -180,12 +247,22 @@ method may be removed in favour of this value living in the
 \if{html}{\out{<div class="r">}}\preformatted{Scale$within_limits(x)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Returns a logical vector describing whether or not values in
+the transformed-data vector \code{x} are within the scale \verb{$limits()}.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_guide"></a>}}
 \subsection{Method \code{set_guide()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Scale$set_guide(guide)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Set the \link{Guide} that will be used to communicate the relationship
+between user data values and mapped data values.
 }
 
 }

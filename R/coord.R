@@ -14,29 +14,27 @@ Coord <- R6Class(
   public = list(
     aesthetics = NULL,
 
+    #' @details
+    #' Create a coordinate system representing one or more position
+    #' `aesthetics`.
     initialize = function(aesthetics = c("x", "y")) {
-      "
-      Create a coordinate system representing one or more position
-      `aesthetics`.
-      "
       self$aesthetics <- aesthetics
     },
 
     # nocov start
+
+    #' @details
+    #' Transform a data frame containing columns representing one or more
+    #' position `$aesthetics`. This method should always return a data frame
+    #' with `x` and `y` columns and  leave non-position columns unchanged.
     transform = function(data_mapped, scales) {
-      "
-      Transform a data frame containing columns representing one or more
-      position `$aesthetics`. This method should always return a data frame
-      with `x` and `y` columns and  leave non-position columns unchanged.
-      "
       not_implemented()
     },
 
+    #' @details
+    #' Finalize the [Panel] object at the end of the build process. This is
+    #' where scale expansion (if any) can occur.
     finalize_panel = function(panel) {
-      "
-      Finalize the [Panel] object at the end of the build process. This is
-      where scale expansion (if any) can occur.
-      "
       not_implemented()
     }
     # nocov end

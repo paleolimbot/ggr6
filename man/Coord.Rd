@@ -28,6 +28,11 @@ performs no changes in its \verb{$transform()} method.
 \if{html}{\out{<div class="r">}}\preformatted{Coord$new(aesthetics = c("x", "y"))}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Create a coordinate system representing one or more position
+\code{aesthetics}.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-transform"></a>}}
@@ -36,12 +41,23 @@ performs no changes in its \verb{$transform()} method.
 \if{html}{\out{<div class="r">}}\preformatted{Coord$transform(data_mapped, scales)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Transform a data frame containing columns representing one or more
+position \verb{$aesthetics}. This method should always return a data frame
+with \code{x} and \code{y} columns and  leave non-position columns unchanged.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-finalize_panel"></a>}}
 \subsection{Method \code{finalize_panel()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Coord$finalize_panel(panel)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Finalize the \link{Panel} object at the end of the build process. This is
+where scale expansion (if any) can occur.
 }
 
 }

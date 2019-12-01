@@ -40,12 +40,20 @@ subclassed for each \link{Renderer}.
 \if{html}{\out{<div class="r">}}\preformatted{Guide$new()}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Create a Guide object.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-title"></a>}}
 \subsection{Method \code{title()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Guide$title()}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Return the title that should be displayed by this guide.
 }
 
 }
@@ -56,12 +64,22 @@ subclassed for each \link{Renderer}.
 \if{html}{\out{<div class="r">}}\preformatted{Guide$position()}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Return the object describing the position of this guide (specific
+to the \link{Renderer}). A value of \code{NULL} means it should not be displayed;
+a value of \code{waiver()} means the position is unspecified.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-aesthetics"></a>}}
 \subsection{Method \code{aesthetics()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Guide$aesthetics()}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+The aesthetics represented by this \code{Guide}.
 }
 
 }
@@ -72,12 +90,24 @@ subclassed for each \link{Renderer}.
 \if{html}{\out{<div class="r">}}\preformatted{Guide$train(scale)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Add information from a \link{Scale} to this guide. This creates the
+\verb{$key} field, which is a \code{\link[tibble:tibble]{tibble::tibble()}} with a column for each
+aesthetic and a \code{.breaks} and \code{.labels} column.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-train_layers"></a>}}
 \subsection{Method \code{train_layers()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Guide$train_layers(layers, renderer)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Add information from a \link{LayerList} to this object. This is used
+to assemble the default aesthetic values and geometry primatives
+that will be displayed by the guide.
 }
 
 }
@@ -88,12 +118,24 @@ subclassed for each \link{Renderer}.
 \if{html}{\out{<div class="r">}}\preformatted{Guide$merge(guide)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Merges information from another guide into this guide. The default implementation
+is to merge only if the Guides have the same class, breaks, labels, title, and
+position. This would occur if a user maps the same column to two aesthetics.
+Returns \code{TRUE} if a merge occured, \code{FALSE} otherwise. This is usually called by
+\link{GuideList}'s \verb{$merge_all()} method.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-render"></a>}}
 \subsection{Method \code{render()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Guide$render(panel, renderer)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Renders the guide.
 }
 
 }
@@ -112,6 +154,11 @@ subclassed for each \link{Renderer}.
 \if{html}{\out{<div class="r">}}\preformatted{Guide$set_key(key)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Sets the \verb{$key} for this Guide, which is a \code{\link[tibble:tibble]{tibble::tibble()}} with
+a column for each aesthetic and a \code{.breaks} and \code{.labels} column.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_position"></a>}}
@@ -120,12 +167,23 @@ subclassed for each \link{Renderer}.
 \if{html}{\out{<div class="r">}}\preformatted{Guide$set_position(position)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Sets the \verb{$position()} for this guide. Use \code{NULL} to hide,
+\code{waiver()} to let the \link{Renderer} choose, or some other
+\link{Renderer}-specific value.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-make_key"></a>}}
 \subsection{Method \code{make_key()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Guide$make_key(scale, censor = TRUE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Creates the \verb{$key} based on a \link{Scale}, optionally censoring the breaks
+to ensure they are within the \link{Scale}'s \verb{$limits()}.
 }
 
 }
