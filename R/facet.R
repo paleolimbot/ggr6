@@ -9,8 +9,6 @@
 #' this is the job of the [Renderer]). The default `FacetNull`
 #' draws one panel with all of each [Layer]'s data.
 #'
-#' @eval r6inherits("FacetNull")
-#'
 Facet <- R6Class(
   "Facet",
   public = list(

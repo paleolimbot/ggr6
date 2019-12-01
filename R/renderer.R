@@ -16,8 +16,6 @@
 #' `RendererIdentity` for testing and [RendererGraphics], which uses the
 #' base [graphics][graphics::graphics-package] package to render graphics.
 #'
-#' @eval r6inherits("RendererIdentity")
-#'
 #' @export
 Renderer <- R6Class(
   "Renderer",

@@ -1,4 +1,6 @@
 
+#' Base class for ordered lists
+#'
 List <- R6Class(
   "List",
   public = list(

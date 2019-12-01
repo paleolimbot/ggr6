@@ -8,8 +8,6 @@
 #' but this is against the philosphy of the Panel (a vessel in which information
 #' relevant to the Panel is contained) and should be moved to the [Builder].
 #'
-#' @eval r6doc("Panel")
-#'
 #' @export
 Panel <- R6Class(
   "Panel",

@@ -5,10 +5,6 @@
 #' the [Stat] computation and the [Geom] computation. The
 #' default `PositionIdentity` does no position adjustment.
 #'
-#' @eval r6doc("Position")
-#'
-#' @eval r6inherits("PositionIdentity")
-#'
 #' @export
 Position <- R6Class(
   "Position",

@@ -10,10 +10,6 @@
 #' by one guide. All guides except `GuideNull` will probably have to be
 #' subclassed for each [Renderer].
 #'
-#' @eval r6doc("Guide")
-#'
-#' @eval r6inherits("GuideNull")
-#'
 #' @export
 Guide <- R6Class(
   "Guide",
@@ -199,8 +195,6 @@ GuideNull <- R6Class(
 )
 
 #' List of Guides
-#'
-#' @eval r6doc("GuideList")
 #'
 #' @export
 GuideList <- R6Class(

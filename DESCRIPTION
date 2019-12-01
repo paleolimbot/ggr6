@@ -17,7 +17,7 @@ Imports:
     vctrs,
     purrr,
     withr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.1
 Roxygen: list(markdown = TRUE)
 Suggests: 
     testthat (>= 2.1.0),

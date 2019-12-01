@@ -1,4 +1,6 @@
 
+#' Base class for statistics and geometries
+#'
 StatGeomBase <- R6Class(
   "StatGeomBase",
 

@@ -1,10 +1,6 @@
 
 #' Continuous Scale
 #'
-#' @eval r6inherits("ScaleContinuous")
-#'
-#' @eval r6doc("ScaleContinuous")
-#'
 #' @export
 ScaleContinuous <- R6Class(
   "ScaleContinuous", inherit = ScaleSimple,

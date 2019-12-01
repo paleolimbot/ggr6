@@ -8,10 +8,6 @@
 #' columns. The default `CoordIdentity` does not change the [Panel] and
 #' performs no changes in its `$transform()` method.
 #'
-#' @eval r6doc("Coord")
-#'
-#' @eval r6inherits("CoordIdentity")
-#'
 #' @export
 Coord <- R6Class(
   "Coord",

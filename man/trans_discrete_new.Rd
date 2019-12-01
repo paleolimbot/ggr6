@@ -5,9 +5,13 @@
 \alias{discrete_identity_trans}
 \title{Discrete Transform}
 \usage{
-trans_discrete_new(..., breaks = identity,
-  minor_breaks = function(breaks, limits, n) NULL, format = identity,
-  domain = c(-Inf, Inf))
+trans_discrete_new(
+  ...,
+  breaks = identity,
+  minor_breaks = function(breaks, limits, n) NULL,
+  format = identity,
+  domain = c(-Inf, Inf)
+)
 
 discrete_identity_trans()
 }

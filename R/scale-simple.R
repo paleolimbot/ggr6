@@ -6,10 +6,6 @@
 #' package to create meaningful mappings between user data and
 #' aesthetics with useful breaks and labels.
 #'
-#' @eval r6inherits("ScaleSimple")
-#'
-#' @eval r6doc("ScaleSimple")
-#'
 #' @export
 ScaleSimple <- R6Class(
   "ScaleSimple", inherit = Scale,

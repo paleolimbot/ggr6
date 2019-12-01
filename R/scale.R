@@ -14,10 +14,6 @@
 #' which is useful for testing and for values that should be passed
 #' to the [Stat] and [Geom] without being transformed or mapped.
 #'
-#' @eval r6doc("Scale")
-#'
-#' @eval r6inherits("ScaleNull")
-#'
 #' @export
 Scale <- R6Class(
   "Scale",
@@ -25,22 +21,20 @@ Scale <- R6Class(
     aesthetics = NULL,
     guide = NULL,
 
+    #' @details
+    #' Create a Scale object representing zero or more `aesthetics`.
     initialize = function(aesthetics = character(0)) {
-      "
-      Create a Scale object representing zero or more `aesthetics`.
-      "
       self$aesthetics <- aesthetics
       self$set_guide(GuideNull$new())
     },
 
+    #' @details
+    #' Calculate the scale name, which should be a character vector of
+    #' length 1. May return [waiver()] for when
+    #' the scale name should be calculated from the [`ColumnMapping`]. This
+    #' method may be removed in favour of this value living in the
+    #' [Guide].
     name = function(x) {
-      "
-      Calculate the scale name, which should be a character vector of
-      length 1. May return [waiver()] for when
-      the scale name should be calculated from the [`ColumnMapping`]. This
-      method may be removed in favour of this value living in the
-      [Guide].
-      "
       self$aesthetics[1]
     },
 
@@ -245,8 +239,6 @@ ScaleNull <- R6Class(
 #' scales they contain. They currently also generate the
 #' [GuideList] of trained [Guide]s based on the [Scale]s
 #' they contain.
-#'
-#' @eval r6doc("ScaleList")
 #'
 #' @export
 ScaleList <- R6Class(
