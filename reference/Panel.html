@@ -145,11 +145,17 @@ relevant to the Panel is contained) and should be moved to the <a href='Builder.
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Panel$new(coord = CoordIdentity$new(), scales = ScaleList$new())</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Create a Panel with a <a href='Coord.html'>Coord</a> and <a href='ScaleList.html'>ScaleList</a>.</p>
+
 <p><hr>
 <a id="method-train_guides"></a></p><h3>Method <code>train_guides()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Panel$train_guides(layers, renderer)</pre><p></div></p>
+
+<h3>Details</h3>
+<p>This method should be moved to the <a href='Builder.html'>Builder</a>.</p>
 
 <p><hr>
 <a id="method-position_scales"></a></p><h3>Method <code>position_scales()</code></h3>
@@ -157,17 +163,28 @@ relevant to the Panel is contained) and should be moved to the <a href='Builder.
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Panel$position_scales()</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Returns a <a href='ScaleList.html'>ScaleList</a> for each position aesthetic defined by
+the <a href='Coord.html'>Coord</a>.</p>
+
 <p><hr>
 <a id="method-non_position_scales"></a></p><h3>Method <code>non_position_scales()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Panel$non_position_scales()</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Returns a <a href='ScaleList.html'>ScaleList</a> of scales representing non-position
+aesthetics.</p>
+
 <p><hr>
 <a id="method-transform"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/transform.html'>transform()</a></code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Panel$transform(data)</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Calls the <a href='Coord.html'>Coord</a>'s <code>$transform()</code> method.</p>
 
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
