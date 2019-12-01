@@ -136,98 +136,294 @@ which is useful for testing and for values that should be passed
 to the <a href='Stat.html'>Stat</a> and <a href='Geom.html'>Geom</a> without being transformed or mapped.</p>
     </div>
 
-    <pre class="usage"><span class='no'>Scale</span>
-
-<span class='no'>ScaleNull</span></pre>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
-    <h2 class="hasAnchor" id="scale-r-methods"><a class="anchor" href="#scale-r-methods"></a>Scale R6 Methods</h2>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
+<h3>Public methods</h3>
 
-
-<p><code>Scale$new(aesthetics = character(0))</code></p><ul>
-<li><p>Create a Scale object representing zero or more <code>aesthetics</code>.</p></li>
+<ul>
+<li><p><a href='#method-new'><code>Scale$new()</code></a></p></li>
+<li><p><a href='#method-name'><code>Scale$name()</code></a></p></li>
+<li><p><a href='#method-transform'><code>Scale$transform()</code></a></p></li>
+<li><p><a href='#method-untransform'><code>Scale$untransform()</code></a></p></li>
+<li><p><a href='#method-train'><code>Scale$train()</code></a></p></li>
+<li><p><a href='#method-reset'><code>Scale$reset()</code></a></p></li>
+<li><p><a href='#method-map'><code>Scale$map()</code></a></p></li>
+<li><p><a href='#method-transform_tbl'><code>Scale$transform_tbl()</code></a></p></li>
+<li><p><a href='#method-untransform_tbl'><code>Scale$untransform_tbl()</code></a></p></li>
+<li><p><a href='#method-train_tbl'><code>Scale$train_tbl()</code></a></p></li>
+<li><p><a href='#method-map_tbl'><code>Scale$map_tbl()</code></a></p></li>
+<li><p><a href='#method-breaks'><code>Scale$breaks()</code></a></p></li>
+<li><p><a href='#method-breaks_minor'><code>Scale$breaks_minor()</code></a></p></li>
+<li><p><a href='#method-labels'><code>Scale$labels()</code></a></p></li>
+<li><p><a href='#method-limits'><code>Scale$limits()</code></a></p></li>
+<li><p><a href='#method-within_limits'><code>Scale$within_limits()</code></a></p></li>
+<li><p><a href='#method-set_guide'><code>Scale$set_guide()</code></a></p></li>
+<li><p><a href='#method-clone'><code>Scale$clone()</code></a></p></li>
 </ul>
+<p><hr>
+<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 
-<p><code>scale$name(x)</code></p><ul>
-<li><p>Calculate the scale name, which should be a character vector of length 1. May return <code><a href='waiver.html'>waiver()</a></code> for when the scale name should be calculated from the <code><a href='ColumnMapping.html'>ColumnMapping</a></code>. This method may be removed in favour of this value living in the <a href='Guide.html'>Guide</a>.</p></li>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$new(aesthetics = character(0))</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Create a Scale object representing zero or more <code>aesthetics</code>.</p>
+
+<p><hr>
+<a id="method-name"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/name.html'>name()</a></code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$name(x)</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Calculate the scale name, which should be a character vector of
+length 1. May return <code><a href='waiver.html'>waiver()</a></code> for when
+the scale name should be calculated from the <code><a href='ColumnMapping.html'>ColumnMapping</a></code>. This
+method may be removed in favour of this value living in the
+<a href='Guide.html'>Guide</a>.</p>
+
+<p><hr>
+<a id="method-transform"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/transform.html'>transform()</a></code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$transform(x)</pre><p></div></p>
+
+<p><hr>
+<a id="method-untransform"></a></p><h3>Method <code>untransform()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$untransform(x)</pre><p></div></p>
+
+<p><hr>
+<a id="method-train"></a></p><h3>Method <code>train()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$train(x)</pre><p></div></p>
+
+<p><hr>
+<a id="method-reset"></a></p><h3>Method <code>reset()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$reset()</pre><p></div></p>
+
+<p><hr>
+<a id="method-map"></a></p><h3>Method <code>map()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$map(x)</pre><p></div></p>
+
+<p><hr>
+<a id="method-transform_tbl"></a></p><h3>Method <code>transform_tbl()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$transform_tbl(data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-untransform_tbl"></a></p><h3>Method <code>untransform_tbl()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$untransform_tbl(data_trans)</pre><p></div></p>
+
+<p><hr>
+<a id="method-train_tbl"></a></p><h3>Method <code>train_tbl()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$train_tbl(data_trans)</pre><p></div></p>
+
+<p><hr>
+<a id="method-map_tbl"></a></p><h3>Method <code>map_tbl()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$map_tbl(data_trans)</pre><p></div></p>
+
+<p><hr>
+<a id="method-breaks"></a></p><h3>Method <code>breaks()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$breaks()</pre><p></div></p>
+
+<p><hr>
+<a id="method-breaks_minor"></a></p><h3>Method <code>breaks_minor()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$breaks_minor()</pre><p></div></p>
+
+<p><hr>
+<a id="method-labels"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/labels.html'>labels()</a></code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$labels()</pre><p></div></p>
+
+<p><hr>
+<a id="method-limits"></a></p><h3>Method <code>limits()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$limits()</pre><p></div></p>
+
+<p><hr>
+<a id="method-within_limits"></a></p><h3>Method <code>within_limits()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$within_limits(x)</pre><p></div></p>
+
+<p><hr>
+<a id="method-set_guide"></a></p><h3>Method <code>set_guide()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$set_guide(guide)</pre><p></div></p>
+
+<p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre>Scale$clone(deep = FALSE)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl class='dl-horizontal'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
+
+    <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
+
+    <p><code>ggr6::Scale</code> -&gt; <code>ScaleNull</code></p>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+<h3>Public methods</h3>
+
+<ul>
+<li><p><a href='#method-transform'><code>ScaleNull$transform()</code></a></p></li>
+<li><p><a href='#method-untransform'><code>ScaleNull$untransform()</code></a></p></li>
+<li><p><a href='#method-train'><code>ScaleNull$train()</code></a></p></li>
+<li><p><a href='#method-reset'><code>ScaleNull$reset()</code></a></p></li>
+<li><p><a href='#method-map'><code>ScaleNull$map()</code></a></p></li>
+<li><p><a href='#method-transform_tbl'><code>ScaleNull$transform_tbl()</code></a></p></li>
+<li><p><a href='#method-untransform_tbl'><code>ScaleNull$untransform_tbl()</code></a></p></li>
+<li><p><a href='#method-train_tbl'><code>ScaleNull$train_tbl()</code></a></p></li>
+<li><p><a href='#method-map_tbl'><code>ScaleNull$map_tbl()</code></a></p></li>
+<li><p><a href='#method-breaks'><code>ScaleNull$breaks()</code></a></p></li>
+<li><p><a href='#method-breaks_minor'><code>ScaleNull$breaks_minor()</code></a></p></li>
+<li><p><a href='#method-labels'><code>ScaleNull$labels()</code></a></p></li>
+<li><p><a href='#method-limits'><code>ScaleNull$limits()</code></a></p></li>
+<li><p><a href='#method-within_limits'><code>ScaleNull$within_limits()</code></a></p></li>
+<li><p><a href='#method-clone'><code>ScaleNull$clone()</code></a></p></li>
 </ul>
-
-<p><code>scale$transform(x)</code></p><ul>
-<li><p>Transform the user-data vector <code>x</code>. Usually called by <code>$transform_tbl()</code>.</p></li>
+<p><details open ><summary>Inherited methods</summary>
+<ul>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Scale" data-id="initialize"><a href='../../ggr6/html/Scale.html#method-initialize'><code>ggr6::Scale$initialize()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Scale" data-id="name"><a href='../../ggr6/html/Scale.html#method-name'><code>ggr6::Scale$name()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Scale" data-id="set_guide"><a href='../../ggr6/html/Scale.html#method-set_guide'><code>ggr6::Scale$set_guide()</code></a></span></p></li>
 </ul>
+</details>
 
-<p><code>scale$untransform(x)</code></p><ul>
-<li><p>Untransform the transformed-data vector <code>x</code>.</p></li>
-</ul>
+<hr>
+<a id="method-transform"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/transform.html'>transform()</a></code></h3>
 
-<p><code>scale$train(x)</code></p><ul>
-<li><p>Train the scale with the transformed-data vector <code>x</code>. The range of values observed by the scale are used to calculate its <code>$limits()</code> (if these have not been specified manually). Usually called by <code>$train_tbl()</code>.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleNull$transform(x)</pre><p></div></p>
 
-<p><code>scale$reset()</code></p><ul>
-<li><p>Forget all values that were 'remembered' by <code>$train()</code>.</p></li>
-</ul>
+<p><hr>
+<a id="method-untransform"></a></p><h3>Method <code>untransform()</code></h3>
 
-<p><code>scale$map(x)</code></p><ul>
-<li><p>Convert the transformed-date vector <code>x</code> into mapped data space. This may be a numeric value (for position scales) or some other vector type (e.g., for colour scales). Usually called by <code>$map_tbl()</code>.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleNull$untransform(x)</pre><p></div></p>
 
-<p><code>scale$transform_tbl(data)</code></p><ul>
-<li><p>Call <code>$transform()</code> on the columns of <code>data</code> whose names are included in <code>$aesthetics</code>.</p></li>
-</ul>
+<p><hr>
+<a id="method-train"></a></p><h3>Method <code>train()</code></h3>
 
-<p><code>scale$untransform_tbl(data_trans)</code></p><ul>
-<li><p>Call <code>$untransform()</code> on the columns of <code>data</code> whose names are included in <code>$aesthetics</code>.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleNull$train(x)</pre><p></div></p>
 
-<p><code>scale$train_tbl(data_trans)</code></p><ul>
-<li><p>Call <code>$train()</code> on the columns of <code>data</code> whose names are included in <code>$aesthetics</code>.</p></li>
-</ul>
+<p><hr>
+<a id="method-reset"></a></p><h3>Method <code>reset()</code></h3>
 
-<p><code>scale$map_tbl(data_trans)</code></p><ul>
-<li><p>Call <code>$map()</code> on the columns of <code>data</code> whose names are included in <code>$aesthetics</code>.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleNull$reset()</pre><p></div></p>
 
-<p><code>scale$breaks()</code></p><ul>
-<li><p>Calculate the breaks, which are usually nicely-numbered values around the scale <code>$limits()</code>.</p></li>
-</ul>
+<p><hr>
+<a id="method-map"></a></p><h3>Method <code>map()</code></h3>
 
-<p><code>scale$breaks_minor()</code></p><ul>
-<li><p>Calculate the minor breaks, which are usually nicely-numbered values between the scale <code>$breaks()</code> and around the scale <code>$limits()</code>.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleNull$map(x)</pre><p></div></p>
 
-<p><code>scale$labels()</code></p><ul>
-<li><p>Calculate the labels associated with the <code>$breaks()</code>.</p></li>
-</ul>
+<p><hr>
+<a id="method-transform_tbl"></a></p><h3>Method <code>transform_tbl()</code></h3>
 
-<p><code>scale$limits()</code></p><ul>
-<li><p>Calculate the scale <code>$limits()</code>, which is usually the range of values observed but could also be set.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleNull$transform_tbl(data)</pre><p></div></p>
 
-<p><code>scale$within_limits(x)</code></p><ul>
-<li><p>Returns a logical vector describing whether or not values in the transformed-data vector <code>x</code> are within the scale <code>$limits()</code>.</p></li>
-</ul>
+<p><hr>
+<a id="method-untransform_tbl"></a></p><h3>Method <code>untransform_tbl()</code></h3>
 
-<p><code>scale$set_guide(guide)</code></p><ul>
-<li><p>Set the <a href='Guide.html'>Guide</a> that will be used to communicate the relationship between user data values and mapped data values.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleNull$untransform_tbl(data_trans)</pre><p></div></p>
 
-    <h2 class="hasAnchor" id="scalenull-inheritance"><a class="anchor" href="#scalenull-inheritance"></a>ScaleNull inheritance</h2>
+<p><hr>
+<a id="method-train_tbl"></a></p><h3>Method <code>train_tbl()</code></h3>
 
-    <p>ScaleNull inherits from <code>Scale</code></p>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleNull$train_tbl(data_trans)</pre><p></div></p>
+
+<p><hr>
+<a id="method-map_tbl"></a></p><h3>Method <code>map_tbl()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleNull$map_tbl(data_trans)</pre><p></div></p>
+
+<p><hr>
+<a id="method-breaks"></a></p><h3>Method <code>breaks()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleNull$breaks()</pre><p></div></p>
+
+<p><hr>
+<a id="method-breaks_minor"></a></p><h3>Method <code>breaks_minor()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleNull$breaks_minor()</pre><p></div></p>
+
+<p><hr>
+<a id="method-labels"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/labels.html'>labels()</a></code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleNull$labels()</pre><p></div></p>
+
+<p><hr>
+<a id="method-limits"></a></p><h3>Method <code>limits()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleNull$limits()</pre><p></div></p>
+
+<p><hr>
+<a id="method-within_limits"></a></p><h3>Method <code>within_limits()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleNull$within_limits(x)</pre><p></div></p>
+
+<p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleNull$clone(deep = FALSE)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl class='dl-horizontal'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
+
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#scale-r-methods">Scale R6 Methods</a></li>
-      <li><a href="#scalenull-inheritance">ScaleNull inheritance</a></li>
+      <li><a href="#methods">Methods</a></li>
+      <li><a href="#super-class">Super class</a></li>
+      <li><a href="#methods">Methods</a></li>
     </ul>
 
   </div>

@@ -122,68 +122,131 @@ scales they contain. They currently also generate the
 they contain.</p>
     </div>
 
-    <pre class="usage"><span class='no'>ScaleList</span></pre>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
 
-    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
-    <h2 class="hasAnchor" id="scalelist-r-methods"><a class="anchor" href="#scalelist-r-methods"></a>ScaleList R6 Methods</h2>
+    <p><code><a href='List.html'>ggr6::List</a></code> -&gt; <code>ScaleList</code></p>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
+<h3>Public methods</h3>
 
-
-<p><code>scale_list$aesthetics()</code> (inherited from <code>ScaleList</code>)</p><ul>
-<li><p>A character vector of aesthetics represented by the <a href='Scale.html'>Scale</a>s within the list.</p></li>
+<ul>
+<li><p><a href='#method-set'><code>ScaleList$set()</code></a></p></li>
+<li><p><a href='#method-aesthetics'><code>ScaleList$aesthetics()</code></a></p></li>
+<li><p><a href='#method-scale'><code>ScaleList$scale()</code></a></p></li>
+<li><p><a href='#method-guides'><code>ScaleList$guides()</code></a></p></li>
+<li><p><a href='#method-filter_by_aesthetics'><code>ScaleList$filter_by_aesthetics()</code></a></p></li>
+<li><p><a href='#method-discard_by_aesthetics'><code>ScaleList$discard_by_aesthetics()</code></a></p></li>
+<li><p><a href='#method-transform_tbl'><code>ScaleList$transform_tbl()</code></a></p></li>
+<li><p><a href='#method-untransform_tbl'><code>ScaleList$untransform_tbl()</code></a></p></li>
+<li><p><a href='#method-train_tbl'><code>ScaleList$train_tbl()</code></a></p></li>
+<li><p><a href='#method-reset'><code>ScaleList$reset()</code></a></p></li>
+<li><p><a href='#method-map_tbl'><code>ScaleList$map_tbl()</code></a></p></li>
+<li><p><a href='#method-add_missing'><code>ScaleList$add_missing()</code></a></p></li>
+<li><p><a href='#method-clone'><code>ScaleList$clone()</code></a></p></li>
 </ul>
-
-<p><code>scale_list$scale(aesthetic, default = NULL)</code></p><ul>
-<li><p>Extract a scale by <code>aesthetic</code> (returning <code>default</code> if there is none.)</p></li>
+<p><details open ><summary>Inherited methods</summary>
+<ul>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="List" data-id="add"><a href='../../ggr6/html/List.html#method-add'><code>ggr6::List$add()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="List" data-id="get"><a href='../../ggr6/html/List.html#method-get'><code>ggr6::List$get()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="List" data-id="initialize"><a href='../../ggr6/html/List.html#method-initialize'><code>ggr6::List$initialize()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="List" data-id="size"><a href='../../ggr6/html/List.html#method-size'><code>ggr6::List$size()</code></a></span></p></li>
 </ul>
+</details>
 
-<p><code>scale_list$guides()</code></p><ul>
-<li><p>Returns a <a href='GuideList.html'>GuideList</a> of <a href='Guide.html'>Guide</a>s extracted and trained from the <a href='Scale.html'>Scale</a>s within the object.</p></li>
-</ul>
+<hr>
+<a id="method-set"></a></p><h3>Method <code>set()</code></h3>
 
-<p><code>scale_list$filter_by_aesthetics(aesthetics)</code></p><ul>
-<li><p>Return a new <code>ScaleList</code> containing any scale representing one or more <code>aesthetics</code> specified.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleList$set(index, item)</pre><p></div></p>
 
-<p><code>scale_list$discard_by_aesthetics(aesthetics)</code></p><ul>
-<li><p>Return a new <code>ScaleList</code> containing any scale that does not represent the <code>aesthetics</code> specified.</p></li>
-</ul>
+<p><hr>
+<a id="method-aesthetics"></a></p><h3>Method <code>aesthetics()</code></h3>
 
-<p><code>scale_list$transform_tbl(data)</code></p><ul>
-<li><p>Calls the <code>$transform_tbl()</code> method for each <a href='Scale.html'>Scale</a> iteratively, returning the result.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleList$aesthetics()</pre><p></div></p>
 
-<p><code>scale_list$untransform_tbl(data)</code></p><ul>
-<li><p>Calls the <code>$untransform_tbl()</code> method for each <a href='Scale.html'>Scale</a> iteratively, returning the result.</p></li>
-</ul>
+<p><hr>
+<a id="method-scale"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/scale.html'>scale()</a></code></h3>
 
-<p><code>scale_list$train_tbl(data_trans)</code></p><ul>
-<li><p>Calls the <code>$transform_tbl()</code> method for each <a href='Scale.html'>Scale</a>.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleList$scale(aesthetic, default = NULL)</pre><p></div></p>
 
-<p><code>scale_list$reset()</code></p><ul>
-<li><p>Calls the <code>$reset()</code> method for each <a href='Scale.html'>Scale</a> iteratively, returning the result.</p></li>
-</ul>
+<p><hr>
+<a id="method-guides"></a></p><h3>Method <code>guides()</code></h3>
 
-<p><code>scale_list$map_tbl(data_trans)</code></p><ul>
-<li><p>Calls the <code>$map_tbl()</code> method for each <a href='Scale.html'>Scale</a> iteratively, returning the result.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleList$guides()</pre><p></div></p>
 
-<p><code>scale_list$add_missing(data, renderer)</code></p><ul>
-<li><p>Add missing scales to this object based on data (whose names are aesthetics) and the <a href='Renderer.html'>Renderer</a>.</p></li>
-</ul>
+<p><hr>
+<a id="method-filter_by_aesthetics"></a></p><h3>Method <code>filter_by_aesthetics()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleList$filter_by_aesthetics(aesthetics)</pre><p></div></p>
+
+<p><hr>
+<a id="method-discard_by_aesthetics"></a></p><h3>Method <code>discard_by_aesthetics()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleList$discard_by_aesthetics(aesthetics)</pre><p></div></p>
+
+<p><hr>
+<a id="method-transform_tbl"></a></p><h3>Method <code>transform_tbl()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleList$transform_tbl(data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-untransform_tbl"></a></p><h3>Method <code>untransform_tbl()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleList$untransform_tbl(data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-train_tbl"></a></p><h3>Method <code>train_tbl()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleList$train_tbl(data_trans)</pre><p></div></p>
+
+<p><hr>
+<a id="method-reset"></a></p><h3>Method <code>reset()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleList$reset()</pre><p></div></p>
+
+<p><hr>
+<a id="method-map_tbl"></a></p><h3>Method <code>map_tbl()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleList$map_tbl(data_trans)</pre><p></div></p>
+
+<p><hr>
+<a id="method-add_missing"></a></p><h3>Method <code>add_missing()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleList$add_missing(data, renderer)</pre><p></div></p>
+
+<p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleList$clone(deep = FALSE)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl class='dl-horizontal'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
 
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#scalelist-r-methods">ScaleList R6 Methods</a></li>
+      <li><a href="#super-class">Super class</a></li>
+      <li><a href="#methods">Methods</a></li>
     </ul>
 
   </div>

@@ -116,22 +116,142 @@ is mostly used for testing at the moment." />
 is mostly used for testing at the moment.</p>
     </div>
 
-    <pre class="usage"><span class='no'>RendererGraphics</span></pre>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
 
-    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
-    <h2 class="hasAnchor" id="renderergraphics-inheritance"><a class="anchor" href="#renderergraphics-inheritance"></a>RendererGraphics inheritance</h2>
+    <p><code><a href='Renderer.html'>ggr6::Renderer</a></code> -&gt; <code>RendererGraphics</code></p>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
-    <p>RendererGraphics inherits from <code><a href='Renderer.html'>Renderer</a></code></p>
+    
+<h3>Public methods</h3>
+
+<ul>
+<li><p><a href='#method-render_points'><code>RendererGraphics$render_points()</code></a></p></li>
+<li><p><a href='#method-render_path'><code>RendererGraphics$render_path()</code></a></p></li>
+<li><p><a href='#method-render_polygon'><code>RendererGraphics$render_polygon()</code></a></p></li>
+<li><p><a href='#method-render_text'><code>RendererGraphics$render_text()</code></a></p></li>
+<li><p><a href='#method-render_null'><code>RendererGraphics$render_null()</code></a></p></li>
+<li><p><a href='#method-render_stack'><code>RendererGraphics$render_stack()</code></a></p></li>
+<li><p><a href='#method-render_panel'><code>RendererGraphics$render_panel()</code></a></p></li>
+<li><p><a href='#method-render_panels'><code>RendererGraphics$render_panels()</code></a></p></li>
+<li><p><a href='#method-default_scale'><code>RendererGraphics$default_scale()</code></a></p></li>
+<li><p><a href='#method-clone'><code>RendererGraphics$clone()</code></a></p></li>
+</ul>
+<p><details open ><summary>Inherited methods</summary>
+<ul>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Renderer" data-id="aesthetics"><a href='../../ggr6/html/Renderer.html#method-aesthetics'><code>ggr6::Renderer$aesthetics()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Renderer" data-id="default_aesthetics"><a href='../../ggr6/html/Renderer.html#method-default_aesthetics'><code>ggr6::Renderer$default_aesthetics()</code></a></span></p></li>
+</ul>
+</details>
+
+<hr>
+<a id="method-render_points"></a></p><h3>Method <code>render_points()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>RendererGraphics$render_points(
+  x,
+  y,
+  pch = 16,
+  cex = 1,
+  col = "black",
+  lwd = 1,
+  bg = "black",
+  ...
+)</pre><p></div></p>
+
+<p><hr>
+<a id="method-render_path"></a></p><h3>Method <code>render_path()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>RendererGraphics$render_path(
+  x,
+  y,
+  group = 1,
+  lty = 1,
+  lwd = 1,
+  col = "black",
+  ...
+)</pre><p></div></p>
+
+<p><hr>
+<a id="method-render_polygon"></a></p><h3>Method <code>render_polygon()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>RendererGraphics$render_polygon(
+  x,
+  y,
+  group = 1,
+  subgroup = 1,
+  col = "black",
+  fill = "grey50",
+  lty = 1,
+  ...
+)</pre><p></div></p>
+
+<p><hr>
+<a id="method-render_text"></a></p><h3>Method <code>render_text()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>RendererGraphics$render_text(
+  x,
+  y,
+  label,
+  cex = 1,
+  col = "black",
+  font = 1,
+  ...
+)</pre><p></div></p>
+
+<p><hr>
+<a id="method-render_null"></a></p><h3>Method <code>render_null()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>RendererGraphics$render_null()</pre><p></div></p>
+
+<p><hr>
+<a id="method-render_stack"></a></p><h3>Method <code>render_stack()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>RendererGraphics$render_stack(...)</pre><p></div></p>
+
+<p><hr>
+<a id="method-render_panel"></a></p><h3>Method <code>render_panel()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>RendererGraphics$render_panel(panel, ...)</pre><p></div></p>
+
+<p><hr>
+<a id="method-render_panels"></a></p><h3>Method <code>render_panels()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>RendererGraphics$render_panels(graphic, ...)</pre><p></div></p>
+
+<p><hr>
+<a id="method-default_scale"></a></p><h3>Method <code>default_scale()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>RendererGraphics$default_scale(x, aesthetic)</pre><p></div></p>
+
+<p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre>RendererGraphics$clone(deep = FALSE)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl class='dl-horizontal'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
+
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#renderergraphics-inheritance">RendererGraphics inheritance</a></li>
+      <li><a href="#super-class">Super class</a></li>
+      <li><a href="#methods">Methods</a></li>
     </ul>
 
   </div>

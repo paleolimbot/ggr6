@@ -124,44 +124,69 @@ but this is against the philosphy of the Panel (a vessel in which information
 relevant to the Panel is contained) and should be moved to the <a href='Builder.html'>Builder</a>.</p>
     </div>
 
-    <pre class="usage"><span class='no'>Panel</span></pre>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
-    <h2 class="hasAnchor" id="panel-r-methods"><a class="anchor" href="#panel-r-methods"></a>Panel R6 Methods</h2>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
+<h3>Public methods</h3>
 
-
-<p><code>Panel$new(coord = CoordIdentity$new(), scales = ScaleList$new())</code></p><ul>
-<li><p>Create a Panel with a <a href='Coord.html'>Coord</a> and <a href='ScaleList.html'>ScaleList</a>.</p></li>
+<ul>
+<li><p><a href='#method-new'><code>Panel$new()</code></a></p></li>
+<li><p><a href='#method-train_guides'><code>Panel$train_guides()</code></a></p></li>
+<li><p><a href='#method-position_scales'><code>Panel$position_scales()</code></a></p></li>
+<li><p><a href='#method-non_position_scales'><code>Panel$non_position_scales()</code></a></p></li>
+<li><p><a href='#method-transform'><code>Panel$transform()</code></a></p></li>
+<li><p><a href='#method-clone'><code>Panel$clone()</code></a></p></li>
 </ul>
+<p><hr>
+<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 
-<p><code>panel$train_guides(layers, renderer)</code></p><ul>
-<li><p>This method should be moved to the <a href='Builder.html'>Builder</a>.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Panel$new(coord = CoordIdentity$new(), scales = ScaleList$new())</pre><p></div></p>
 
-<p><code>panel$position_scales()</code></p><ul>
-<li><p>Returns a <a href='ScaleList.html'>ScaleList</a> for each position aesthetic defined by the <a href='Coord.html'>Coord</a>.</p></li>
-</ul>
+<p><hr>
+<a id="method-train_guides"></a></p><h3>Method <code>train_guides()</code></h3>
 
-<p><code>panel$non_position_scales()</code></p><ul>
-<li><p>Returns a <a href='ScaleList.html'>ScaleList</a> of scales representing non-position aesthetics.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Panel$train_guides(layers, renderer)</pre><p></div></p>
 
-<p><code>panel$transform(data)</code></p><ul>
-<li><p>Calls the <a href='Coord.html'>Coord</a>'s <code>$transform()</code> method.</p></li>
-</ul>
+<p><hr>
+<a id="method-position_scales"></a></p><h3>Method <code>position_scales()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Panel$position_scales()</pre><p></div></p>
+
+<p><hr>
+<a id="method-non_position_scales"></a></p><h3>Method <code>non_position_scales()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Panel$non_position_scales()</pre><p></div></p>
+
+<p><hr>
+<a id="method-transform"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/transform.html'>transform()</a></code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Panel$transform(data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre>Panel$clone(deep = FALSE)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl class='dl-horizontal'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
 
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#panel-r-methods">Panel R6 Methods</a></li>
+      <li><a href="#methods">Methods</a></li>
     </ul>
 
   </div>

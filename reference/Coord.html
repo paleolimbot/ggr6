@@ -124,42 +124,100 @@ columns. The default <code>CoordIdentity</code> does not change the <a href='Pan
 performs no changes in its <code>$transform()</code> method.</p>
     </div>
 
-    <pre class="usage"><span class='no'>Coord</span>
-
-<span class='no'>CoordIdentity</span></pre>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
-    <h2 class="hasAnchor" id="coord-r-methods"><a class="anchor" href="#coord-r-methods"></a>Coord R6 Methods</h2>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
+<h3>Public methods</h3>
 
-
-<p><code>Coord$new(aesthetics = c("x", "y"))</code></p><ul>
-<li><p>Create a coordinate system representing one or more position <code>aesthetics</code>.</p></li>
+<ul>
+<li><p><a href='#method-new'><code>Coord$new()</code></a></p></li>
+<li><p><a href='#method-transform'><code>Coord$transform()</code></a></p></li>
+<li><p><a href='#method-finalize_panel'><code>Coord$finalize_panel()</code></a></p></li>
+<li><p><a href='#method-clone'><code>Coord$clone()</code></a></p></li>
 </ul>
+<p><hr>
+<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 
-<p><code>coord$transform(data_mapped, scales)</code></p><ul>
-<li><p>Transform a data frame containing columns representing one or more position <code>$aesthetics</code>. This method should always return a data frame with <code>x</code> and <code>y</code> columns and  leave non-position columns unchanged.</p></li>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Coord$new(aesthetics = c("x", "y"))</pre><p></div></p>
+
+<p><hr>
+<a id="method-transform"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/transform.html'>transform()</a></code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Coord$transform(data_mapped, scales)</pre><p></div></p>
+
+<p><hr>
+<a id="method-finalize_panel"></a></p><h3>Method <code>finalize_panel()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Coord$finalize_panel(panel)</pre><p></div></p>
+
+<p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre>Coord$clone(deep = FALSE)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl class='dl-horizontal'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
+
+    <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
+
+    <p><code>ggr6::Coord</code> -&gt; <code>CoordIdentity</code></p>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+<h3>Public methods</h3>
+
+<ul>
+<li><p><a href='#method-transform'><code>CoordIdentity$transform()</code></a></p></li>
+<li><p><a href='#method-finalize_panel'><code>CoordIdentity$finalize_panel()</code></a></p></li>
+<li><p><a href='#method-clone'><code>CoordIdentity$clone()</code></a></p></li>
 </ul>
-
-<p><code>coord$finalize_panel(panel)</code></p><ul>
-<li><p>Finalize the <a href='Panel.html'>Panel</a> object at the end of the build process. This is where scale expansion (if any) can occur.</p></li>
+<p><details open ><summary>Inherited methods</summary>
+<ul>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Coord" data-id="initialize"><a href='../../ggr6/html/Coord.html#method-initialize'><code>ggr6::Coord$initialize()</code></a></span></p></li>
 </ul>
+</details>
 
-    <h2 class="hasAnchor" id="coordidentity-inheritance"><a class="anchor" href="#coordidentity-inheritance"></a>CoordIdentity inheritance</h2>
+<hr>
+<a id="method-transform"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/transform.html'>transform()</a></code></h3>
 
-    <p>CoordIdentity inherits from <code>Coord</code></p>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>CoordIdentity$transform(data_mapped, scales)</pre><p></div></p>
+
+<p><hr>
+<a id="method-finalize_panel"></a></p><h3>Method <code>finalize_panel()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>CoordIdentity$finalize_panel(panel)</pre><p></div></p>
+
+<p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre>CoordIdentity$clone(deep = FALSE)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl class='dl-horizontal'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
+
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#coord-r-methods">Coord R6 Methods</a></li>
-      <li><a href="#coordidentity-inheritance">CoordIdentity inheritance</a></li>
+      <li><a href="#methods">Methods</a></li>
+      <li><a href="#super-class">Super class</a></li>
+      <li><a href="#methods">Methods</a></li>
     </ul>
 
   </div>

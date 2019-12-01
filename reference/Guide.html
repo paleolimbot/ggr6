@@ -128,74 +128,186 @@ by one guide. All guides except <code>GuideNull</code> will probably have to be
 subclassed for each <a href='Renderer.html'>Renderer</a>.</p>
     </div>
 
-    <pre class="usage"><span class='no'>Guide</span>
-
-<span class='no'>GuideNull</span></pre>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
-    <h2 class="hasAnchor" id="guide-r-methods"><a class="anchor" href="#guide-r-methods"></a>Guide R6 Methods</h2>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
+<h3>Public methods</h3>
 
-
-<p><code>Guide$new()</code></p><ul>
-<li><p>Create a Guide object.</p></li>
+<ul>
+<li><p><a href='#method-new'><code>Guide$new()</code></a></p></li>
+<li><p><a href='#method-title'><code>Guide$title()</code></a></p></li>
+<li><p><a href='#method-position'><code>Guide$position()</code></a></p></li>
+<li><p><a href='#method-aesthetics'><code>Guide$aesthetics()</code></a></p></li>
+<li><p><a href='#method-train'><code>Guide$train()</code></a></p></li>
+<li><p><a href='#method-train_layers'><code>Guide$train_layers()</code></a></p></li>
+<li><p><a href='#method-merge'><code>Guide$merge()</code></a></p></li>
+<li><p><a href='#method-render'><code>Guide$render()</code></a></p></li>
+<li><p><a href='#method-set_title'><code>Guide$set_title()</code></a></p></li>
+<li><p><a href='#method-set_key'><code>Guide$set_key()</code></a></p></li>
+<li><p><a href='#method-set_position'><code>Guide$set_position()</code></a></p></li>
+<li><p><a href='#method-make_key'><code>Guide$make_key()</code></a></p></li>
+<li><p><a href='#method-aesthetics_from_key'><code>Guide$aesthetics_from_key()</code></a></p></li>
+<li><p><a href='#method-clone'><code>Guide$clone()</code></a></p></li>
 </ul>
+<p><hr>
+<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 
-<p><code>guide$title()</code></p><ul>
-<li><p>Return the title that should be displayed by this guide.</p></li>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Guide$new()</pre><p></div></p>
+
+<p><hr>
+<a id="method-title"></a></p><h3>Method <code><a href='https://rdrr.io/r/graphics/title.html'>title()</a></code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Guide$title()</pre><p></div></p>
+
+<p><hr>
+<a id="method-position"></a></p><h3>Method <code>position()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Guide$position()</pre><p></div></p>
+
+<p><hr>
+<a id="method-aesthetics"></a></p><h3>Method <code>aesthetics()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Guide$aesthetics()</pre><p></div></p>
+
+<p><hr>
+<a id="method-train"></a></p><h3>Method <code>train()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Guide$train(scale)</pre><p></div></p>
+
+<p><hr>
+<a id="method-train_layers"></a></p><h3>Method <code>train_layers()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Guide$train_layers(layers, renderer)</pre><p></div></p>
+
+<p><hr>
+<a id="method-merge"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/merge.html'>merge()</a></code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Guide$merge(guide)</pre><p></div></p>
+
+<p><hr>
+<a id="method-render"></a></p><h3>Method <code>render()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Guide$render(panel, renderer)</pre><p></div></p>
+
+<p><hr>
+<a id="method-set_title"></a></p><h3>Method <code>set_title()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Guide$set_title(title)</pre><p></div></p>
+
+<p><hr>
+<a id="method-set_key"></a></p><h3>Method <code>set_key()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Guide$set_key(key)</pre><p></div></p>
+
+<p><hr>
+<a id="method-set_position"></a></p><h3>Method <code>set_position()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Guide$set_position(position)</pre><p></div></p>
+
+<p><hr>
+<a id="method-make_key"></a></p><h3>Method <code>make_key()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Guide$make_key(scale, censor = TRUE)</pre><p></div></p>
+
+<p><hr>
+<a id="method-aesthetics_from_key"></a></p><h3>Method <code>aesthetics_from_key()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Guide$aesthetics_from_key(key)</pre><p></div></p>
+
+<p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre>Guide$clone(deep = FALSE)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl class='dl-horizontal'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
+
+    <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
+
+    <p><code>ggr6::Guide</code> -&gt; <code>GuideNull</code></p>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+<h3>Public methods</h3>
+
+<ul>
+<li><p><a href='#method-train'><code>GuideNull$train()</code></a></p></li>
+<li><p><a href='#method-train_layers'><code>GuideNull$train_layers()</code></a></p></li>
+<li><p><a href='#method-render'><code>GuideNull$render()</code></a></p></li>
+<li><p><a href='#method-clone'><code>GuideNull$clone()</code></a></p></li>
 </ul>
-
-<p><code>guide$position()</code></p><ul>
-<li><p>Return the object describing the position of this guide (specific to the <a href='Renderer.html'>Renderer</a>). A value of <code>NULL</code> means it should not be displayed; a value of <code><a href='waiver.html'>waiver()</a></code> means the position is unspecified.</p></li>
+<p><details ><summary>Inherited methods</summary>
+<ul>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Guide" data-id="aesthetics"><a href='../../ggr6/html/Guide.html#method-aesthetics'><code>ggr6::Guide$aesthetics()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Guide" data-id="aesthetics_from_key"><a href='../../ggr6/html/Guide.html#method-aesthetics_from_key'><code>ggr6::Guide$aesthetics_from_key()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Guide" data-id="initialize"><a href='../../ggr6/html/Guide.html#method-initialize'><code>ggr6::Guide$initialize()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Guide" data-id="make_key"><a href='../../ggr6/html/Guide.html#method-make_key'><code>ggr6::Guide$make_key()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Guide" data-id="merge"><a href='../../ggr6/html/Guide.html#method-merge'><code>ggr6::Guide$merge()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Guide" data-id="position"><a href='../../ggr6/html/Guide.html#method-position'><code>ggr6::Guide$position()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Guide" data-id="set_key"><a href='../../ggr6/html/Guide.html#method-set_key'><code>ggr6::Guide$set_key()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Guide" data-id="set_position"><a href='../../ggr6/html/Guide.html#method-set_position'><code>ggr6::Guide$set_position()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Guide" data-id="set_title"><a href='../../ggr6/html/Guide.html#method-set_title'><code>ggr6::Guide$set_title()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Guide" data-id="title"><a href='../../ggr6/html/Guide.html#method-title'><code>ggr6::Guide$title()</code></a></span></p></li>
 </ul>
+</details>
 
-<p><code>guide$aesthetics()</code></p><ul>
-<li><p>The aesthetics represented by this <code>Guide</code>.</p></li>
-</ul>
+<hr>
+<a id="method-train"></a></p><h3>Method <code>train()</code></h3>
 
-<p><code>guide$train(scale)</code></p><ul>
-<li><p>Add information from a <a href='Scale.html'>Scale</a> to this guide. This creates the <code>$key</code> field, which is a <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> with a column for each aesthetic and a <code>.breaks</code> and <code>.labels</code> column.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>GuideNull$train(scale, layers)</pre><p></div></p>
 
-<p><code>guide$train_layers(layers, renderer)</code></p><ul>
-<li><p>Add information from a <a href='LayerList.html'>LayerList</a> to this object. This is used to assemble the default aesthetic values and geometry primatives that will be displayed by the guide.</p></li>
-</ul>
+<p><hr>
+<a id="method-train_layers"></a></p><h3>Method <code>train_layers()</code></h3>
 
-<p><code>guide$merge(guide)</code></p><ul>
-<li><p>Merges information from another guide into this guide. The default implementation is to merge only if the Guides have the same class, breaks, labels, title, and position. This would occur if a user maps the same column to two aesthetics. Returns <code>TRUE</code> if a merge occured, <code>FALSE</code> otherwise. This is usually called by <a href='GuideList.html'>GuideList</a>'s <code>$merge_all()</code> method.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>GuideNull$train_layers(layers, renderer)</pre><p></div></p>
 
-<p><code>guide$render(panel, renderer)</code></p><ul>
-<li><p>Renders the guide.</p></li>
-</ul>
+<p><hr>
+<a id="method-render"></a></p><h3>Method <code>render()</code></h3>
 
-<p><code>guide$set_key(key)</code></p><ul>
-<li><p>Sets the <code>$key</code> for this Guide, which is a <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> with a column for each aesthetic and a <code>.breaks</code> and <code>.labels</code> column.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>GuideNull$render(panel, renderer)</pre><p></div></p>
 
-<p><code>guide$set_position(position)</code></p><ul>
-<li><p>Sets the <code>$position()</code> for this guide. Use <code>NULL</code> to hide, <code><a href='waiver.html'>waiver()</a></code> to let the <a href='Renderer.html'>Renderer</a> choose, or some other <a href='Renderer.html'>Renderer</a>-specific value.</p></li>
-</ul>
+<p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre>GuideNull$clone(deep = FALSE)</pre><p></div></p>
 
-<p><code>guide$make_key(scale, censor = TRUE)</code></p><ul>
-<li><p>Creates the <code>$key</code> based on a <a href='Scale.html'>Scale</a>, optionally censoring the breaks to ensure they are within the <a href='Scale.html'>Scale</a>'s <code>$limits()</code>.</p></li>
-</ul>
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl class='dl-horizontal'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
 
-    <h2 class="hasAnchor" id="guidenull-inheritance"><a class="anchor" href="#guidenull-inheritance"></a>GuideNull inheritance</h2>
+</dl><p></div></p>
 
-    <p>GuideNull inherits from <code>Guide</code></p>
+
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#guide-r-methods">Guide R6 Methods</a></li>
-      <li><a href="#guidenull-inheritance">GuideNull inheritance</a></li>
+      <li><a href="#methods">Methods</a></li>
+      <li><a href="#super-class">Super class</a></li>
+      <li><a href="#methods">Methods</a></li>
     </ul>
 
   </div>

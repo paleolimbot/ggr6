@@ -120,144 +120,222 @@ package to create meaningful mappings between user data and
 aesthetics with useful breaks and labels.</p>
     </div>
 
-    <pre class="usage"><span class='no'>ScaleSimple</span></pre>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
 
-    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
-    <h2 class="hasAnchor" id="scalesimple-inheritance"><a class="anchor" href="#scalesimple-inheritance"></a>ScaleSimple inheritance</h2>
-
-    <p>ScaleSimple inherits from <code><a href='Scale.html'>Scale</a></code></p>
-    <h2 class="hasAnchor" id="scalesimple-r-methods"><a class="anchor" href="#scalesimple-r-methods"></a>ScaleSimple R6 Methods</h2>
+    <p><code><a href='Scale.html'>ggr6::Scale</a></code> -&gt; <code>ScaleSimple</code></p>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
+<h3>Public methods</h3>
 
-
-<p><code>scale_simple$is_empty()</code></p><ul>
-<li><p>Returns <code>TRUE</code> if the scale has <code>$limits()</code> (or can calculate them).</p></li>
+<ul>
+<li><p><a href='#method-new'><code>ScaleSimple$new()</code></a></p></li>
+<li><p><a href='#method-is_empty'><code>ScaleSimple$is_empty()</code></a></p></li>
+<li><p><a href='#method-transform'><code>ScaleSimple$transform()</code></a></p></li>
+<li><p><a href='#method-untransform'><code>ScaleSimple$untransform()</code></a></p></li>
+<li><p><a href='#method-transform_tbl'><code>ScaleSimple$transform_tbl()</code></a></p></li>
+<li><p><a href='#method-untransform_tbl'><code>ScaleSimple$untransform_tbl()</code></a></p></li>
+<li><p><a href='#method-train'><code>ScaleSimple$train()</code></a></p></li>
+<li><p><a href='#method-train_tbl'><code>ScaleSimple$train_tbl()</code></a></p></li>
+<li><p><a href='#method-reset'><code>ScaleSimple$reset()</code></a></p></li>
+<li><p><a href='#method-map_tbl'><code>ScaleSimple$map_tbl()</code></a></p></li>
+<li><p><a href='#method-breaks'><code>ScaleSimple$breaks()</code></a></p></li>
+<li><p><a href='#method-breaks_minor'><code>ScaleSimple$breaks_minor()</code></a></p></li>
+<li><p><a href='#method-labels'><code>ScaleSimple$labels()</code></a></p></li>
+<li><p><a href='#method-limits'><code>ScaleSimple$limits()</code></a></p></li>
+<li><p><a href='#method-trained_range'><code>ScaleSimple$trained_range()</code></a></p></li>
+<li><p><a href='#method-set_breaks'><code>ScaleSimple$set_breaks()</code></a></p></li>
+<li><p><a href='#method-set_breaks_minor'><code>ScaleSimple$set_breaks_minor()</code></a></p></li>
+<li><p><a href='#method-set_labels'><code>ScaleSimple$set_labels()</code></a></p></li>
+<li><p><a href='#method-set_limits'><code>ScaleSimple$set_limits()</code></a></p></li>
+<li><p><a href='#method-set_oob'><code>ScaleSimple$set_oob()</code></a></p></li>
+<li><p><a href='#method-set_range'><code>ScaleSimple$set_range()</code></a></p></li>
+<li><p><a href='#method-set_rescaler'><code>ScaleSimple$set_rescaler()</code></a></p></li>
+<li><p><a href='#method-set_trans'><code>ScaleSimple$set_trans()</code></a></p></li>
+<li><p><a href='#method-set_na_value'><code>ScaleSimple$set_na_value()</code></a></p></li>
+<li><p><a href='#method-set_limits_empty'><code>ScaleSimple$set_limits_empty()</code></a></p></li>
+<li><p><a href='#method-clone'><code>ScaleSimple$clone()</code></a></p></li>
 </ul>
-
-<p><code>scale_simple$breaks()</code></p><ul>
-<li><p>Calculates and returns breaks in transformed data space. This can be a function of the <code>$limits()</code> and by default the <code>$breaks()</code> method of the transform is used. For continuous scales this is usually <code><a href='https://rdrr.io/pkg/labeling/man/extended.html'>labeling::extended()</a></code>, and for discrete scales the default is to return the limits unchanged.</p></li>
+<p><details open ><summary>Inherited methods</summary>
+<ul>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Scale" data-id="map"><a href='../../ggr6/html/Scale.html#method-map'><code>ggr6::Scale$map()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Scale" data-id="name"><a href='../../ggr6/html/Scale.html#method-name'><code>ggr6::Scale$name()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Scale" data-id="set_guide"><a href='../../ggr6/html/Scale.html#method-set_guide'><code>ggr6::Scale$set_guide()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Scale" data-id="within_limits"><a href='../../ggr6/html/Scale.html#method-within_limits'><code>ggr6::Scale$within_limits()</code></a></span></p></li>
 </ul>
+</details>
 
-<p><code>scale_simple$breaks_minor()</code></p><ul>
-<li><p>Calculates and returns minor breaks in transformed data space. This can be a function of the <code>$breaks()</code>, <code>$limits()</code>, and number of intervals between breaks (usually 2). Minor breaks usually don't make sense for discrete scales.</p></li>
-</ul>
+<hr>
+<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 
-<p><code>scale_simple$labels()</code></p><ul>
-<li><p>Calculates and returns the labels associated with the <code>$breaks()</code>. This can be a function of the <code>$breaks()</code>, and by default the <code>$format()</code> method of the transform is used.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$new(aesthetics = character(0))</pre><p></div></p>
 
-<p><code>scale_simple$limits()</code></p><ul>
-<li><p>Calculates and returns the limits. This can be a funnction of the <code>$trained_range()</code>, and defaults to returning the <code>$trained_range()</code>. Continuous limits are always a numeric vector of length 2; discrete limits are usually a character vector containing possible values.</p></li>
-</ul>
+<p><hr>
+<a id="method-is_empty"></a></p><h3>Method <code>is_empty()</code></h3>
 
-<p><code>scale_simple$trained_range()</code></p><ul>
-<li><p>The range of the values in transformed data space that were observed for this scale's aesthetics. Contiuous ranges are always <code>NULL</code> (when no values were observed) or a numeric vector of length 2; discrete ranges are usually a character vector of values that were observed in the data.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$is_empty()</pre><p></div></p>
 
-<p><code>scale_simple$set_breaks(breaks)</code></p><ul>
-<li><p>Set the breaks for this scale. Can be a vector of breaks in user data space or a function of the <code>$limits()</code>.</p></li>
-</ul>
+<p><hr>
+<a id="method-transform"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/transform.html'>transform()</a></code></h3>
 
-<p><code>scale_simple$set_breaks_minor(breaks_minor)</code></p><ul>
-<li><p>Set the minor breaks for this scale. Can be a vector of breaks in user data space or a function of the <code>$breaks()</code>, <code>$limits()</code>, and the number 2.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$transform(x)</pre><p></div></p>
 
-<p><code>scale_simple$set_labels(labels)</code></p><ul>
-<li><p>Set the labels for this scale. Can be a vector of labels or a function of the <code>$breaks()</code>.</p></li>
-</ul>
+<p><hr>
+<a id="method-untransform"></a></p><h3>Method <code>untransform()</code></h3>
 
-<p><code>scale_simple$set_limits(limits)</code> (inherited from <code>ScaleSimple</code>)</p><ul>
-<li><p>Set the limits for this scale. Can be a function of the <code>$trained_range()</code> or a vector (length 2 numeric for continuous scales or a character vector for discrete scales).</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$untransform(x)</pre><p></div></p>
 
-<p><code>scale_simple$set_oob(oob)</code></p><ul>
-<li><p>Set the out-of-bounds function for this scale. The out-of-bounds function is a function of a vector and the <code>$limits()</code>; useful oob functions include <code><a href='oob_keep.html'>oob_keep()</a></code> (which does nothing; the default), <code><a href='https://scales.r-lib.org//reference/censor.html'>scales::censor()</a></code> (which sets values outside the limits to <code>NA</code>) and <code><a href='https://scales.r-lib.org//reference/squish.html'>scales::squish()</a></code> (which sets values outside the limits to the outermost values), and <code><a href='censor_discrete.html'>censor_discrete()</a></code> (which works like <code><a href='https://scales.r-lib.org//reference/censor.html'>scales::censor()</a></code> but works for discrete scales).</p></li>
-</ul>
+<p><hr>
+<a id="method-transform_tbl"></a></p><h3>Method <code>transform_tbl()</code></h3>
 
-<p><code>scale_simple$set_range(range)</code></p><ul>
-<li><p>Set the range class for this scale. This must be a subclass of <a href='https://scales.r-lib.org//reference/Range.html'>scales::Range</a>.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$transform_tbl(data)</pre><p></div></p>
 
-<p><code>scale_simple$set_rescaler(rescaler)</code></p><ul>
-<li><p>Set the rescaler function for this scale. Rescaled values (between 0 and 1) are often useful as inputs to continuous palletes. This function should take a keyword argument <code>from</code>, which is the scale <code>$limits()</code>. The most useful values for <code>rescaler</code> are <code><a href='rescale_none.html'>rescale_none()</a></code> (the default) and <code><a href='https://scales.r-lib.org//reference/rescale.html'>scales::rescale()</a></code>.</p></li>
-</ul>
+<p><hr>
+<a id="method-untransform_tbl"></a></p><h3>Method <code>untransform_tbl()</code></h3>
 
-<p><code>scale_simple$set_trans(trans)</code></p><ul>
-<li><p>Set the transform for this scale. See <code><a href='https://scales.r-lib.org//reference/trans_new.html'>scales::trans_new()</a></code> for a list of transforms for continuous scales. For discrete scales, the default value of <code><a href='trans_discrete_new.html'>discrete_identity_trans()</a></code> is probably the only value that makes sense.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$untransform_tbl(data)</pre><p></div></p>
 
-<p><code>scale_simple$set_na_value(na_value)</code></p><ul>
-<li><p>Set the output (mapped data space) value that will represent <code>NA</code> values for this scale.</p></li>
-</ul>
+<p><hr>
+<a id="method-train"></a></p><h3>Method <code>train()</code></h3>
 
-<p><code>scale_simple$set_limits_empty(limits_empty)</code></p><ul>
-<li><p>Set the limits to return (in transformed data space) when <code>$is_empty()</code> returns <code>TRUE</code>.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$train(x)</pre><p></div></p>
 
-<p><code>ScaleSimple$new(aesthetics = character(0))</code></p><ul>
-<li><p>Create a Scale object representing zero or more <code>aesthetics</code>.</p></li>
-</ul>
+<p><hr>
+<a id="method-train_tbl"></a></p><h3>Method <code>train_tbl()</code></h3>
 
-<p><code>scale_simple$name(x)</code></p><ul>
-<li><p>Calculate the scale name, which should be a character vector of length 1. May return <code><a href='waiver.html'>waiver()</a></code> for when the scale name should be calculated from the <code><a href='ColumnMapping.html'>ColumnMapping</a></code>. This method may be removed in favour of this value living in the <a href='Guide.html'>Guide</a>.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$train_tbl(data_trans)</pre><p></div></p>
 
-<p><code>scale_simple$transform(x)</code></p><ul>
-<li><p>Transform the user-data vector <code>x</code>. Usually called by <code>$transform_tbl()</code>.</p></li>
-</ul>
+<p><hr>
+<a id="method-reset"></a></p><h3>Method <code>reset()</code></h3>
 
-<p><code>scale_simple$untransform(x)</code></p><ul>
-<li><p>Untransform the transformed-data vector <code>x</code>.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$reset()</pre><p></div></p>
 
-<p><code>scale_simple$train(x)</code></p><ul>
-<li><p>Train the scale with the transformed-data vector <code>x</code>. The range of values observed by the scale are used to calculate its <code>$limits()</code> (if these have not been specified manually). Usually called by <code>$train_tbl()</code>.</p></li>
-</ul>
+<p><hr>
+<a id="method-map_tbl"></a></p><h3>Method <code>map_tbl()</code></h3>
 
-<p><code>scale_simple$reset()</code></p><ul>
-<li><p>Forget all values that were 'remembered' by <code>$train()</code>.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$map_tbl(data_trans)</pre><p></div></p>
 
-<p><code>scale_simple$map(x)</code></p><ul>
-<li><p>Convert the transformed-date vector <code>x</code> into mapped data space. This may be a numeric value (for position scales) or some other vector type (e.g., for colour scales). Usually called by <code>$map_tbl()</code>.</p></li>
-</ul>
+<p><hr>
+<a id="method-breaks"></a></p><h3>Method <code>breaks()</code></h3>
 
-<p><code>scale_simple$transform_tbl(data)</code></p><ul>
-<li><p>Call <code>$transform()</code> on the columns of <code>data</code> whose names are included in <code>$aesthetics</code>.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$breaks()</pre><p></div></p>
 
-<p><code>scale_simple$untransform_tbl(data_trans)</code></p><ul>
-<li><p>Call <code>$untransform()</code> on the columns of <code>data</code> whose names are included in <code>$aesthetics</code>.</p></li>
-</ul>
+<p><hr>
+<a id="method-breaks_minor"></a></p><h3>Method <code>breaks_minor()</code></h3>
 
-<p><code>scale_simple$train_tbl(data_trans)</code> (inherited from <code><a href='Scale.html'>Scale</a></code>)</p><ul>
-<li><p>Call <code>$train()</code> on the columns of <code>data</code> whose names are included in <code>$aesthetics</code>.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$breaks_minor()</pre><p></div></p>
 
-<p><code>scale_simple$map_tbl(data_trans)</code></p><ul>
-<li><p>Call <code>$map()</code> on the columns of <code>data</code> whose names are included in <code>$aesthetics</code>.</p></li>
-</ul>
+<p><hr>
+<a id="method-labels"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/labels.html'>labels()</a></code></h3>
 
-<p><code>scale_simple$within_limits(x)</code></p><ul>
-<li><p>Returns a logical vector describing whether or not values in the transformed-data vector <code>x</code> are within the scale <code>$limits()</code>.</p></li>
-</ul>
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$labels()</pre><p></div></p>
 
-<p><code>scale_simple$set_guide(guide)</code> (inherited from <code><a href='Scale.html'>Scale</a></code>)</p><ul>
-<li><p>Set the <a href='Guide.html'>Guide</a> that will be used to communicate the relationship between user data values and mapped data values.</p></li>
-</ul>
+<p><hr>
+<a id="method-limits"></a></p><h3>Method <code>limits()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$limits()</pre><p></div></p>
+
+<p><hr>
+<a id="method-trained_range"></a></p><h3>Method <code>trained_range()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$trained_range()</pre><p></div></p>
+
+<p><hr>
+<a id="method-set_breaks"></a></p><h3>Method <code>set_breaks()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$set_breaks(breaks)</pre><p></div></p>
+
+<p><hr>
+<a id="method-set_breaks_minor"></a></p><h3>Method <code>set_breaks_minor()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$set_breaks_minor(breaks_minor)</pre><p></div></p>
+
+<p><hr>
+<a id="method-set_labels"></a></p><h3>Method <code>set_labels()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$set_labels(labels)</pre><p></div></p>
+
+<p><hr>
+<a id="method-set_limits"></a></p><h3>Method <code>set_limits()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$set_limits(limits)</pre><p></div></p>
+
+<p><hr>
+<a id="method-set_oob"></a></p><h3>Method <code>set_oob()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$set_oob(oob)</pre><p></div></p>
+
+<p><hr>
+<a id="method-set_range"></a></p><h3>Method <code>set_range()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$set_range(range)</pre><p></div></p>
+
+<p><hr>
+<a id="method-set_rescaler"></a></p><h3>Method <code>set_rescaler()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$set_rescaler(rescaler)</pre><p></div></p>
+
+<p><hr>
+<a id="method-set_trans"></a></p><h3>Method <code>set_trans()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$set_trans(trans)</pre><p></div></p>
+
+<p><hr>
+<a id="method-set_na_value"></a></p><h3>Method <code>set_na_value()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$set_na_value(na_value)</pre><p></div></p>
+
+<p><hr>
+<a id="method-set_limits_empty"></a></p><h3>Method <code>set_limits_empty()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$set_limits_empty(limits_empty)</pre><p></div></p>
+
+<p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre>ScaleSimple$clone(deep = FALSE)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl class='dl-horizontal'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
 
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#scalesimple-inheritance">ScaleSimple inheritance</a></li>
-      <li><a href="#scalesimple-r-methods">ScaleSimple R6 Methods</a></li>
+      <li><a href="#super-class">Super class</a></li>
+      <li><a href="#methods">Methods</a></li>
     </ul>
 
   </div>

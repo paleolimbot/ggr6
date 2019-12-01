@@ -36,7 +36,8 @@
 
 
 <meta property="og:title" content="Transform data — Stat" />
-<meta property="og:description" content="Transform data" />
+<meta property="og:description" content="Transform data
+Transform data" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,22 +113,126 @@
 
     <div class="ref-description">
     <p>Transform data</p>
+<p>Transform data</p>
     </div>
 
-    <pre class="usage"><span class='no'>Stat</span>
-
-<span class='no'>StatIdentity</span></pre>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
 
-    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
+    <p><code><a href='StatGeomBase.html'>ggr6::StatGeomBase</a></code> -&gt; <code>Stat</code></p>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+<h3>Public methods</h3>
+
+<ul>
+<li><p><a href='#method-new'><code>Stat$new()</code></a></p></li>
+<li><p><a href='#method-set_default_mapping'><code>Stat$set_default_mapping()</code></a></p></li>
+<li><p><a href='#method-compute_panel'><code>Stat$compute_panel()</code></a></p></li>
+<li><p><a href='#method-compute_group'><code>Stat$compute_group()</code></a></p></li>
+<li><p><a href='#method-clone'><code>Stat$clone()</code></a></p></li>
+</ul>
+<p><details ><summary>Inherited methods</summary>
+<ul>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="StatGeomBase" data-id="aesthetics"><a href='../../ggr6/html/StatGeomBase.html#method-aesthetics'><code>ggr6::StatGeomBase$aesthetics()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="StatGeomBase" data-id="apply_constant_aesthetic_values"><a href='../../ggr6/html/StatGeomBase.html#method-apply_constant_aesthetic_values'><code>ggr6::StatGeomBase$apply_constant_aesthetic_values()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="StatGeomBase" data-id="apply_default_aesthetic_values"><a href='../../ggr6/html/StatGeomBase.html#method-apply_default_aesthetic_values'><code>ggr6::StatGeomBase$apply_default_aesthetic_values()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="StatGeomBase" data-id="default_aesthetic_values"><a href='../../ggr6/html/StatGeomBase.html#method-default_aesthetic_values'><code>ggr6::StatGeomBase$default_aesthetic_values()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="StatGeomBase" data-id="set_constant_aesthetic_values"><a href='../../ggr6/html/StatGeomBase.html#method-set_constant_aesthetic_values'><code>ggr6::StatGeomBase$set_constant_aesthetic_values()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="StatGeomBase" data-id="setup_data"><a href='../../ggr6/html/StatGeomBase.html#method-setup_data'><code>ggr6::StatGeomBase$setup_data()</code></a></span></p></li>
+</ul>
+</details>
+
+<hr>
+<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Stat$new(constant_aesthetic_values = list())</pre><p></div></p>
+
+<p><hr>
+<a id="method-set_default_mapping"></a></p><h3>Method <code>set_default_mapping()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Stat$set_default_mapping(default_mapping)</pre><p></div></p>
+
+<p><hr>
+<a id="method-compute_panel"></a></p><h3>Method <code>compute_panel()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Stat$compute_panel(data_trans, panel, renderer)</pre><p></div></p>
+
+<p><hr>
+<a id="method-compute_group"></a></p><h3>Method <code>compute_group()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Stat$compute_group(data_trans, panel, renderer)</pre><p></div></p>
+
+<p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre>Stat$clone(deep = FALSE)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl class='dl-horizontal'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
+
+    <h2 class="hasAnchor" id="super-classes"><a class="anchor" href="#super-classes"></a>Super classes</h2>
+
+    <p><code><a href='StatGeomBase.html'>ggr6::StatGeomBase</a></code> -&gt; <code>ggr6::Stat</code> -&gt; <code>StatIdentity</code></p>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+<h3>Public methods</h3>
+
+<ul>
+<li><p><a href='#method-compute_panel'><code>StatIdentity$compute_panel()</code></a></p></li>
+<li><p><a href='#method-clone'><code>StatIdentity$clone()</code></a></p></li>
+</ul>
+<p><details ><summary>Inherited methods</summary>
+<ul>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="StatGeomBase" data-id="aesthetics"><a href='../../ggr6/html/StatGeomBase.html#method-aesthetics'><code>ggr6::StatGeomBase$aesthetics()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="StatGeomBase" data-id="apply_constant_aesthetic_values"><a href='../../ggr6/html/StatGeomBase.html#method-apply_constant_aesthetic_values'><code>ggr6::StatGeomBase$apply_constant_aesthetic_values()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="StatGeomBase" data-id="apply_default_aesthetic_values"><a href='../../ggr6/html/StatGeomBase.html#method-apply_default_aesthetic_values'><code>ggr6::StatGeomBase$apply_default_aesthetic_values()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="StatGeomBase" data-id="default_aesthetic_values"><a href='../../ggr6/html/StatGeomBase.html#method-default_aesthetic_values'><code>ggr6::StatGeomBase$default_aesthetic_values()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="StatGeomBase" data-id="set_constant_aesthetic_values"><a href='../../ggr6/html/StatGeomBase.html#method-set_constant_aesthetic_values'><code>ggr6::StatGeomBase$set_constant_aesthetic_values()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="StatGeomBase" data-id="setup_data"><a href='../../ggr6/html/StatGeomBase.html#method-setup_data'><code>ggr6::StatGeomBase$setup_data()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Stat" data-id="compute_group"><a href='../../ggr6/html/Stat.html#method-compute_group'><code>ggr6::Stat$compute_group()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Stat" data-id="initialize"><a href='../../ggr6/html/Stat.html#method-initialize'><code>ggr6::Stat$initialize()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Stat" data-id="set_default_mapping"><a href='../../ggr6/html/Stat.html#method-set_default_mapping'><code>ggr6::Stat$set_default_mapping()</code></a></span></p></li>
+</ul>
+</details>
+
+<hr>
+<a id="method-compute_panel"></a></p><h3>Method <code>compute_panel()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>StatIdentity$compute_panel(data_trans, panel, renderer)</pre><p></div></p>
+
+<p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre>StatIdentity$clone(deep = FALSE)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl class='dl-horizontal'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
+
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
+      <li><a href="#super-class">Super class</a></li>
+      <li><a href="#methods">Methods</a></li>
+      <li><a href="#super-classes">Super classes</a></li>
+      <li><a href="#methods">Methods</a></li>
     </ul>
 
   </div>

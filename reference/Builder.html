@@ -114,18 +114,272 @@
     <p>Builds and renders a <a href='Graphic.html'>Graphic</a> using a <a href='Renderer.html'>Renderer</a>.</p>
     </div>
 
-    <pre class="usage"><span class='no'>Builder</span></pre>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
 
-    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
+    <p><code><a href='Graphic.html'>ggr6::Graphic</a></code> -&gt; <code>Builder</code></p>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+<h3>Public methods</h3>
+
+<ul>
+<li><p><a href='#method-new'><code>Builder$new()</code></a></p></li>
+<li><p><a href='#method-set_renderer'><code>Builder$set_renderer()</code></a></p></li>
+<li><p><a href='#method-build_init'><code>Builder$build_init()</code></a></p></li>
+<li><p><a href='#method-build'><code>Builder$build()</code></a></p></li>
+<li><p><a href='#method-render'><code>Builder$render()</code></a></p></li>
+<li><p><a href='#method-prepare_data_and_scales'><code>Builder$prepare_data_and_scales()</code></a></p></li>
+<li><p><a href='#method-compute_statistics'><code>Builder$compute_statistics()</code></a></p></li>
+<li><p><a href='#method-compute_positions'><code>Builder$compute_positions()</code></a></p></li>
+<li><p><a href='#method-map_non_position_scales'><code>Builder$map_non_position_scales()</code></a></p></li>
+<li><p><a href='#method-finish_data'><code>Builder$finish_data()</code></a></p></li>
+<li><p><a href='#method-train_facet'><code>Builder$train_facet()</code></a></p></li>
+<li><p><a href='#method-create_panels'><code>Builder$create_panels()</code></a></p></li>
+<li><p><a href='#method-create_plot_data'><code>Builder$create_plot_data()</code></a></p></li>
+<li><p><a href='#method-split_layer_data'><code>Builder$split_layer_data()</code></a></p></li>
+<li><p><a href='#method-map_data_columns'><code>Builder$map_data_columns()</code></a></p></li>
+<li><p><a href='#method-add_missing_scales'><code>Builder$add_missing_scales()</code></a></p></li>
+<li><p><a href='#method-scale_transform'><code>Builder$scale_transform()</code></a></p></li>
+<li><p><a href='#method-scale_train_position'><code>Builder$scale_train_position()</code></a></p></li>
+<li><p><a href='#method-scale_map_position'><code>Builder$scale_map_position()</code></a></p></li>
+<li><p><a href='#method-setup_stat_data'><code>Builder$setup_stat_data()</code></a></p></li>
+<li><p><a href='#method-stat_compute'><code>Builder$stat_compute()</code></a></p></li>
+<li><p><a href='#method-map_stat_columns'><code>Builder$map_stat_columns()</code></a></p></li>
+<li><p><a href='#method-add_position_scales'><code>Builder$add_position_scales()</code></a></p></li>
+<li><p><a href='#method-position_compute'><code>Builder$position_compute()</code></a></p></li>
+<li><p><a href='#method-scale_retrain_position'><code>Builder$scale_retrain_position()</code></a></p></li>
+<li><p><a href='#method-finalize_panels'><code>Builder$finalize_panels()</code></a></p></li>
+<li><p><a href='#method-scale_remap_position'><code>Builder$scale_remap_position()</code></a></p></li>
+<li><p><a href='#method-scale_train_non_position'><code>Builder$scale_train_non_position()</code></a></p></li>
+<li><p><a href='#method-scale_map_non_position'><code>Builder$scale_map_non_position()</code></a></p></li>
+<li><p><a href='#method-setup_geom_data'><code>Builder$setup_geom_data()</code></a></p></li>
+<li><p><a href='#method-train_guides'><code>Builder$train_guides()</code></a></p></li>
+<li><p><a href='#method-modify_plot_data'><code>Builder$modify_plot_data()</code></a></p></li>
+<li><p><a href='#method-clone'><code>Builder$clone()</code></a></p></li>
+</ul>
+<p><details open ><summary>Inherited methods</summary>
+<ul>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Graphic" data-id="add_layer"><a href='../../ggr6/html/Graphic.html#method-add_layer'><code>ggr6::Graphic$add_layer()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Graphic" data-id="add_scale"><a href='../../ggr6/html/Graphic.html#method-add_scale'><code>ggr6::Graphic$add_scale()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Graphic" data-id="replace_scale"><a href='../../ggr6/html/Graphic.html#method-replace_scale'><code>ggr6::Graphic$replace_scale()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Graphic" data-id="set_coord"><a href='../../ggr6/html/Graphic.html#method-set_coord'><code>ggr6::Graphic$set_coord()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="ggr6" data-topic="Graphic" data-id="set_facet"><a href='../../ggr6/html/Graphic.html#method-set_facet'><code>ggr6::Graphic$set_facet()</code></a></span></p></li>
+</ul>
+</details>
+
+<hr>
+<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$new(graphic, renderer = RendererIdentity$new())</pre><p></div></p>
+
+<p><hr>
+<a id="method-set_renderer"></a></p><h3>Method <code>set_renderer()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$set_renderer(renderer)</pre><p></div></p>
+
+<p><hr>
+<a id="method-build_init"></a></p><h3>Method <code>build_init()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$build_init()</pre><p></div></p>
+
+<p><hr>
+<a id="method-build"></a></p><h3>Method <code><a href='https://rdrr.io/r/utils/PkgUtils.html'>build()</a></code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$build()</pre><p></div></p>
+
+<p><hr>
+<a id="method-render"></a></p><h3>Method <code>render()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$render()</pre><p></div></p>
+
+<p><hr>
+<a id="method-prepare_data_and_scales"></a></p><h3>Method <code>prepare_data_and_scales()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$prepare_data_and_scales(plot_data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-compute_statistics"></a></p><h3>Method <code>compute_statistics()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$compute_statistics(plot_data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-compute_positions"></a></p><h3>Method <code>compute_positions()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$compute_positions(plot_data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-map_non_position_scales"></a></p><h3>Method <code>map_non_position_scales()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$map_non_position_scales(plot_data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-finish_data"></a></p><h3>Method <code>finish_data()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$finish_data(plot_data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-train_facet"></a></p><h3>Method <code>train_facet()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$train_facet()</pre><p></div></p>
+
+<p><hr>
+<a id="method-create_panels"></a></p><h3>Method <code>create_panels()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$create_panels()</pre><p></div></p>
+
+<p><hr>
+<a id="method-create_plot_data"></a></p><h3>Method <code>create_plot_data()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$create_plot_data()</pre><p></div></p>
+
+<p><hr>
+<a id="method-split_layer_data"></a></p><h3>Method <code>split_layer_data()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$split_layer_data(plot_data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-map_data_columns"></a></p><h3>Method <code>map_data_columns()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$map_data_columns(plot_data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-add_missing_scales"></a></p><h3>Method <code>add_missing_scales()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$add_missing_scales(plot_data, renderer)</pre><p></div></p>
+
+<p><hr>
+<a id="method-scale_transform"></a></p><h3>Method <code>scale_transform()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$scale_transform(plot_data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-scale_train_position"></a></p><h3>Method <code>scale_train_position()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$scale_train_position(plot_data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-scale_map_position"></a></p><h3>Method <code>scale_map_position()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$scale_map_position(plot_data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-setup_stat_data"></a></p><h3>Method <code>setup_stat_data()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$setup_stat_data(plot_data, renderer)</pre><p></div></p>
+
+<p><hr>
+<a id="method-stat_compute"></a></p><h3>Method <code>stat_compute()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$stat_compute(plot_data, renderer)</pre><p></div></p>
+
+<p><hr>
+<a id="method-map_stat_columns"></a></p><h3>Method <code>map_stat_columns()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$map_stat_columns(plot_data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-add_position_scales"></a></p><h3>Method <code>add_position_scales()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$add_position_scales(renderer)</pre><p></div></p>
+
+<p><hr>
+<a id="method-position_compute"></a></p><h3>Method <code>position_compute()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$position_compute(plot_data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-scale_retrain_position"></a></p><h3>Method <code>scale_retrain_position()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$scale_retrain_position(plot_data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-finalize_panels"></a></p><h3>Method <code>finalize_panels()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$finalize_panels()</pre><p></div></p>
+
+<p><hr>
+<a id="method-scale_remap_position"></a></p><h3>Method <code>scale_remap_position()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$scale_remap_position(plot_data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-scale_train_non_position"></a></p><h3>Method <code>scale_train_non_position()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$scale_train_non_position(plot_data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-scale_map_non_position"></a></p><h3>Method <code>scale_map_non_position()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$scale_map_non_position(plot_data)</pre><p></div></p>
+
+<p><hr>
+<a id="method-setup_geom_data"></a></p><h3>Method <code>setup_geom_data()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$setup_geom_data(plot_data, renderer)</pre><p></div></p>
+
+<p><hr>
+<a id="method-train_guides"></a></p><h3>Method <code>train_guides()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$train_guides()</pre><p></div></p>
+
+<p><hr>
+<a id="method-modify_plot_data"></a></p><h3>Method <code>modify_plot_data()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$modify_plot_data(plot_data, fun)</pre><p></div></p>
+
+<p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre>Builder$clone(deep = FALSE)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl class='dl-horizontal'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
+
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
+      <li><a href="#super-class">Super class</a></li>
+      <li><a href="#methods">Methods</a></li>
     </ul>
 
   </div>

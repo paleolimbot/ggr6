@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A Graphics Layer — Layer • ggr6</title>
+<title>Base class for ordered lists — List • ggr6</title>
 
 
 <!-- jquery -->
@@ -35,12 +35,9 @@
 
 
 
-<meta property="og:title" content="A Graphics Layer — Layer" />
-<meta property="og:description" content="Specifies a Layer within a Graphic. Each Layer in the
-Grammar of Graphics framework contains a Stat, a Geom, and
-a Position. The data_src and ColumnMapping are used to create
-the data for each layer; the stat_mapping is a ColumnMapping that
-is applied after the Stat is computed." />
+<meta property="og:title" content="Base class for ordered lists — List" />
+<meta property="og:description" content="Base class for ordered lists
+Base class for ordered lists" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,17 +106,14 @@ is applied after the Stat is computed." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>A Graphics Layer</h1>
-    <small class="dont-index">Source: <a href='https://github.com/paleolimbot/ggr6/blob/master/R/layer.R'><code>R/layer.R</code></a></small>
-    <div class="hidden name"><code>Layer.Rd</code></div>
+    <h1>Base class for ordered lists</h1>
+    <small class="dont-index">Source: <a href='https://github.com/paleolimbot/ggr6/blob/master/R/list.R'><code>R/list.R</code></a></small>
+    <div class="hidden name"><code>List.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Specifies a Layer within a <a href='Graphic.html'>Graphic</a>. Each Layer in the
-Grammar of Graphics framework contains a <a href='Stat.html'>Stat</a>, a <a href='Geom.html'>Geom</a>, and
-a <a href='Position.html'>Position</a>. The <code>data_src</code> and <a href='ColumnMapping.html'>ColumnMapping</a> are used to create
-the data for each layer; the <code>stat_mapping</code> is a <a href='ColumnMapping.html'>ColumnMapping</a> that
-is applied after the <a href='Stat.html'>Stat</a> is computed.</p>
+    <p>Base class for ordered lists</p>
+<p>Base class for ordered lists</p>
     </div>
 
 
@@ -130,40 +124,47 @@ is applied after the <a href='Stat.html'>Stat</a> is computed.</p>
 <h3>Public methods</h3>
 
 <ul>
-<li><p><a href='#method-new'><code>Layer$new()</code></a></p></li>
-<li><p><a href='#method-data'><code>Layer$data()</code></a></p></li>
-<li><p><a href='#method-data_stat'><code>Layer$data_stat()</code></a></p></li>
-<li><p><a href='#method-clone'><code>Layer$clone()</code></a></p></li>
+<li><p><a href='#method-new'><code>List$new()</code></a></p></li>
+<li><p><a href='#method-add'><code>List$add()</code></a></p></li>
+<li><p><a href='#method-get'><code>List$get()</code></a></p></li>
+<li><p><a href='#method-set'><code>List$set()</code></a></p></li>
+<li><p><a href='#method-size'><code>List$size()</code></a></p></li>
+<li><p><a href='#method-clone'><code>List$clone()</code></a></p></li>
 </ul>
 <p><hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 
 <h3>Usage</h3>
-<p><div class="r"></p><pre>Layer$new(
-  data_src = NULL,
-  mapping = ColumnMappingIdentity$new(data_src),
-  stat_mapping = ColumnMappingIdentity$new(),
-  geom = GeomBlank$new(),
-  stat = StatIdentity$new(),
-  position = PositionIdentity$new()
-)</pre><p></div></p>
+<p><div class="r"></p><pre>List$new(lst = list())</pre><p></div></p>
 
 <p><hr>
-<a id="method-data"></a></p><h3>Method <code><a href='https://rdrr.io/r/utils/data.html'>data()</a></code></h3>
+<a id="method-add"></a></p><h3>Method <code>add()</code></h3>
 
 <h3>Usage</h3>
-<p><div class="r"></p><pre>Layer$data(data_src)</pre><p></div></p>
+<p><div class="r"></p><pre>List$add(item)</pre><p></div></p>
 
 <p><hr>
-<a id="method-data_stat"></a></p><h3>Method <code>data_stat()</code></h3>
+<a id="method-get"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/get.html'>get()</a></code></h3>
 
 <h3>Usage</h3>
-<p><div class="r"></p><pre>Layer$data_stat(data_stat)</pre><p></div></p>
+<p><div class="r"></p><pre>List$get(index)</pre><p></div></p>
+
+<p><hr>
+<a id="method-set"></a></p><h3>Method <code>set()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>List$set(index, item)</pre><p></div></p>
+
+<p><hr>
+<a id="method-size"></a></p><h3>Method <code>size()</code></h3>
+
+<h3>Usage</h3>
+<p><div class="r"></p><pre>List$size()</pre><p></div></p>
 
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>Layer$clone(deep = FALSE)</pre><p></div></p>
+<p><div class="r"></p><pre>List$clone(deep = FALSE)</pre><p></div></p>
 
 <h3>Arguments</h3>
 <p><div class="arguments"></p><dl class='dl-horizontal'>
