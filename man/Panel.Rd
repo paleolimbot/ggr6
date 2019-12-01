@@ -15,7 +15,6 @@ relevant to the Panel is contained) and should be moved to the \link{Builder}.
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{Panel$new()}}
-\item \href{#method-train_guides}{\code{Panel$train_guides()}}
 \item \href{#method-position_scales}{\code{Panel$position_scales()}}
 \item \href{#method-non_position_scales}{\code{Panel$non_position_scales()}}
 \item \href{#method-transform}{\code{Panel$transform()}}
@@ -31,18 +30,6 @@ relevant to the Panel is contained) and should be moved to the \link{Builder}.
 
 \subsection{Details}{
 Create a Panel with a \link{Coord} and \link{ScaleList}.
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-train_guides"></a>}}
-\subsection{Method \code{train_guides()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Panel$train_guides(layers, renderer)}\if{html}{\out{</div>}}
-}
-
-\subsection{Details}{
-This method should be moved to the \link{Builder}.
 }
 
 }

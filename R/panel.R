@@ -24,17 +24,6 @@ Panel <- R6Class(
     },
 
     #' @details
-    #' This method should be moved to the [Builder].
-    train_guides = function(layers, renderer) {
-      guides <- self$scales$guides()
-      guides$merge_all()
-      guides$train_layers(layers, renderer)
-      self$guides <- guides
-
-      invisible(self)
-    },
-
-    #' @details
     #' Returns a [ScaleList] for each position aesthetic defined by
     #' the [Coord].
     position_scales = function() {

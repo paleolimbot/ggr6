@@ -271,7 +271,10 @@ Builder <- R6Class(
 
     train_guides = function() {
       for (panel in self$panels) {
-        panel$train_guides(self$layers, self$renderer)
+        guides <- panel$scales$guides()
+        guides$merge_all()
+        guides$train_layers(self$layers, self$renderer)
+        panel$guides <- guides
       }
     },
 
