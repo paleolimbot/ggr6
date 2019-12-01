@@ -23,6 +23,11 @@ default \code{PositionIdentity} does no position adjustment.
 \if{html}{\out{<div class="r">}}\preformatted{Position$compute_panel(transformed_data, panel)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Perform position adjustment, returning a transformed copy of
+\code{transformed_data}.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

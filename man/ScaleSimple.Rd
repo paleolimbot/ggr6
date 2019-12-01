@@ -68,6 +68,10 @@ aesthetics with useful breaks and labels.
 \if{html}{\out{<div class="r">}}\preformatted{ScaleSimple$is_empty()}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Returns \code{TRUE} if the scale has \verb{$limits()} (or can calculate them).
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-transform"></a>}}
@@ -148,12 +152,25 @@ aesthetics with useful breaks and labels.
 \if{html}{\out{<div class="r">}}\preformatted{ScaleSimple$breaks_minor()}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Calculates and returns minor breaks in transformed data space. This can
+be a function of the \verb{$breaks()}, \verb{$limits()}, and number of intervals
+between breaks (usually 2). Minor breaks usually don't make sense for
+discrete scales.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-labels"></a>}}
 \subsection{Method \code{labels()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ScaleSimple$labels()}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Calculates and returns the labels associated with the \verb{$breaks()}. This
+can be a function of the \verb{$breaks()}, and by default the \verb{$format()} method
+of the transform is used.
 }
 
 }
@@ -164,12 +181,26 @@ aesthetics with useful breaks and labels.
 \if{html}{\out{<div class="r">}}\preformatted{ScaleSimple$limits()}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Calculates and returns the limits. This can be a funnction of the
+\verb{$trained_range()}, and defaults to returning the \verb{$trained_range()}.
+Continuous limits are always a numeric vector of length 2; discrete limits
+are usually a character vector containing possible values.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-trained_range"></a>}}
 \subsection{Method \code{trained_range()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ScaleSimple$trained_range()}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+The range of the values in transformed data space that were observed
+for this scale's aesthetics. Contiuous ranges are always \code{NULL} (when no
+values were observed) or a numeric vector of length 2; discrete ranges
+are usually a character vector of values that were observed in the data.
 }
 
 }
@@ -180,12 +211,22 @@ aesthetics with useful breaks and labels.
 \if{html}{\out{<div class="r">}}\preformatted{ScaleSimple$set_breaks(breaks)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Set the breaks for this scale. Can be a vector of breaks in user data space
+or a function of the \verb{$limits()}.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_breaks_minor"></a>}}
 \subsection{Method \code{set_breaks_minor()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ScaleSimple$set_breaks_minor(breaks_minor)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Set the minor breaks for this scale. Can be a vector of breaks in user data space
+or a function of the \verb{$breaks()}, \verb{$limits()}, and the number 2.
 }
 
 }
@@ -196,12 +237,31 @@ aesthetics with useful breaks and labels.
 \if{html}{\out{<div class="r">}}\preformatted{ScaleSimple$set_labels(labels)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Set the labels for this scale. Can be a vector of labels or a function of
+the \verb{$breaks()}.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_limits"></a>}}
 \subsection{Method \code{set_limits()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ScaleSimple$set_limits(limits)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Set the limits for this scale. Can be a function of the \verb{$trained_range()} or
+a vector (length 2 numeric for continuous scales or a character vector for
+discrete scales).
+@details
+Set the out-of-bounds function for this scale. The out-of-bounds function
+is a function of a vector and the \verb{$limits()}; useful oob functions include
+\code{\link[=oob_keep]{oob_keep()}} (which does nothing; the default),
+\code{\link[scales:censor]{scales::censor()}} (which sets values outside the limits to \code{NA}) and
+\code{\link[scales:squish]{scales::squish()}} (which sets values outside the limits to the outermost values),
+and \code{\link[=censor_discrete]{censor_discrete()}} (which works like \code{\link[scales:censor]{scales::censor()}} but works for
+discrete scales).
 }
 
 }
@@ -220,12 +280,24 @@ aesthetics with useful breaks and labels.
 \if{html}{\out{<div class="r">}}\preformatted{ScaleSimple$set_range(range)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Set the range class for this scale. This must be a subclass of
+\link[scales:Range]{scales::Range}.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_rescaler"></a>}}
 \subsection{Method \code{set_rescaler()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ScaleSimple$set_rescaler(rescaler)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Set the rescaler function for this scale. Rescaled values (between 0 and 1)
+are often useful as inputs to continuous palletes. This function should take
+a keyword argument \code{from}, which is the scale \verb{$limits()}. The most useful
+values for \code{rescaler} are \code{\link[=rescale_none]{rescale_none()}} (the default) and \code{\link[scales:rescale]{scales::rescale()}}.
 }
 
 }
@@ -236,6 +308,13 @@ aesthetics with useful breaks and labels.
 \if{html}{\out{<div class="r">}}\preformatted{ScaleSimple$set_trans(trans)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Set the transform for this scale. See \code{\link[scales:trans_new]{scales::trans_new()}} for a list
+of transforms for continuous scales. For discrete scales, the default
+value of \code{\link[=discrete_identity_trans]{discrete_identity_trans()}} is probably the only value that makes
+sense.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_na_value"></a>}}
@@ -244,12 +323,22 @@ aesthetics with useful breaks and labels.
 \if{html}{\out{<div class="r">}}\preformatted{ScaleSimple$set_na_value(na_value)}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Set the output (mapped data space) value that will represent \code{NA} values
+for this scale.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_limits_empty"></a>}}
 \subsection{Method \code{set_limits_empty()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ScaleSimple$set_limits_empty(limits_empty)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Set the limits to return (in transformed data space) when \verb{$is_empty()}
+returns \code{TRUE}.
 }
 
 }

@@ -16,19 +16,16 @@ Panel <- R6Class(
     scales = NULL,
     guides = NULL,
 
+    #' @details Create a Panel with a [Coord] and [ScaleList].
     initialize = function(coord = CoordIdentity$new(), scales = ScaleList$new()) {
-      "
-      Create a Panel with a [Coord] and [ScaleList].
-      "
       self$coord <- coord
       self$scales <- scales
       self$guides <- GuideList$new()
     },
 
+    #' @details
+    #' This method should be moved to the [Builder].
     train_guides = function(layers, renderer) {
-      "
-      This method should be moved to the [Builder].
-      "
       guides <- self$scales$guides()
       guides$merge_all()
       guides$train_layers(layers, renderer)
@@ -37,26 +34,21 @@ Panel <- R6Class(
       invisible(self)
     },
 
+    #' @details
+    #' Returns a [ScaleList] for each position aesthetic defined by
+    #' the [Coord].
     position_scales = function() {
-      "
-      Returns a [ScaleList] for each position aesthetic defined by
-      the [Coord].
-      "
       self$scales$filter_by_aesthetics(self$coord$aesthetics)
     },
 
+    #' @details Returns a [ScaleList] of scales representing non-position
+    #' aesthetics.
     non_position_scales = function() {
-      "
-      Returns a [ScaleList] of scales representing non-position
-      aesthetics.
-      "
       self$scales$discard_by_aesthetics(self$coord$aesthetics)
     },
 
+    #' @details Calls the [Coord]'s `$transform()` method.
     transform = function(data) {
-      "
-      Calls the [Coord]'s `$transform()` method.
-      "
       self$coord$transform(data, self$scales)
     }
   )

@@ -10,11 +10,11 @@ Position <- R6Class(
   "Position",
   public = list(
     # nocov start
+
+    #' @details
+    #' Perform position adjustment, returning a transformed copy of
+    #' `transformed_data`.
     compute_panel = function(transformed_data, panel) {
-      "
-      Perform position adjustment, returning a transformed copy of
-      `transformed_data`.
-      "
       not_implemented()
     }
     # nocov end

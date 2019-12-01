@@ -29,12 +29,20 @@ relevant to the Panel is contained) and should be moved to the \link{Builder}.
 \if{html}{\out{<div class="r">}}\preformatted{Panel$new(coord = CoordIdentity$new(), scales = ScaleList$new())}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Create a Panel with a \link{Coord} and \link{ScaleList}.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-train_guides"></a>}}
 \subsection{Method \code{train_guides()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Panel$train_guides(layers, renderer)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+This method should be moved to the \link{Builder}.
 }
 
 }
@@ -45,6 +53,11 @@ relevant to the Panel is contained) and should be moved to the \link{Builder}.
 \if{html}{\out{<div class="r">}}\preformatted{Panel$position_scales()}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Returns a \link{ScaleList} for each position aesthetic defined by
+the \link{Coord}.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-non_position_scales"></a>}}
@@ -53,12 +66,21 @@ relevant to the Panel is contained) and should be moved to the \link{Builder}.
 \if{html}{\out{<div class="r">}}\preformatted{Panel$non_position_scales()}\if{html}{\out{</div>}}
 }
 
+\subsection{Details}{
+Returns a \link{ScaleList} of scales representing non-position
+aesthetics.
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-transform"></a>}}
 \subsection{Method \code{transform()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Panel$transform(data)}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Calls the \link{Coord}'s \verb{$transform()} method.
 }
 
 }
