@@ -168,11 +168,18 @@ they contain.</p>
 <h3>Usage</h3>
 <p><div class="r"></p><pre>ScaleList$aesthetics()</pre><p></div></p>
 
+<h3>Details</h3>
+<p>A character vector of aesthetics represented by the <a href='Scale.html'>Scale</a>s
+within the list.</p>
+
 <p><hr>
 <a id="method-scale"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/scale.html'>scale()</a></code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>ScaleList$scale(aesthetic, default = NULL)</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Extract a scale by <code>aesthetic</code> (returning <code>default</code> if there is none.)</p>
 
 <p><hr>
 <a id="method-guides"></a></p><h3>Method <code>guides()</code></h3>
@@ -180,11 +187,19 @@ they contain.</p>
 <h3>Usage</h3>
 <p><div class="r"></p><pre>ScaleList$guides()</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Returns a <a href='GuideList.html'>GuideList</a> of <a href='Guide.html'>Guide</a>s extracted and trained from the
+<a href='Scale.html'>Scale</a>s within the object.</p>
+
 <p><hr>
 <a id="method-filter_by_aesthetics"></a></p><h3>Method <code>filter_by_aesthetics()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>ScaleList$filter_by_aesthetics(aesthetics)</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Return a new <code>ScaleList</code> containing any scale representing
+one or more <code>aesthetics</code> specified.</p>
 
 <p><hr>
 <a id="method-discard_by_aesthetics"></a></p><h3>Method <code>discard_by_aesthetics()</code></h3>
@@ -192,11 +207,19 @@ they contain.</p>
 <h3>Usage</h3>
 <p><div class="r"></p><pre>ScaleList$discard_by_aesthetics(aesthetics)</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Return a new <code>ScaleList</code> containing any scale that does not
+represent the <code>aesthetics</code> specified.</p>
+
 <p><hr>
 <a id="method-transform_tbl"></a></p><h3>Method <code>transform_tbl()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>ScaleList$transform_tbl(data)</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Calls the <code>$transform_tbl()</code> method for each <a href='Scale.html'>Scale</a> iteratively,
+returning the result.</p>
 
 <p><hr>
 <a id="method-untransform_tbl"></a></p><h3>Method <code>untransform_tbl()</code></h3>
@@ -204,11 +227,20 @@ they contain.</p>
 <h3>Usage</h3>
 <p><div class="r"></p><pre>ScaleList$untransform_tbl(data)</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Calls the <code>$untransform_tbl()</code> method for each <a href='Scale.html'>Scale</a> iteratively,
+returning the result.</p>
+
 <p><hr>
 <a id="method-train_tbl"></a></p><h3>Method <code>train_tbl()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>ScaleList$train_tbl(data_trans)</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Calls the <code>$transform_tbl()</code> method for each <a href='Scale.html'>Scale</a>.
+Calls the <code>$reset()</code> method for each <a href='Scale.html'>Scale</a> iteratively,
+returning the result.</p>
 
 <p><hr>
 <a id="method-reset"></a></p><h3>Method <code>reset()</code></h3>
@@ -222,11 +254,19 @@ they contain.</p>
 <h3>Usage</h3>
 <p><div class="r"></p><pre>ScaleList$map_tbl(data_trans)</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Calls the <code>$map_tbl()</code> method for each <a href='Scale.html'>Scale</a> iteratively,
+returning the result.</p>
+
 <p><hr>
 <a id="method-add_missing"></a></p><h3>Method <code>add_missing()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>ScaleList$add_missing(data, renderer)</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Add missing scales to this object based on data (whose names
+are aesthetics) and the <a href='Renderer.html'>Renderer</a>.</p>
 
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>

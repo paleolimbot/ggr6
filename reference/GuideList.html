@@ -154,17 +154,27 @@ List of Guides" />
 <h3>Usage</h3>
 <p><div class="r"></p><pre>GuideList$guide(aesthetic, default = NULL)</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Extract a guide by <code>aesthetic</code> (returning <code>default</code> if there is none.)</p>
+
 <p><hr>
 <a id="method-train_layers"></a></p><h3>Method <code>train_layers()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>GuideList$train_layers(layers, renderer)</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Calls the <code>$train_layers()</code> method of each <a href='Guide.html'>Guide</a>.</p>
+
 <p><hr>
 <a id="method-merge_all"></a></p><h3>Method <code>merge_all()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>GuideList$merge_all()</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Merges the <a href='Guide.html'>Guide</a> objects by calling their <code>$merge()</code> methods
+iteratively. Merging is done in-place.</p>
 
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>

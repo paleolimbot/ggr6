@@ -191,11 +191,18 @@ method may be removed in favour of this value living in the
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Scale$transform(x)</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Transform the user-data vector <code>x</code>. Usually called by
+<code>$transform_tbl()</code>.</p>
+
 <p><hr>
 <a id="method-untransform"></a></p><h3>Method <code>untransform()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Scale$untransform(x)</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Untransform the transformed-data vector <code>x</code>.</p>
 
 <p><hr>
 <a id="method-train"></a></p><h3>Method <code>train()</code></h3>
@@ -203,11 +210,20 @@ method may be removed in favour of this value living in the
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Scale$train(x)</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Train the scale with the transformed-data vector <code>x</code>.
+The range of values observed by the scale are used to
+calculate its <code>$limits()</code> (if these have not been
+specified manually). Usually called by <code>$train_tbl()</code>.</p>
+
 <p><hr>
 <a id="method-reset"></a></p><h3>Method <code>reset()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Scale$reset()</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Forget all values that were 'remembered' by <code>$train()</code>.</p>
 
 <p><hr>
 <a id="method-map"></a></p><h3>Method <code>map()</code></h3>
@@ -215,11 +231,21 @@ method may be removed in favour of this value living in the
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Scale$map(x)</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Convert the transformed-date vector <code>x</code> into mapped data
+space. This may be a numeric value (for position scales) or
+some other vector type (e.g., for colour scales). Usually
+called by <code>$map_tbl()</code>.</p>
+
 <p><hr>
 <a id="method-transform_tbl"></a></p><h3>Method <code>transform_tbl()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Scale$transform_tbl(data)</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Call <code>$transform()</code> on the columns of <code>data</code> whose names
+are included in <code>$aesthetics</code>.</p>
 
 <p><hr>
 <a id="method-untransform_tbl"></a></p><h3>Method <code>untransform_tbl()</code></h3>
@@ -227,11 +253,19 @@ method may be removed in favour of this value living in the
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Scale$untransform_tbl(data_trans)</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Call <code>$untransform()</code> on the columns of <code>data</code> whose names
+are included in <code>$aesthetics</code>.</p>
+
 <p><hr>
 <a id="method-train_tbl"></a></p><h3>Method <code>train_tbl()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Scale$train_tbl(data_trans)</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Call <code>$train()</code> on the columns of <code>data</code> whose names
+are included in <code>$aesthetics</code>.</p>
 
 <p><hr>
 <a id="method-map_tbl"></a></p><h3>Method <code>map_tbl()</code></h3>
@@ -239,11 +273,19 @@ method may be removed in favour of this value living in the
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Scale$map_tbl(data_trans)</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Call <code>$map()</code> on the columns of <code>data</code> whose names
+are included in <code>$aesthetics</code>.</p>
+
 <p><hr>
 <a id="method-breaks"></a></p><h3>Method <code>breaks()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Scale$breaks()</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Calculate the breaks, which are usually nicely-numbered
+values around the scale <code>$limits()</code>.</p>
 
 <p><hr>
 <a id="method-breaks_minor"></a></p><h3>Method <code>breaks_minor()</code></h3>
@@ -251,11 +293,19 @@ method may be removed in favour of this value living in the
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Scale$breaks_minor()</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Calculate the minor breaks, which are usually nicely-numbered
+values between the scale <code>$breaks()</code> and
+around the scale <code>$limits()</code>.</p>
+
 <p><hr>
 <a id="method-labels"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/labels.html'>labels()</a></code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Scale$labels()</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Calculate the labels associated with the <code>$breaks()</code>.</p>
 
 <p><hr>
 <a id="method-limits"></a></p><h3>Method <code>limits()</code></h3>
@@ -263,17 +313,29 @@ method may be removed in favour of this value living in the
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Scale$limits()</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Calculate the scale <code>$limits()</code>, which is usually the range
+of values observed but could also be set.</p>
+
 <p><hr>
 <a id="method-within_limits"></a></p><h3>Method <code>within_limits()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Scale$within_limits(x)</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Returns a logical vector describing whether or not values in
+the transformed-data vector <code>x</code> are within the scale <code>$limits()</code>.</p>
+
 <p><hr>
 <a id="method-set_guide"></a></p><h3>Method <code>set_guide()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Scale$set_guide(guide)</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Set the <a href='Guide.html'>Guide</a> that will be used to communicate the relationship
+between user data values and mapped data values.</p>
 
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>

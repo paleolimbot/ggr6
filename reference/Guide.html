@@ -157,11 +157,17 @@ subclassed for each <a href='Renderer.html'>Renderer</a>.</p>
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Guide$new()</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Create a Guide object.</p>
+
 <p><hr>
 <a id="method-title"></a></p><h3>Method <code><a href='https://rdrr.io/r/graphics/title.html'>title()</a></code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Guide$title()</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Return the title that should be displayed by this guide.</p>
 
 <p><hr>
 <a id="method-position"></a></p><h3>Method <code>position()</code></h3>
@@ -169,11 +175,19 @@ subclassed for each <a href='Renderer.html'>Renderer</a>.</p>
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Guide$position()</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Return the object describing the position of this guide (specific
+to the <a href='Renderer.html'>Renderer</a>). A value of <code>NULL</code> means it should not be displayed;
+a value of <code><a href='waiver.html'>waiver()</a></code> means the position is unspecified.</p>
+
 <p><hr>
 <a id="method-aesthetics"></a></p><h3>Method <code>aesthetics()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Guide$aesthetics()</pre><p></div></p>
+
+<h3>Details</h3>
+<p>The aesthetics represented by this <code>Guide</code>.</p>
 
 <p><hr>
 <a id="method-train"></a></p><h3>Method <code>train()</code></h3>
@@ -181,11 +195,21 @@ subclassed for each <a href='Renderer.html'>Renderer</a>.</p>
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Guide$train(scale)</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Add information from a <a href='Scale.html'>Scale</a> to this guide. This creates the
+<code>$key</code> field, which is a <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> with a column for each
+aesthetic and a <code>.breaks</code> and <code>.labels</code> column.</p>
+
 <p><hr>
 <a id="method-train_layers"></a></p><h3>Method <code>train_layers()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Guide$train_layers(layers, renderer)</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Add information from a <a href='LayerList.html'>LayerList</a> to this object. This is used
+to assemble the default aesthetic values and geometry primatives
+that will be displayed by the guide.</p>
 
 <p><hr>
 <a id="method-merge"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/merge.html'>merge()</a></code></h3>
@@ -193,11 +217,21 @@ subclassed for each <a href='Renderer.html'>Renderer</a>.</p>
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Guide$merge(guide)</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Merges information from another guide into this guide. The default implementation
+is to merge only if the Guides have the same class, breaks, labels, title, and
+position. This would occur if a user maps the same column to two aesthetics.
+Returns <code>TRUE</code> if a merge occured, <code>FALSE</code> otherwise. This is usually called by
+<a href='GuideList.html'>GuideList</a>'s <code>$merge_all()</code> method.</p>
+
 <p><hr>
 <a id="method-render"></a></p><h3>Method <code>render()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Guide$render(panel, renderer)</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Renders the guide.</p>
 
 <p><hr>
 <a id="method-set_title"></a></p><h3>Method <code>set_title()</code></h3>
@@ -211,17 +245,30 @@ subclassed for each <a href='Renderer.html'>Renderer</a>.</p>
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Guide$set_key(key)</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Sets the <code>$key</code> for this Guide, which is a <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> with
+a column for each aesthetic and a <code>.breaks</code> and <code>.labels</code> column.</p>
+
 <p><hr>
 <a id="method-set_position"></a></p><h3>Method <code>set_position()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Guide$set_position(position)</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Sets the <code>$position()</code> for this guide. Use <code>NULL</code> to hide,
+<code><a href='waiver.html'>waiver()</a></code> to let the <a href='Renderer.html'>Renderer</a> choose, or some other
+<a href='Renderer.html'>Renderer</a>-specific value.</p>
+
 <p><hr>
 <a id="method-make_key"></a></p><h3>Method <code>make_key()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Guide$make_key(scale, censor = TRUE)</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Creates the <code>$key</code> based on a <a href='Scale.html'>Scale</a>, optionally censoring the breaks
+to ensure they are within the <a href='Scale.html'>Scale</a>'s <code>$limits()</code>.</p>
 
 <p><hr>
 <a id="method-aesthetics_from_key"></a></p><h3>Method <code>aesthetics_from_key()</code></h3>

@@ -143,17 +143,30 @@ performs no changes in its <code>$transform()</code> method.</p>
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Coord$new(aesthetics = c("x", "y"))</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Create a coordinate system representing one or more position
+<code>aesthetics</code>.</p>
+
 <p><hr>
 <a id="method-transform"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/transform.html'>transform()</a></code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Coord$transform(data_mapped, scales)</pre><p></div></p>
 
+<h3>Details</h3>
+<p>Transform a data frame containing columns representing one or more
+position <code>$aesthetics</code>. This method should always return a data frame
+with <code>x</code> and <code>y</code> columns and  leave non-position columns unchanged.</p>
+
 <p><hr>
 <a id="method-finalize_panel"></a></p><h3>Method <code>finalize_panel()</code></h3>
 
 <h3>Usage</h3>
 <p><div class="r"></p><pre>Coord$finalize_panel(panel)</pre><p></div></p>
+
+<h3>Details</h3>
+<p>Finalize the <a href='Panel.html'>Panel</a> object at the end of the build process. This is
+where scale expansion (if any) can occur.</p>
 
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
