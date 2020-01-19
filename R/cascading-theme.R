@@ -13,8 +13,8 @@ CascadingTheme <- R6Class(
     data = list(),
     nodes = list(),
     tree = list(),
-    nodes_validators = list(),
-    values_validators = list(),
+    node_validators = list(),
+    value_validators = list(),
 
     initialize = function(data = list()) {
       self$set_data(!!!data)
@@ -45,13 +45,13 @@ CascadingTheme <- R6Class(
       branch
     },
 
-    value_validators = function(key, default = abort(glue::glue("No validators for value: '{key}'"))) {
+    value_validator = function(key, default = abort(glue::glue("No validators for value: '{key}'"))) {
       assert_chr_scalar(key)
-      self$values_validators[[key]] %||% default
+      self$value_validators[[key]] %||% default
     },
 
-    node_validators = function(key, default = abort(glue::glue("No validators for node: '{key}'"))) {
-      self$nodes_validators[[key]] %||% default
+    node_validator = function(key, default = abort(glue::glue("No validators for node: '{key}'"))) {
+      self$node_validators[[key]] %||% default
     },
 
     node = function(key, default = abort(glue::glue("No such node: '{key}'"))) {
@@ -92,8 +92,8 @@ CascadingTheme <- R6Class(
           }
         )
 
-        tryCatch(
-          apply_validators(self$value_validators(key, list()), value),
+        value <- tryCatch(
+          self$value_validator(key, identity)(value),
           error = function(e) {
             abort(
               glue::glue("Value failed validation for key '{key}':\n{e}"),
@@ -102,6 +102,8 @@ CascadingTheme <- R6Class(
             )
           }
         )
+
+        value
       } else {
         default
       }
@@ -113,7 +115,7 @@ CascadingTheme <- R6Class(
         self$nodes[[key]] <- NULL
       } else {
         value <- tryCatch(
-          apply_validators(self$node_validators(key, list()), value),
+          self$node_validator(key, identity)(value),
           error = function(e) {
             abort(
               glue::glue("Node failed validation for key '{key}':\n{e}"),
@@ -157,25 +159,23 @@ CascadingTheme <- R6Class(
       invisible(self)
     },
 
-    set_single_value_validators = function(key, ...) {
+    set_value_validator = function(key, validator) {
       assert_chr_scalar(key)
-      validators <- rlang::list2(...)
-      if (length(validators) == 0) {
-        self$values_validators[[key]] <- NULL
+      if (is.null(validator)) {
+        self$value_validators[[key]] <- NULL
       } else {
-        self$values_validators[[key]] <- purrr::map(validators, rlang::as_function)
+        self$value_validators[[key]] <- rlang::as_function(validator)
       }
 
       invisible(self)
     },
 
-    set_single_node_validators = function(key, ...) {
+    set_node_validator = function(key, validator) {
       assert_chr_scalar(key)
-      validators <- rlang::list2(...)
-      if (length(validators) == 0) {
-        self$nodes_validators[[key]] <- NULL
+      if (is.null(validator)) {
+        self$node_validators[[key]] <- NULL
       } else {
-        self$nodes_validators[[key]] <- purrr::map(validators, rlang::as_function)
+        self$node_validators[[key]] <- rlang::as_function(validator)
       }
 
       invisible(self)
@@ -238,14 +238,7 @@ CascadingTheme <- R6Class(
         abort("CascadingTheme node validators must have unique keys")
       }
 
-      for (key in names(items)) {
-        item <- items[[key]]
-        if (!is.list(item)) {
-          item <- list(item)
-        }
-        self$set_single_node_validators(key, !!!item)
-      }
-
+      purrr::walk2(names(items), items, self$set_node_validator)
       invisible(self)
     },
 
@@ -255,14 +248,7 @@ CascadingTheme <- R6Class(
         abort("CascadingTheme value validators must have unique keys")
       }
 
-      for (key in names(items)) {
-        item <- items[[key]]
-        if (!is.list(item)) {
-          item <- list(item)
-        }
-        self$set_single_value_validators(key, !!!item)
-      }
-
+      purrr::walk2(names(items), items, self$set_value_validator)
       invisible(self)
     }
   )
@@ -506,12 +492,4 @@ calc_inheritance <- function(key, tree, branch = character(0)) {
   } else {
     new_branch
   }
-}
-
-apply_validators <- function(validators, value) {
-  for (validator in validators) {
-    value <- validator(value)
-  }
-
-  value
 }

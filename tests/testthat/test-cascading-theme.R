@@ -44,11 +44,11 @@ test_that("empty cascading theme can be created, queried, and compiled", {
   expect_identical(empty$value_base("bad_key", NULL), NULL)
   expect_error(empty$value_base("bad_key"), "No such node")
 
-  expect_identical(empty$value_validators("bad_key", NULL), NULL)
-  expect_error(empty$value_validators("bad_key"), "No validator")
+  expect_identical(empty$value_validator("bad_key", NULL), NULL)
+  expect_error(empty$value_validator("bad_key"), "No validator")
 
-  expect_identical(empty$node_validators("bad_key", NULL), NULL)
-  expect_error(empty$node_validators("bad_key"), "No validator")
+  expect_identical(empty$node_validator("bad_key", NULL), NULL)
+  expect_error(empty$node_validator("bad_key"), "No validator")
 
   expect_error(empty$inheritance("bad_key"), "no such node")
 })
@@ -69,6 +69,11 @@ test_that("inheritance is correct for a cascading theme", {
       striped_bass = "bass",
       guppie = "fish"
     )
+
+  expect_identical(
+    cascading_theme$value("striped_bass"),
+    "I'm an animal=>I'm a fish!=>I'm a bass!=>I'm a striped_bass!"
+  )
 
   expect_identical(
     cascading_theme$inheritance("striped_bass"),

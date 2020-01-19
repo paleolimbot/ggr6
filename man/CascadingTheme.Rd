@@ -16,8 +16,8 @@ allowing customizable defaults with less repeated code.
 \item \href{#method-compile}{\code{CascadingTheme$compile()}}
 \item \href{#method-keys}{\code{CascadingTheme$keys()}}
 \item \href{#method-inheritance}{\code{CascadingTheme$inheritance()}}
-\item \href{#method-value_validators}{\code{CascadingTheme$value_validators()}}
-\item \href{#method-node_validators}{\code{CascadingTheme$node_validators()}}
+\item \href{#method-value_validator}{\code{CascadingTheme$value_validator()}}
+\item \href{#method-node_validator}{\code{CascadingTheme$node_validator()}}
 \item \href{#method-node}{\code{CascadingTheme$node()}}
 \item \href{#method-value}{\code{CascadingTheme$value()}}
 \item \href{#method-value_base}{\code{CascadingTheme$value_base()}}
@@ -25,8 +25,8 @@ allowing customizable defaults with less repeated code.
 \item \href{#method-set_value}{\code{CascadingTheme$set_value()}}
 \item \href{#method-set_nodes}{\code{CascadingTheme$set_nodes()}}
 \item \href{#method-set_values}{\code{CascadingTheme$set_values()}}
-\item \href{#method-set_single_value_validators}{\code{CascadingTheme$set_single_value_validators()}}
-\item \href{#method-set_single_node_validators}{\code{CascadingTheme$set_single_node_validators()}}
+\item \href{#method-set_value_validator}{\code{CascadingTheme$set_value_validator()}}
+\item \href{#method-set_node_validator}{\code{CascadingTheme$set_node_validator()}}
 \item \href{#method-set_tree}{\code{CascadingTheme$set_tree()}}
 \item \href{#method-set_data}{\code{CascadingTheme$set_data()}}
 \item \href{#method-set_node_validators}{\code{CascadingTheme$set_node_validators()}}
@@ -67,10 +67,10 @@ allowing customizable defaults with less repeated code.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-value_validators"></a>}}
-\subsection{Method \code{value_validators()}}{
+\if{html}{\out{<a id="method-value_validator"></a>}}
+\subsection{Method \code{value_validator()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{CascadingTheme$value_validators(
+\if{html}{\out{<div class="r">}}\preformatted{CascadingTheme$value_validator(
   key,
   default = abort(glue::glue("No validators for value: '{key}'"))
 )}\if{html}{\out{</div>}}
@@ -78,10 +78,10 @@ allowing customizable defaults with less repeated code.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-node_validators"></a>}}
-\subsection{Method \code{node_validators()}}{
+\if{html}{\out{<a id="method-node_validator"></a>}}
+\subsection{Method \code{node_validator()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{CascadingTheme$node_validators(
+\if{html}{\out{<div class="r">}}\preformatted{CascadingTheme$node_validator(
   key,
   default = abort(glue::glue("No validators for node: '{key}'"))
 )}\if{html}{\out{</div>}}
@@ -151,18 +151,18 @@ allowing customizable defaults with less repeated code.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_single_value_validators"></a>}}
-\subsection{Method \code{set_single_value_validators()}}{
+\if{html}{\out{<a id="method-set_value_validator"></a>}}
+\subsection{Method \code{set_value_validator()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{CascadingTheme$set_single_value_validators(key, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{CascadingTheme$set_value_validator(key, validator)}\if{html}{\out{</div>}}
 }
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_single_node_validators"></a>}}
-\subsection{Method \code{set_single_node_validators()}}{
+\if{html}{\out{<a id="method-set_node_validator"></a>}}
+\subsection{Method \code{set_node_validator()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{CascadingTheme$set_single_node_validators(key, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{CascadingTheme$set_node_validator(key, validator)}\if{html}{\out{</div>}}
 }
 
 }
