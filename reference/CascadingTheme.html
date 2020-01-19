@@ -132,8 +132,8 @@ allowing customizable defaults with less repeated code.</p>
 <li><p><a href='#method-compile'><code>CascadingTheme$compile()</code></a></p></li>
 <li><p><a href='#method-keys'><code>CascadingTheme$keys()</code></a></p></li>
 <li><p><a href='#method-inheritance'><code>CascadingTheme$inheritance()</code></a></p></li>
-<li><p><a href='#method-value_validators'><code>CascadingTheme$value_validators()</code></a></p></li>
-<li><p><a href='#method-node_validators'><code>CascadingTheme$node_validators()</code></a></p></li>
+<li><p><a href='#method-value_validator'><code>CascadingTheme$value_validator()</code></a></p></li>
+<li><p><a href='#method-node_validator'><code>CascadingTheme$node_validator()</code></a></p></li>
 <li><p><a href='#method-node'><code>CascadingTheme$node()</code></a></p></li>
 <li><p><a href='#method-value'><code>CascadingTheme$value()</code></a></p></li>
 <li><p><a href='#method-value_base'><code>CascadingTheme$value_base()</code></a></p></li>
@@ -141,8 +141,8 @@ allowing customizable defaults with less repeated code.</p>
 <li><p><a href='#method-set_value'><code>CascadingTheme$set_value()</code></a></p></li>
 <li><p><a href='#method-set_nodes'><code>CascadingTheme$set_nodes()</code></a></p></li>
 <li><p><a href='#method-set_values'><code>CascadingTheme$set_values()</code></a></p></li>
-<li><p><a href='#method-set_single_value_validators'><code>CascadingTheme$set_single_value_validators()</code></a></p></li>
-<li><p><a href='#method-set_single_node_validators'><code>CascadingTheme$set_single_node_validators()</code></a></p></li>
+<li><p><a href='#method-set_value_validator'><code>CascadingTheme$set_value_validator()</code></a></p></li>
+<li><p><a href='#method-set_node_validator'><code>CascadingTheme$set_node_validator()</code></a></p></li>
 <li><p><a href='#method-set_tree'><code>CascadingTheme$set_tree()</code></a></p></li>
 <li><p><a href='#method-set_data'><code>CascadingTheme$set_data()</code></a></p></li>
 <li><p><a href='#method-set_node_validators'><code>CascadingTheme$set_node_validators()</code></a></p></li>
@@ -174,19 +174,19 @@ allowing customizable defaults with less repeated code.</p>
 <p><div class="r"></p><pre>CascadingTheme$inheritance(key)</pre><p></div></p>
 
 <p><hr>
-<a id="method-value_validators"></a></p><h3>Method <code>value_validators()</code></h3>
+<a id="method-value_validator"></a></p><h3>Method <code>value_validator()</code></h3>
 
 <h3>Usage</h3>
-<p><div class="r"></p><pre>CascadingTheme$value_validators(
+<p><div class="r"></p><pre>CascadingTheme$value_validator(
   key,
   default = abort(glue::glue("No validators for value: '{key}'"))
 )</pre><p></div></p>
 
 <p><hr>
-<a id="method-node_validators"></a></p><h3>Method <code>node_validators()</code></h3>
+<a id="method-node_validator"></a></p><h3>Method <code>node_validator()</code></h3>
 
 <h3>Usage</h3>
-<p><div class="r"></p><pre>CascadingTheme$node_validators(
+<p><div class="r"></p><pre>CascadingTheme$node_validator(
   key,
   default = abort(glue::glue("No validators for node: '{key}'"))
 )</pre><p></div></p>
@@ -240,16 +240,16 @@ allowing customizable defaults with less repeated code.</p>
 <p><div class="r"></p><pre>CascadingTheme$set_values(...)</pre><p></div></p>
 
 <p><hr>
-<a id="method-set_single_value_validators"></a></p><h3>Method <code>set_single_value_validators()</code></h3>
+<a id="method-set_value_validator"></a></p><h3>Method <code>set_value_validator()</code></h3>
 
 <h3>Usage</h3>
-<p><div class="r"></p><pre>CascadingTheme$set_single_value_validators(key, ...)</pre><p></div></p>
+<p><div class="r"></p><pre>CascadingTheme$set_value_validator(key, validator)</pre><p></div></p>
 
 <p><hr>
-<a id="method-set_single_node_validators"></a></p><h3>Method <code>set_single_node_validators()</code></h3>
+<a id="method-set_node_validator"></a></p><h3>Method <code>set_node_validator()</code></h3>
 
 <h3>Usage</h3>
-<p><div class="r"></p><pre>CascadingTheme$set_single_node_validators(key, ...)</pre><p></div></p>
+<p><div class="r"></p><pre>CascadingTheme$set_node_validator(key, validator)</pre><p></div></p>
 
 <p><hr>
 <a id="method-set_tree"></a></p><h3>Method <code>set_tree()</code></h3>
