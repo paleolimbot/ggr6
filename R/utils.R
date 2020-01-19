@@ -23,6 +23,16 @@ assert_r6 <- function(x, class) {
   invisible(x)
 }
 
+assert_chr_scalar <- function(x) {
+  x_label <- rlang::as_label(enquo(x))
+
+  if (!rlang::is_character(x, n = 1)) {
+    abort(glue::glue("`{x_label}` must be a character vector of length 1"))
+  }
+
+  invisible(x)
+}
+
 function_or_value <- function(fun_or_value, ...) {
   if (is.function(fun_or_value)) {
     fun_or_value(...)

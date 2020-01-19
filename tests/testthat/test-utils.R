@@ -23,3 +23,9 @@ test_that("assert_r6() works as expected", {
   cls_inst <- Cls$new()
   expect_identical(assert_r6(cls_inst, "Cls"), cls_inst)
 })
+
+test_that("assert_chr_scalar works as expected", {
+  expect_error(assert_chr_scalar(character(0)), "must be a character")
+  expect_error(assert_chr_scalar(NULL), "must be a character")
+  expect_identical(assert_chr_scalar("just right"), "just right")
+})
