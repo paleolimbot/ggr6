@@ -65,7 +65,9 @@ Renderer <- R6Class(
     default_aesthetics = function(geom_type) {
       method <- self[[paste0("render_", geom_type)]]
       args <- formals(method)
-      as.list(args[!purrr::map_lgl(args, rlang::is_missing)])
+      args <- as.list(args[!purrr::map_lgl(args, rlang::is_missing)])
+      args <- lapply(args, eval)
+      args
     }
   )
 )
@@ -117,14 +119,14 @@ IdentityRenderer <- R6Class(
 
     render_panel = function(panel, ...) {
       structure(
-        rlang::list2(panel = panel, ...),
+        rlang::list2(panel = panel, data = rlang::list2(...)),
         class = "rendered_panel"
       )
     },
 
     render_panels = function(graphic, ...) {
       structure(
-        rlang::list2(graphic = graphic, ...),
+        rlang::list2(graphic = graphic, panels = rlang::list2(...)),
         class = "rendered_panels"
       )
     },

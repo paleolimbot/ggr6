@@ -11,6 +11,7 @@ Graphic <- R6Class(
     scales = NULL,
     coord = NULL,
     facet = NULL,
+    theme = NULL,
 
     plot_data = NULL,
     panels = NULL,
@@ -21,6 +22,7 @@ Graphic <- R6Class(
 
       self$set_coord(CoordIdentity$new())
       self$set_facet(FacetNull$new())
+      self$set_theme(CascadingTheme$new())
     },
 
     add_layer = function(layer) {
@@ -58,6 +60,17 @@ Graphic <- R6Class(
     set_facet = function(facet) {
       assert_r6(facet, "Facet")
       self$facet <- facet
+      invisible(self)
+    },
+
+    theme_set = function(...) {
+      self$theme$set_values(...)
+      invisible(self)
+    },
+
+    set_theme = function(theme) {
+      assert_r6(theme, "CascadingTheme")
+      self$theme <- theme
       invisible(self)
     }
   )

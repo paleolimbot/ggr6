@@ -16,6 +16,7 @@ Builder <- R6Class(
 
       self$set_coord(graphic$coord)
       self$set_facet(graphic$facet)
+      self$set_theme(graphic$theme)
       self$set_renderer(renderer)
     },
 
@@ -28,9 +29,11 @@ Builder <- R6Class(
     # high-level functions ---------------------------
 
     build_init = function() {
-      self$train_facet()
-      self$create_panels()
-      self$plot_data <- self$create_plot_data()
+      with_theme(self$theme, {
+        self$train_facet()
+        self$create_panels()
+        self$plot_data <- self$create_plot_data()
+      })
 
       invisible(self)
     },
@@ -40,13 +43,15 @@ Builder <- R6Class(
         self$build_init()
       }
 
-      plot_data <- self$prepare_data_and_scales(self$plot_data)
-      plot_data <- self$compute_statistics(plot_data)
-      plot_data <- self$compute_positions(plot_data)
-      plot_data <- self$map_non_position_scales(plot_data)
-      plot_data <- self$finish_data(plot_data)
+      with_theme(self$theme, {
+        plot_data <- self$prepare_data_and_scales(self$plot_data)
+        plot_data <- self$compute_statistics(plot_data)
+        plot_data <- self$compute_positions(plot_data)
+        plot_data <- self$map_non_position_scales(plot_data)
+        plot_data <- self$finish_data(plot_data)
 
-      self$plot_data <- plot_data
+        self$plot_data <- plot_data
+      })
 
       invisible(self)
     },
@@ -58,23 +63,25 @@ Builder <- R6Class(
         self$build()
       }
 
-      self$train_guides()
+      with_theme(self$theme, {
+        self$train_guides()
 
-      self$renderer$render_panels(
-        self,
-        !!!purrr::imap(self$panels, function(panel, panel_index) {
-          self$renderer$render_panel(
-            panel,
-            !!!purrr::imap(self$layers$lst, function(layer, layer_index) {
-              layer$geom$render_panel(
-                self$plot_data[panel_index, layer_index][[1]],
-                panel,
-                self$renderer
-              )
-            })
-          )
-        })
-      )
+        self$renderer$render_panels(
+          self,
+          !!!purrr::imap(self$panels, function(panel, panel_index) {
+            self$renderer$render_panel(
+              panel,
+              !!!purrr::imap(self$layers$lst, function(layer, layer_index) {
+                layer$geom$render_panel(
+                  self$plot_data[panel_index, layer_index][[1]],
+                  panel,
+                  self$renderer
+                )
+              })
+            )
+          })
+        )
+      })
     },
 
     # self$build() ------------------------------------

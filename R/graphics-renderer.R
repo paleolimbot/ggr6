@@ -9,21 +9,47 @@ GraphicsRenderer <- R6Class(
   "GraphicsRenderer", inherit = Renderer,
   public = list(
 
-    render_points = function(x, y, pch = 16, cex = 1, col = "black", lwd = 1, bg = "black", ...) {
+    render_points = function(
+      x, y,
+      pch = theme("points.pch", 16),
+      cex = theme("points.cex", 1),
+      col = theme("points.col", "black"),
+      lwd = theme("points.lwd", 1),
+      bg = theme("points.bg", "black"),
+      ...
+    ) {
       graphics::points(x, y, pch = pch, cex = cex, col = col, lwd = lwd, bg = bg)
     },
 
-    render_path = function(x, y, group = 1, lty = 1, lwd = 1, col = "black", ...) {
+    render_path = function(
+      x, y, group = 1,
+      lty = theme("path.lty", 1),
+      lwd = theme("path.lwd", 1),
+      col = theme("path.col", "black"),
+      ...
+    ) {
       tbl <- tibble(x, y, group, lty, lwd, col)
       private$render_grouped(tbl, graphics::lines)
     },
 
-    render_polygon = function(x, y, group = 1, subgroup = 1, col = "black", fill = "grey50", lty = 1, ...) {
+    render_polygon = function(
+      x, y, group = 1, subgroup = 1,
+      col = theme("polygon.col", "black"),
+      fill = theme("polygon.fill", "grey50"),
+      lty = theme("polygon.lty", 1),
+      ...
+    ) {
       tbl <- tibble(x, y, group, col = fill, border = col, lty)
       private$render_grouped(tbl, graphics::polygon, quos(...))
     },
 
-    render_text = function(x, y, label, cex = 1, col = "black", font = 1, ...) {
+    render_text = function(
+      x, y, label,
+      cex = theme("text.cex", 1),
+      col = theme("text.col", "black"),
+      font = theme("text.font", 1),
+      ...
+    ) {
       graphics::text(x, y, label, cex = cex, col = col, font = font)
     },
 

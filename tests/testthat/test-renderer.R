@@ -41,13 +41,15 @@ test_that("identity renderer can render all geometries", {
   panel <- Panel$new()
   expect_equivalent(
     renderer$render_panel(panel, 1, 2, 3),
-    list(panel = panel, 1, 2, 3)
+    list(panel = panel, panel = list(1, 2, 3))
   )
 
   expect_equivalent(
-    renderer$render_panels(1, 2, 3),
+    renderer$render_panels(NULL, 1, 2, 3)$panels,
     list(1, 2, 3)
   )
+
+  expect_null(renderer$render_panels(NULL, 1, 2, 3)$graphic)
 })
 
 test_that("identity renderer returns position scales for the x and y aesthetics", {

@@ -39,7 +39,8 @@ graphic <- Graphic$new()$
       mapping = ColumnMappingQuosure$new(x = cty, y = hwy, col = class),
       geom = GeomPoint$new()
     )
-  )
+  )$
+  theme_set(points.pch = 17)
 
 Builder$new(graphic, GraphicsRenderer$new())$render()
 ```

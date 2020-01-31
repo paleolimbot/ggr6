@@ -32,6 +32,7 @@ You can install the development version from [GitHub](https://github.com/) with:
 # install.packages("remotes")
 remotes::install_github("paleolimbot/ggr6")
 ```
+
 ## Example
 
 Currently, there are no exported functions or classes, so to experiment you'll have to fork and use `devtools::load_all(".")`.
@@ -39,7 +40,6 @@ Currently, there are no exported functions or classes, so to experiment you'll h
 ```{r, include=FALSE}
 devtools::load_all(".")
 ```
-
 
 ```{r}
 graphic <- Graphic$new()$
@@ -49,7 +49,8 @@ graphic <- Graphic$new()$
       mapping = ColumnMappingQuosure$new(x = cty, y = hwy, col = class),
       geom = GeomPoint$new()
     )
-  )
+  )$
+  theme_set(points.pch = 17)
 
 Builder$new(graphic, GraphicsRenderer$new())$render()
 ```

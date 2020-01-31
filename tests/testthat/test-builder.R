@@ -113,3 +113,41 @@ test_that("Stat and geom overrides are processed during plot build", {
   expect_true(all(built_data$set_geom_aesthetic == 1))
   expect_true(all(built_data$set_stat_aesthetic == 2))
 })
+
+test_that("the theme is considered in all stages of the build", {
+  SpecialStat <- R6Class(
+    "SpecialStat", inherit = Stat,
+    public = list(
+      compute_panel = function(data, panel, renderer) {
+        data$stat_val <- theme("stat_val")
+        data
+      }
+    )
+  )
+
+  SpecialGeom <- R6Class(
+    "SpecialGeom", inherit = Geom,
+    public = list(
+      render_panel = function(data, panel, renderer) {
+        renderer$render_points(
+          data$x, data$y,
+          geom_val = theme("geom_val"),
+          stat_val = data$stat_val
+        )
+      }
+    )
+  )
+
+
+  tbl <- tibble(x = 6:10, y = 1:5)
+  graphic <- Graphic$new()$theme_set(stat_val = "blue", geom_val = "red")
+  graphic$layers$add(
+    Layer$new(tbl, stat = SpecialStat$new(), geom = SpecialGeom$new())
+  )
+
+  builder <- Builder$new(graphic, IdentityRenderer$new())
+  rendered <- builder$render()
+  layer_data <- rendered$panels[[1]]$data[[1]]
+  expect_setequal(layer_data$stat_val, "blue")
+  expect_setequal(layer_data$geom_val, "red")
+})
