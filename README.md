@@ -41,7 +41,7 @@ graphic <- Graphic$new()$
     )
   )
 
-Builder$new(graphic, RendererGraphics$new())$render()
+Builder$new(graphic, GraphicsRenderer$new())$render()
 ```
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />

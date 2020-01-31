@@ -19,7 +19,7 @@ test_that("Stat default panel calculation works", {
   df <- tibble(x = 1:5, group = rep(1:2, length.out = 5))
   stat <- StatLength$new()
   panel <- Panel$new()
-  renderer <- RendererIdentity$new()
+  renderer <- IdentityRenderer$new()
 
   computed <- stat$compute_panel(df, panel, renderer)
   expect_identical(computed, tibble(group = c(1L, 2L), length = c(3L, 2L)))

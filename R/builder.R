@@ -10,7 +10,7 @@ Builder <- R6Class(
   public = list(
     renderer = NULL,
 
-    initialize = function(graphic, renderer = RendererIdentity$new()) {
+    initialize = function(graphic, renderer = IdentityRenderer$new()) {
       self$layers <- graphic$layers
       self$scales <- graphic$scales
 

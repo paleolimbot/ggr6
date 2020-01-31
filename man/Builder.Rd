@@ -62,7 +62,7 @@ Builds and renders a \link{Graphic} using a \link{Renderer}.
 \if{html}{\out{<a id="method-new"></a>}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Builder$new(graphic, renderer = RendererIdentity$new())}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Builder$new(graphic, renderer = IdentityRenderer$new())}\if{html}{\out{</div>}}
 }
 
 }

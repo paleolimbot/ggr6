@@ -1,6 +1,6 @@
 
 test_that("identity renderer can render all geometries", {
-  renderer <- RendererIdentity$new()
+  renderer <- IdentityRenderer$new()
   args <- list(
     x = "x", y = "y", group = "group", label = "label",
     subgroup = "subgroup", extra = "extra"
@@ -51,13 +51,13 @@ test_that("identity renderer can render all geometries", {
 })
 
 test_that("identity renderer returns position scales for the x and y aesthetics", {
-  renderer <- RendererIdentity$new()
+  renderer <- IdentityRenderer$new()
   expect_is(renderer$default_scale(1, "x"), "ScaleContinuousPosition")
   expect_is(renderer$default_scale(letters[1], "y"), "ScaleDiscretePosition")
 })
 
 test_that("identity renderer contains a default scale that has an identity mapping", {
-  renderer <- RendererIdentity$new()
+  renderer <- IdentityRenderer$new()
   scale <- renderer$default_scale(NULL, "aesthetic")
   expect_identical(scale$map(c(1, 2, 3)), c(1, 2, 3))
   expect_identical(scale$aesthetics, "aesthetic")

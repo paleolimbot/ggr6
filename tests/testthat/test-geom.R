@@ -2,7 +2,7 @@
 test_that("GeomBlank returns NULL", {
   df <- tibble(x = 1)
   geom <- GeomBlank$new()
-  renderer <- RendererIdentity$new()
+  renderer <- IdentityRenderer$new()
 
   expect_is(
     geom$render_panel(df, NULL, renderer),
@@ -25,7 +25,7 @@ test_that("Geom default panel calculation works", {
   df <- tibble(x = 1:5, group = rep(1:2, length.out = 5))
   geom <- GeomGroupedPoint$new()
   panel <- Panel$new()
-  renderer <- RendererIdentity$new()
+  renderer <- IdentityRenderer$new()
 
   rendered <- geom$render_panel(df, panel, renderer)
   expect_is(rendered, "rendered_stack")

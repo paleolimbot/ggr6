@@ -51,6 +51,5 @@ graphic <- Graphic$new()$
     )
   )
 
-Builder$new(graphic, RendererGraphics$new())$render()
+Builder$new(graphic, GraphicsRenderer$new())$render()
 ```
-

@@ -5,7 +5,7 @@ test_that("graphics renderer can render all geometry types", {
 
   f <- function() {
     graphic <- Graphic$new()
-    renderer <- RendererGraphics$new()
+    renderer <- GraphicsRenderer$new()
     scale_x <- ScaleContinuousPosition$new("x")$set_limits(c(-1, 11))
     scale_y <- ScaleContinuousPosition$new("y")$set_limits(c(-1, 11))
     scales <- ScaleList$new()$add(scale_x)$add(scale_y)
@@ -36,7 +36,7 @@ test_that("graphics renderer can render all geometry types", {
 test_that("graphics renderer can render a basic plot", {
   f <- function() {
     graphic <- Graphic$new()
-    renderer <- RendererGraphics$new()
+    renderer <- GraphicsRenderer$new()
 
     tbl <- tibble(x = 6:10, y = 1:5, col = rep(c("a", "b"), length.out = 5))
     graphic$layers$add(
@@ -47,7 +47,7 @@ test_that("graphics renderer can render a basic plot", {
       ScaleDiscrete$new("col")$
         set_palette_factory(scales::hue_pal())$
         set_na_value("grey50")$
-        set_guide(GuideGraphicsLegend$new())
+        set_guide(GraphicsGuideLegend$new())
     )
 
     builder <- Builder$new(graphic, renderer)
@@ -58,8 +58,8 @@ test_that("graphics renderer can render a basic plot", {
 })
 
 test_that("the graphics legend guide only accepts named arguments to the constructor", {
-  expect_error(GuideGraphicsLegend$new(a = 1, b = 2, 3), "must be named")
-  expect_silent(GuideGraphicsLegend$new())
+  expect_error(GraphicsGuideLegend$new(a = 1, b = 2, 3), "must be named")
+  expect_silent(GraphicsGuideLegend$new())
 })
 
 test_that("the graphics legend guide can be trained with layer defaults", {
@@ -68,9 +68,9 @@ test_that("the graphics legend guide can be trained with layer defaults", {
     set_palette_factory(scales::hue_pal())$
     train(c("a", "b"))
 
-  guide <- GuideGraphicsLegend$new()
+  guide <- GraphicsGuideLegend$new()
   guide$train(col_scale)
-  guide$train_layers(layers, RendererGraphics$new())
+  guide$train_layers(layers, GraphicsRenderer$new())
 
   expect_identical(guide$layer_defaults$pt.lwd, 1)
 })
@@ -80,11 +80,11 @@ test_that("the graphics legend can be rendered", {
     set_palette_factory(scales::hue_pal())$
     train(c("one", "two", "three"))
 
-  guide <- GuideGraphicsLegend$new(pch = 16)$train(col_scale)
+  guide <- GraphicsGuideLegend$new(pch = 16)$train(col_scale)
 
   f = function() {
     plot(1:5)
-    guide$render(Panel$new(), RendererGraphics$new())
+    guide$render(Panel$new(), GraphicsRenderer$new())
   }
 
   vdiffr::expect_doppelganger("basic graphics legend", f)
@@ -101,12 +101,9 @@ test_that("the graphics legend can be rendered", {
 
   f = function() {
     plot(seq(1, 10, length.out = 5), 1:5, axes = FALSE)
-    x_guide$render(Panel$new(), RendererGraphics$new())
-    y_guide$render(Panel$new(), RendererGraphics$new())
+    x_guide$render(Panel$new(), GraphicsRenderer$new())
+    y_guide$render(Panel$new(), GraphicsRenderer$new())
   }
 
   vdiffr::expect_doppelganger("basic axis legend", f)
 })
-
-
-

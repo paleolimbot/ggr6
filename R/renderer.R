@@ -13,7 +13,7 @@
 #' of [Geom], [Facet], [Coord], and [Scale] subclasses.
 #' The role of ggr6 is to provide robust superclasses for these such
 #' that the subclasses can focus on rendering. This package provides
-#' `RendererIdentity` for testing and [RendererGraphics], which uses the
+#' [IdentityRenderer] for testing and [GraphicsRenderer], which uses the
 #' base [graphics][graphics::graphics-package] package to render graphics.
 #'
 #' @export
@@ -72,8 +72,8 @@ Renderer <- R6Class(
 
 #' @rdname Renderer
 #' @export
-RendererIdentity <- R6Class(
-  "RendererIdentity", inherit = Renderer,
+IdentityRenderer <- R6Class(
+  "IdentityRenderer", inherit = Renderer,
   public = list(
 
     render_points = function(x, y, ...) {

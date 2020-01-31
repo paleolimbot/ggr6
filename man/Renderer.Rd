@@ -2,7 +2,7 @@
 % Please edit documentation in R/renderer.R
 \name{Renderer}
 \alias{Renderer}
-\alias{RendererIdentity}
+\alias{IdentityRenderer}
 \title{Render and assemble a Graphic}
 \description{
 The role of the renderer isn't solidified in ggr6. Currently it's an
@@ -18,7 +18,7 @@ Realistically, each renderer needs its own collection
 of \link{Geom}, \link{Facet}, \link{Coord}, and \link{Scale} subclasses.
 The role of ggr6 is to provide robust superclasses for these such
 that the subclasses can focus on rendering. This package provides
-\code{RendererIdentity} for testing and \link{RendererGraphics}, which uses the
+\link{IdentityRenderer} for testing and \link{GraphicsRenderer}, which uses the
 base \link[graphics:graphics-package]{graphics} package to render graphics.
 }
 \section{Methods}{
@@ -144,21 +144,21 @@ The objects of this class are cloneable with this method.
 }
 }
 \section{Super class}{
-\code{\link[ggr6:Renderer]{ggr6::Renderer}} -> \code{RendererIdentity}
+\code{\link[ggr6:Renderer]{ggr6::Renderer}} -> \code{IdentityRenderer}
 }
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-render_points}{\code{RendererIdentity$render_points()}}
-\item \href{#method-render_path}{\code{RendererIdentity$render_path()}}
-\item \href{#method-render_polygon}{\code{RendererIdentity$render_polygon()}}
-\item \href{#method-render_text}{\code{RendererIdentity$render_text()}}
-\item \href{#method-render_null}{\code{RendererIdentity$render_null()}}
-\item \href{#method-render_stack}{\code{RendererIdentity$render_stack()}}
-\item \href{#method-render_panel}{\code{RendererIdentity$render_panel()}}
-\item \href{#method-render_panels}{\code{RendererIdentity$render_panels()}}
-\item \href{#method-default_scale}{\code{RendererIdentity$default_scale()}}
-\item \href{#method-clone}{\code{RendererIdentity$clone()}}
+\item \href{#method-render_points}{\code{IdentityRenderer$render_points()}}
+\item \href{#method-render_path}{\code{IdentityRenderer$render_path()}}
+\item \href{#method-render_polygon}{\code{IdentityRenderer$render_polygon()}}
+\item \href{#method-render_text}{\code{IdentityRenderer$render_text()}}
+\item \href{#method-render_null}{\code{IdentityRenderer$render_null()}}
+\item \href{#method-render_stack}{\code{IdentityRenderer$render_stack()}}
+\item \href{#method-render_panel}{\code{IdentityRenderer$render_panel()}}
+\item \href{#method-render_panels}{\code{IdentityRenderer$render_panels()}}
+\item \href{#method-default_scale}{\code{IdentityRenderer$default_scale()}}
+\item \href{#method-clone}{\code{IdentityRenderer$clone()}}
 }
 }
 \if{html}{
@@ -173,7 +173,7 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-render_points"></a>}}
 \subsection{Method \code{render_points()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{RendererIdentity$render_points(x, y, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$render_points(x, y, ...)}\if{html}{\out{</div>}}
 }
 
 }
@@ -181,7 +181,7 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-render_path"></a>}}
 \subsection{Method \code{render_path()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{RendererIdentity$render_path(x, y, group, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$render_path(x, y, group, ...)}\if{html}{\out{</div>}}
 }
 
 }
@@ -189,7 +189,7 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-render_polygon"></a>}}
 \subsection{Method \code{render_polygon()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{RendererIdentity$render_polygon(x, y, group, subgroup, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$render_polygon(x, y, group, subgroup, ...)}\if{html}{\out{</div>}}
 }
 
 }
@@ -197,7 +197,7 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-render_text"></a>}}
 \subsection{Method \code{render_text()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{RendererIdentity$render_text(x, y, label, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$render_text(x, y, label, ...)}\if{html}{\out{</div>}}
 }
 
 }
@@ -205,7 +205,7 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-render_null"></a>}}
 \subsection{Method \code{render_null()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{RendererIdentity$render_null()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$render_null()}\if{html}{\out{</div>}}
 }
 
 }
@@ -213,7 +213,7 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-render_stack"></a>}}
 \subsection{Method \code{render_stack()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{RendererIdentity$render_stack(...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$render_stack(...)}\if{html}{\out{</div>}}
 }
 
 }
@@ -221,7 +221,7 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-render_panel"></a>}}
 \subsection{Method \code{render_panel()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{RendererIdentity$render_panel(panel, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$render_panel(panel, ...)}\if{html}{\out{</div>}}
 }
 
 }
@@ -229,7 +229,7 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-render_panels"></a>}}
 \subsection{Method \code{render_panels()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{RendererIdentity$render_panels(graphic, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$render_panels(graphic, ...)}\if{html}{\out{</div>}}
 }
 
 }
@@ -237,7 +237,7 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-default_scale"></a>}}
 \subsection{Method \code{default_scale()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{RendererIdentity$default_scale(x, aesthetic)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$default_scale(x, aesthetic)}\if{html}{\out{</div>}}
 }
 
 }
@@ -246,7 +246,7 @@ The objects of this class are cloneable with this method.
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{RendererIdentity$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$clone(deep = FALSE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

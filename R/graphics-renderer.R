@@ -5,8 +5,8 @@
 #' is mostly used for testing at the moment.
 #'
 #' @export
-RendererGraphics <- R6Class(
-  "RendererGraphics", inherit = Renderer,
+GraphicsRenderer <- R6Class(
+  "GraphicsRenderer", inherit = Renderer,
   public = list(
 
     render_points = function(x, y, pch = 16, cex = 1, col = "black", lwd = 1, bg = "black", ...) {
@@ -84,20 +84,20 @@ RendererGraphics <- R6Class(
           ScaleDiscrete$new(aesthetic)$
             set_palette_factory(scales::hue_pal())$
             set_na_value("grey50")$
-            set_guide(GuideGraphicsLegend$new())
+            set_guide(GraphicsGuideLegend$new())
         } else {
           ScaleContinuous$new(aesthetic)$
             set_rescaler(scales::rescale)$
             set_palette(scales::seq_gradient_pal())$
             set_na_value("grey50")$
-            set_guide(GuideGraphicsLegend$new())
+            set_guide(GraphicsGuideLegend$new())
         }
 
       } else if (aesthetic == "pch") {
         if (is_discrete(x)) {
           ScaleDiscrete$new(aesthetic)$
             set_palette_factory(scales::shape_pal())$
-            set_guide(GuideGraphicsLegend$new())
+            set_guide(GraphicsGuideLegend$new())
         } else {
           abort("Cannot map a continuous value to 'pch'")
         }
@@ -163,8 +163,8 @@ GuideGraphicsAxis <- R6Class(
   )
 )
 
-GuideGraphicsLegend <- R6Class(
-  "GuideGraphicsLegend", inherit = Guide,
+GraphicsGuideLegend <- R6Class(
+  "GraphicsGuideLegend", inherit = Guide,
 
   public = list(
     legend_args = NULL,
