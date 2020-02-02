@@ -39,9 +39,8 @@ GraphicsRenderer <- R6Class(
       lty = theme("polygon.lty", 1),
       ...
     ) {
-      # TODO: no "piece"...do polygons with holes work?
       tbl <- tibble(x, y, feature, part, col = fill, border = col, lty)
-      private$render_grouped(tbl, graphics::polygon, groups = quos(.data$feature, .data$part))
+      private$render_grouped(tbl, graphics::polypath, groups = quos(.data$feature, .data$part))
     },
 
     render_text = function(
