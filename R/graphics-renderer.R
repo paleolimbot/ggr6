@@ -10,7 +10,7 @@ GraphicsRenderer <- R6Class(
   public = list(
 
     render_points = function(
-      x, y,
+      x, y, feature = NULL,
       pch = theme("points.pch", 16),
       cex = theme("points.cex", 1),
       col = theme("points.col", "black"),
@@ -22,29 +22,30 @@ GraphicsRenderer <- R6Class(
     },
 
     render_path = function(
-      x, y, group = 1,
+      x, y, feature = 1L, part = 1L,
       lty = theme("path.lty", 1),
       lwd = theme("path.lwd", 1),
       col = theme("path.col", "black"),
       ...
     ) {
-      tbl <- tibble(x, y, group, lty, lwd, col)
-      private$render_grouped(tbl, graphics::lines)
+      tbl <- tibble(x, y, feature, part, lty, lwd, col)
+      private$render_grouped(tbl, graphics::lines, groups = quos(.data$feature, .data$part))
     },
 
     render_polygon = function(
-      x, y, group = 1, subgroup = 1,
+      x, y, feature = 1L, piece = 1L, part = 1L,
       col = theme("polygon.col", "black"),
       fill = theme("polygon.fill", "grey50"),
       lty = theme("polygon.lty", 1),
       ...
     ) {
-      tbl <- tibble(x, y, group, col = fill, border = col, lty)
-      private$render_grouped(tbl, graphics::polygon, quos(...))
+      # TODO: no "piece"...do polygons with holes work?
+      tbl <- tibble(x, y, feature, part, col = fill, border = col, lty)
+      private$render_grouped(tbl, graphics::polygon, groups = quos(.data$feature, .data$part))
     },
 
     render_text = function(
-      x, y, label,
+      x, y, label, feature = 1L,
       cex = theme("text.cex", 1),
       col = theme("text.col", "black"),
       font = theme("text.font", 1),

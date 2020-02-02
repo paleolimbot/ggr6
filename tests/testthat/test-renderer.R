@@ -2,8 +2,8 @@
 test_that("identity renderer can render all geometries", {
   renderer <- IdentityRenderer$new()
   args <- list(
-    x = "x", y = "y", group = "group", label = "label",
-    subgroup = "subgroup", extra = "extra"
+    x = "x", y = "y", feature = "feature", label = "label",
+    piece = "piece", extra = "extra"
   )
   arg_names <- names(args)
 

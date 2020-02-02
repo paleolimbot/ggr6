@@ -20,6 +20,23 @@ The role of ggr6 is to provide robust superclasses for these such
 that the subclasses can focus on rendering. This package provides
 \link{IdentityRenderer} for testing and \link{GraphicsRenderer}, which uses the
 base \link[graphics:graphics-package]{graphics} package to render graphics.
+
+Renders nothing
+
+This method will (should) be moved to the \link{Coord} or \link{Panel}
+object in the near future
+
+This method should be moved to the \link{Builder} or
+\link{Facet} object in the near future
+
+Because the mapped values of (for example) a colour
+scale vary between scales
+
+Assemble a character vector of aesthetic names that can be used
+with a given \verb{render_<geom_type>()} function.
+
+Get a list of default values (in aesthetic space) for a given
+geometry type.
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -42,33 +59,80 @@ base \link[graphics:graphics-package]{graphics} package to render graphics.
 \if{html}{\out{<a id="method-render_points"></a>}}
 \subsection{Method \code{render_points()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Renderer$render_points(x, y, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Renderer$render_points(x, y, feature = seq_along(x), ...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x, y}}{Finite coordinates}
+
+\item{\code{feature}}{An ID that whose unique values can
+be used to identify and/or separate features}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-render_path"></a>}}
 \subsection{Method \code{render_path()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Renderer$render_path(x, y, group, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Renderer$render_path(x, y, feature, part = 1L, ...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x, y}}{Finite coordinates}
+
+\item{\code{feature}}{An ID that whose unique values can
+be used to identify and/or separate features}
+
+\item{\code{part}}{An ID used to separate parts in a multiline geometry}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-render_polygon"></a>}}
 \subsection{Method \code{render_polygon()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Renderer$render_polygon(x, y, group, subgroup, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Renderer$render_polygon(x, y, feature = 1L, piece = 1L, part = 1L, ...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x, y}}{Finite coordinates}
+
+\item{\code{feature}}{An ID that whose unique values can
+be used to identify and/or separate features}
+
+\item{\code{piece}}{An ID used to separate rings within polygons. The
+first piece in the row order is interpreted as the outer ring.}
+
+\item{\code{part}}{An ID used to separate parts in a multipolygon geometry}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-render_text"></a>}}
 \subsection{Method \code{render_text()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Renderer$render_text(x, y, label, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Renderer$render_text(x, y, label, feature = seq_along(x), ...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x, y}}{Finite coordinates}
+
+\item{\code{feature}}{An ID that whose unique values can
+be used to identify and/or separate features}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-render_null"></a>}}
@@ -85,6 +149,13 @@ base \link[graphics:graphics-package]{graphics} package to render graphics.
 \if{html}{\out{<div class="r">}}\preformatted{Renderer$render_stack(...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{A series of \verb{render_*()} calls}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-render_panel"></a>}}
@@ -93,6 +164,15 @@ base \link[graphics:graphics-package]{graphics} package to render graphics.
 \if{html}{\out{<div class="r">}}\preformatted{Renderer$render_panel(panel, ...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{panel}}{A \link{Panel} object.}
+
+\item{\code{...}}{A series of \verb{render_*()} calls}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-render_panels"></a>}}
@@ -101,6 +181,15 @@ base \link[graphics:graphics-package]{graphics} package to render graphics.
 \if{html}{\out{<div class="r">}}\preformatted{Renderer$render_panels(graphic, ...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{graphic}}{A \link{Graphic} (or \link{Builder}?) object}
+
+\item{\code{...}}{A series of \verb{render_*()} calls}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-default_scale"></a>}}
@@ -109,6 +198,15 @@ base \link[graphics:graphics-package]{graphics} package to render graphics.
 \if{html}{\out{<div class="r">}}\preformatted{Renderer$default_scale(x, aesthetic)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{A vector of values in user data space}
+
+\item{\code{aesthetic}}{An aesthetic type (e.g., colour, x, y)}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-aesthetics"></a>}}
@@ -117,6 +215,14 @@ base \link[graphics:graphics-package]{graphics} package to render graphics.
 \if{html}{\out{<div class="r">}}\preformatted{Renderer$aesthetics(geom_type)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{geom_type}}{A string that follows the pattern \verb{render_<geom_type>()},
+where \verb{render_<geom_type>()} is a method of the \link{Renderer}.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-default_aesthetics"></a>}}
@@ -125,6 +231,14 @@ base \link[graphics:graphics-package]{graphics} package to render graphics.
 \if{html}{\out{<div class="r">}}\preformatted{Renderer$default_aesthetics(geom_type)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{geom_type}}{A string that follows the pattern \verb{render_<geom_type>()},
+where \verb{render_<geom_type>()} is a method of the \link{Renderer}.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
@@ -173,7 +287,7 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-render_points"></a>}}
 \subsection{Method \code{render_points()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$render_points(x, y, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$render_points(x, y, feature = 1L, ...)}\if{html}{\out{</div>}}
 }
 
 }
@@ -181,7 +295,7 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-render_path"></a>}}
 \subsection{Method \code{render_path()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$render_path(x, y, group, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$render_path(x, y, feature = 1L, part = 1L, ...)}\if{html}{\out{</div>}}
 }
 
 }
@@ -189,7 +303,7 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-render_polygon"></a>}}
 \subsection{Method \code{render_polygon()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$render_polygon(x, y, group, subgroup, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$render_polygon(x, y, feature = 1L, piece = 1L, part = 1L, ...)}\if{html}{\out{</div>}}
 }
 
 }
@@ -197,7 +311,7 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-render_text"></a>}}
 \subsection{Method \code{render_text()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$render_text(x, y, label, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{IdentityRenderer$render_text(x, y, label, feature = 1L, ...)}\if{html}{\out{</div>}}
 }
 
 }

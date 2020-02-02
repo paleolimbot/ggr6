@@ -13,7 +13,8 @@ GeomPoint <- R6Class(
 
     render_panel = function(data, panel, renderer) {
       data <- panel$transform(data)
-      exec(renderer$render_points, !!!data[self$aesthetics(renderer)])
+      cols <- intersect(self$aesthetics(renderer), colnames(data))
+      exec(renderer$render_points, !!!data[cols])
     }
   )
 )

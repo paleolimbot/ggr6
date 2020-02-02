@@ -21,47 +21,85 @@ Renderer <- R6Class(
   "Renderer",
   public = list(
 
-    render_points = function(x, y, ...) {
+    #' @param x,y Finite coordinates
+    #' @param feature An ID that whose unique values can
+    #'   be used to identify and/or separate features
+    render_points = function(x, y, feature = seq_along(x), ...) {
       not_implemented() # nocov
     },
 
-    render_path = function(x, y, group, ...) {
+    #' @param x,y Finite coordinates
+    #' @param feature An ID that whose unique values can
+    #'   be used to identify and/or separate features
+    #' @param part An ID used to separate parts in a multiline geometry
+    render_path = function(x, y, feature, part = 1L, ...) {
       not_implemented() # nocov
     },
 
-    render_polygon = function(x, y, group, subgroup, ...) {
+    #' @param x,y Finite coordinates
+    #' @param feature An ID that whose unique values can
+    #'   be used to identify and/or separate features
+    #' @param piece An ID used to separate rings within polygons. The
+    #'   first piece in the row order is interpreted as the outer ring.
+    #' @param part An ID used to separate parts in a multipolygon geometry
+    render_polygon = function(x, y, feature = 1L, piece = 1L, part = 1L, ...) {
       not_implemented() # nocov
     },
 
-    render_text = function(x, y, label, ...) {
+    #' @param x,y Finite coordinates
+    #' @param feature An ID that whose unique values can
+    #'   be used to identify and/or separate features
+    render_text = function(x, y, label, feature = seq_along(x), ...) {
       not_implemented() # nocov
     },
 
+    #' @details Renders nothing
     render_null = function() {
       not_implemented() # nocov
     },
 
+    #' @param ... A series of `render_*()` calls
     render_stack = function(...) {
       not_implemented() # nocov
     },
 
+    #' @details This method will (should) be moved to the [Coord] or [Panel]
+    #'   object in the near future
+    #' @param panel A [Panel] object.
+    #' @param ... A series of `render_*()` calls
     render_panel = function(panel, ...) {
       not_implemented() # nocov
     },
 
+    #' @details This method should be moved to the [Builder] or
+    #'   [Facet] object in the near future
+    #' @param graphic A [Graphic] (or [Builder]?) object
+    #' @param ... A series of `render_*()` calls
     render_panels = function(graphic, ...) {
       not_implemented() # nocov
     },
 
+    #' @details Because the mapped values of (for example) a colour
+    #'   scale vary between scales
+    #' @param x A vector of values in user data space
+    #' @param aesthetic An aesthetic type (e.g., colour, x, y)
     default_scale = function(x, aesthetic) {
       not_implemented() # nocov
     },
 
+    #' @details Assemble a character vector of aesthetic names that can be used
+    #'   with a given `render_<geom_type>()` function.
+    #' @param geom_type A string that follows the pattern `render_<geom_type>()`,
+    #'   where `render_<geom_type>()` is a method of the [Renderer].
     aesthetics = function(geom_type) {
       method <- self[[paste0("render_", geom_type)]]
       setdiff(names(formals(method)), "...")
     },
 
+    #' @details Get a list of default values (in aesthetic space) for a given
+    #'   geometry type.
+    #' @param geom_type A string that follows the pattern `render_<geom_type>()`,
+    #'   where `render_<geom_type>()` is a method of the [Renderer].
     default_aesthetics = function(geom_type) {
       method <- self[[paste0("render_", geom_type)]]
       args <- formals(method)
@@ -78,30 +116,30 @@ IdentityRenderer <- R6Class(
   "IdentityRenderer", inherit = Renderer,
   public = list(
 
-    render_points = function(x, y, ...) {
+    render_points = function(x, y, feature = 1L, ...) {
       structure(
-        list(x = x, y = y, ...),
+        list(x = x, y = y, feature = feature, ...),
         class = "rendered_points"
       )
     },
 
-    render_path = function(x, y, group, ...) {
+    render_path = function(x, y, feature = 1L, part = 1L, ...) {
       structure(
-        list(x = x, y = y, group = group, ...),
+        list(x = x, y = y, feature = feature, part = part, ...),
         class = "rendered_path"
       )
     },
 
-    render_polygon = function(x, y, group, subgroup, ...) {
+    render_polygon = function(x, y, feature = 1L, piece = 1L, part = 1L, ...) {
       structure(
-        list(x = x, y = y, group = group, subgroup = subgroup, ...),
+        list(x = x, y = y, feature = feature, piece = piece, part = part, ...),
         class = "rendered_polygon"
       )
     },
 
-    render_text = function(x, y, label, ...) {
+    render_text = function(x, y, label, feature = 1L, ...) {
       structure(
-        list(x = x, y = y, label = label, ...),
+        list(x = x, y = y, label = label, feature = feature, ...),
         class = "rendered_text"
       )
     },

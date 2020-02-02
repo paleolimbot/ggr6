@@ -40,11 +40,12 @@ is mostly used for testing at the moment.
 \if{html}{\out{<div class="r">}}\preformatted{GraphicsRenderer$render_points(
   x,
   y,
-  pch = 16,
-  cex = 1,
-  col = "black",
-  lwd = 1,
-  bg = "black",
+  feature = NULL,
+  pch = theme("points.pch", 16),
+  cex = theme("points.cex", 1),
+  col = theme("points.col", "black"),
+  lwd = theme("points.lwd", 1),
+  bg = theme("points.bg", "black"),
   ...
 )}\if{html}{\out{</div>}}
 }
@@ -57,10 +58,11 @@ is mostly used for testing at the moment.
 \if{html}{\out{<div class="r">}}\preformatted{GraphicsRenderer$render_path(
   x,
   y,
-  group = 1,
-  lty = 1,
-  lwd = 1,
-  col = "black",
+  feature = 1L,
+  part = 1L,
+  lty = theme("path.lty", 1),
+  lwd = theme("path.lwd", 1),
+  col = theme("path.col", "black"),
   ...
 )}\if{html}{\out{</div>}}
 }
@@ -73,11 +75,12 @@ is mostly used for testing at the moment.
 \if{html}{\out{<div class="r">}}\preformatted{GraphicsRenderer$render_polygon(
   x,
   y,
-  group = 1,
-  subgroup = 1,
-  col = "black",
-  fill = "grey50",
-  lty = 1,
+  feature = 1L,
+  piece = 1L,
+  part = 1L,
+  col = theme("polygon.col", "black"),
+  fill = theme("polygon.fill", "grey50"),
+  lty = theme("polygon.lty", 1),
   ...
 )}\if{html}{\out{</div>}}
 }
@@ -91,9 +94,10 @@ is mostly used for testing at the moment.
   x,
   y,
   label,
-  cex = 1,
-  col = "black",
-  font = 1,
+  feature = 1L,
+  cex = theme("text.cex", 1),
+  col = theme("text.col", "black"),
+  font = theme("text.font", 1),
   ...
 )}\if{html}{\out{</div>}}
 }

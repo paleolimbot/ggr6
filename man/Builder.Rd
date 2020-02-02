@@ -48,13 +48,15 @@ Builds and renders a \link{Graphic} using a \link{Renderer}.
 }
 }
 \if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
+\out{<details ><summary>Inherited methods</summary>}
 \itemize{
 \item \out{<span class="pkg-link" data-pkg="ggr6" data-topic="Graphic" data-id="add_layer">}\href{../../ggr6/html/Graphic.html#method-add_layer}{\code{ggr6::Graphic$add_layer()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="ggr6" data-topic="Graphic" data-id="add_scale">}\href{../../ggr6/html/Graphic.html#method-add_scale}{\code{ggr6::Graphic$add_scale()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="ggr6" data-topic="Graphic" data-id="replace_scale">}\href{../../ggr6/html/Graphic.html#method-replace_scale}{\code{ggr6::Graphic$replace_scale()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="ggr6" data-topic="Graphic" data-id="set_coord">}\href{../../ggr6/html/Graphic.html#method-set_coord}{\code{ggr6::Graphic$set_coord()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="ggr6" data-topic="Graphic" data-id="set_facet">}\href{../../ggr6/html/Graphic.html#method-set_facet}{\code{ggr6::Graphic$set_facet()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ggr6" data-topic="Graphic" data-id="set_theme">}\href{../../ggr6/html/Graphic.html#method-set_theme}{\code{ggr6::Graphic$set_theme()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="ggr6" data-topic="Graphic" data-id="theme_set">}\href{../../ggr6/html/Graphic.html#method-theme_set}{\code{ggr6::Graphic$theme_set()}}\out{</span>}
 }
 \out{</details>}
 }

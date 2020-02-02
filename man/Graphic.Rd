@@ -17,6 +17,8 @@ Specify a Graphic
 \item \href{#method-replace_scale}{\code{Graphic$replace_scale()}}
 \item \href{#method-set_coord}{\code{Graphic$set_coord()}}
 \item \href{#method-set_facet}{\code{Graphic$set_facet()}}
+\item \href{#method-theme_set}{\code{Graphic$theme_set()}}
+\item \href{#method-set_theme}{\code{Graphic$set_theme()}}
 \item \href{#method-clone}{\code{Graphic$clone()}}
 }
 }
@@ -65,6 +67,22 @@ Specify a Graphic
 \subsection{Method \code{set_facet()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Graphic$set_facet(facet)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-theme_set"></a>}}
+\subsection{Method \code{theme_set()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Graphic$theme_set(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_theme"></a>}}
+\subsection{Method \code{set_theme()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Graphic$set_theme(theme)}\if{html}{\out{</div>}}
 }
 
 }
